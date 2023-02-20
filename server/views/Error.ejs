@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        .error
+        {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            color: gray;
+            font-size: 300%;
+            text-align: center;
+            animation-name: error;
+            animation-iteration-count: infinite;
+            animation-duration: 1s;
+        }
+        @keyframes error {
+            0%
+            {
+                color:gray;
+            }
+            50%
+            {
+                color: red;
+            }
+            100%
+            {
+                color: gray;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error">
+        <div>
+            <h1>Error</h1> 
+            <h2> Backend Location Do Not Exist </h2>
+        </div>
+       
+    </div>
+    
+</body>
+</html>
