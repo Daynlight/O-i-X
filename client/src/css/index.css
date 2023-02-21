@@ -401,6 +401,10 @@ svg {
   padding-bottom: 3rem !important;
 }
 
+.fs-1 {
+  font-size: calc(1.375rem + 1.5vw) !important;
+}
+
 .fs-3 {
   font-size: calc(1.3rem + 0.6vw) !important;
 }
@@ -423,6 +427,9 @@ svg {
   border-radius: var(--bs-border-radius-2xl) !important;
 }
 @media (min-width: 1200px) {
+  .fs-1 {
+    font-size: 2.5rem !important;
+  }
   .fs-3 {
     font-size: 1.75rem !important;
   }

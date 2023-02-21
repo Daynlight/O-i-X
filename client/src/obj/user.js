@@ -35,7 +35,7 @@ const User = ({Name,Stars,Photo,Friends}) => {
                 <h1>Friends</h1>
             </div>
             <div class="justify-content-center grid d-flex">
-                <div className="d-flex grid col-9 justigy-content-center border fs-3">
+                <div class="d-flex grid col-9 justigy-content-center border fs-3">
                     <ul class="friendlist col-12">
                         {Friends.map(e =>
                             (

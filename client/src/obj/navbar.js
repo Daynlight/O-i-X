@@ -21,7 +21,7 @@ const NavBar = ({Name}) => {
                     <Link to="/Bot" class="nav-link">Bot Game</Link>
                 </li>
             </ul>
-            <div className="py-5"></div>
+            <div class="py-5"></div>
 
 
             
