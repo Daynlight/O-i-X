@@ -5,16 +5,16 @@ import NavBar from './obj/navbar';
 import Error from './obj/Error';
 import User from './obj/user';
 import BotGame from './obj/botgame';
+import LocalGame from './obj/localgame';
 
 function App() {
   const [Name,SetName] = useState('Annonim');
   const [Stars, SetStars] = useState(0);
   const [Photo,SetPhoto] = useState(require('./img/1.png'));
   const [Friends,SetFriends] = useState([{id:1, name: 'asd',active: true},{id:2,name:'asdasda',active: false}]);
-  
 
   return (
-    <div className="App">
+    <div class="App">
       <Router>
         <Switch>
           <Route exact path="/">
@@ -23,18 +23,40 @@ function App() {
               <div class="col-9">
                   <BotGame></BotGame>
               </div>
-              <div className="col-3">
+              <div class="col-3">
+                <User Name={Name} Stars={Stars} Photo={Photo} Friends={Friends}></User>
+              </div>
+            </div>
+          </Route>
+          <Route exact path="/Bot">
+            <NavBar Name={Name}></NavBar>
+            <div class='row col-12'>
+              <div class="col-9">
+                  <BotGame></BotGame>
+              </div>
+              <div class="col-3">
+                <User Name={Name} Stars={Stars} Photo={Photo} Friends={Friends}></User>
+              </div>
+            </div>
+          </Route>
+          <Route exact path="/Local">
+            <NavBar Name={Name}></NavBar>
+            <div class='row col-12'>
+              <div class="col-9">
+                  <LocalGame></LocalGame>
+              </div>
+              <div class="col-3">
                 <User Name={Name} Stars={Stars} Photo={Photo} Friends={Friends}></User>
               </div>
             </div>
           </Route>
           <Route exact path="/User">
             <NavBar Name={Name}></NavBar>
-            <div className="row col-12">
-              <div className="col-4"></div>
-              <div className="col-4">
+            <div class="row col-12">
+              <div class="col-4"></div>
+              <div class="col-4">
                   <User Name={Name} Stars={Stars} Photo={Photo} Friends={Friends}></User>
-                <div className="col-4"></div>
+                <div class="col-4"></div>
               </div>
             </div>
           </Route>

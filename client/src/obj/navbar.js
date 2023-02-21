@@ -15,7 +15,10 @@ const NavBar = ({Name}) => {
                     <a class="nav-link">Find Game</a>
                 </li>
                 <li class="nav-item">
-                    <Link to="/" class="nav-link">Bot Game</Link>
+                    <Link to="/Local" class="nav-link">Local Game</Link>
+                </li>
+                <li class="nav-item">
+                    <Link to="/Bot" class="nav-link">Bot Game</Link>
                 </li>
             </ul>
             <div className="py-5"></div>

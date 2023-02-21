@@ -56,4 +56,15 @@ body
 {
     height: 28vh;
     border: 1px solid red;
+    transition: 1s;
+    text-align: center;
+    color:$secondary;
+    
+}
+.plcae:hover
+{
+    transition: 1s;
+    background-color: transparent;
+    transform: scale(0.9);
+   
 }

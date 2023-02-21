@@ -10822,4 +10822,13 @@ body {
 .plcae {
   height: 28vh;
   border: 1px solid red;
+  transition: 1s;
+  text-align: center;
+  color: #6c757d;
+}
+
+.plcae:hover {
+  transition: 1s;
+  background-color: transparent;
+  transform: scale(0.9);
 }
