@@ -5,12 +5,12 @@ function build()
 {
     return src('index.scss')
     .pipe(sass())
-    .pipe(dest('../css'))
+    .pipe(dest('../src/css'))
 }
 
 function watchStyle() 
 {
-    watch(['index.scss'],build)
+    watch(['*.scss'],build)
 }
 
 
