@@ -11,6 +11,14 @@ const Login = () => {
     {
         SetAction(action);
     }
+    
+    function RunAction(e)
+    {
+        e.preventDefault();
+
+
+
+    }
 
 
 
@@ -23,7 +31,7 @@ const Login = () => {
                     {Action==='login' &&
                     (  
                         
-                        <form action="">
+                        <form onSubmit={RunAction}>
                             <div className="d-flex justify-content-center">
                                 <div class="btn btn-primary me-2"><h1>Login</h1></div>
                                 <div onClick={ () => ChangeAction('register') } class="btn ms-2 notsetloginaction"><h1>Register</h1></div>
@@ -41,7 +49,7 @@ const Login = () => {
                     {Action==='register' &&
                     (  
                         
-                        <form action="">
+                        <form onSubmit={RunAction}>
                             <div class="d-flex justify-content-center">
                                 <div onClick={ () => ChangeAction('login') } class="btn me-2 notsetloginaction"><h1>Login</h1></div>
                                 <div class="btn btn-primary ms-2"><h1>Register</h1></div>
