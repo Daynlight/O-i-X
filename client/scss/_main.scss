@@ -1,4 +1,8 @@
-::-webkit-scrollbar{overflow: hidden;}
+::-webkit-scrollbar{
+   overflow:hidden ;
+   width: 0px;
+}
+
 body
 {
     background-color: $body;
