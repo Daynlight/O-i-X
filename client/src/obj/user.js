@@ -42,17 +42,18 @@ const User = ({Name,Stars,Photo,Friends}) => {
                                 
                                 e.active===true && <li class="me-4 useractive" key={e.id}>{e.name}</li>
                                 
-                                
                             ))}
                             {Friends.map(e =>
                             (
                                 
                                 e.active===false && <li class="me-4 unuseractive" key={e.id}>{e.name}</li>
                                 
-                                
                             ))}
                     </ul>
                 </div>
+            </div>
+            <div class="justify-content-center grid d-flex">
+                <h1><a href="" class="text-info">Settings</a></h1>
             </div>
         </div>
     );

@@ -4,6 +4,7 @@ import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import NavBar from './obj/navbar';
 import Error from './obj/Error';
 import User from './obj/user';
+import BotGame from './obj/botgame';
 
 function App() {
   const [Name,SetName] = useState('Annonim');
@@ -20,19 +21,28 @@ function App() {
             <NavBar Name={Name}></NavBar>
             <div class='row col-12'>
               <div class="col-9">
-                  ads
+                  <BotGame></BotGame>
               </div>
               <div className="col-3">
                 <User Name={Name} Stars={Stars} Photo={Photo} Friends={Friends}></User>
               </div>
-
+            </div>
+          </Route>
+          <Route exact path="/User">
+            <NavBar Name={Name}></NavBar>
+            <div className="row col-12">
+              <div className="col-4"></div>
+              <div className="col-4">
+                  <User Name={Name} Stars={Stars} Photo={Photo} Friends={Friends}></User>
+                <div className="col-4"></div>
+              </div>
             </div>
           </Route>
           <Route exact path="*">
             <Error></Error>
           </Route>
+          
         </Switch>
-
       </Router>
       
     </div>

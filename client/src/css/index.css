@@ -10769,6 +10769,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+::-webkit-scrollbar {
+  overflow: hidden;
+}
+
 body {
   background-color: #101010;
   color: #e90090;

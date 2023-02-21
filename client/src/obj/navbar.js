@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = ({Name}) => {
 
@@ -9,13 +9,13 @@ const NavBar = ({Name}) => {
             
             <ul class="nav justify-content-center fs-3">
                 <li class="nav-item ">
-                    <a class="nav-link active " aria-current="page">Hello { Name }</a>
+                    <Link to="/User" class="nav-link active " aria-current="page">Hello { Name }</Link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Link</a>
+                    <a class="nav-link">Find Game</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" >Disabled link</a>
+                    <Link to="/" class="nav-link">Bot Game</Link>
                 </li>
             </ul>
 
