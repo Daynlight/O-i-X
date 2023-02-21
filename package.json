@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "gulp-purgecss": "^5.0.0",
-    "vinyl-sourcemaps-apply": "^0.2.1"
-  }
-}
