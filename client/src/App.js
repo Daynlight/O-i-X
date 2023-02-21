@@ -20,14 +20,13 @@ function App() {
       </body>
       <Router>
         <Switch>
-          <Route exact path="/">
+        <Route exact path="/">
             <NavBar Name={Name}></NavBar>
-            <div class='row col-12'>
-              <div class="col-9">
-                  <BotGame></BotGame>
-              </div>
-              <div class="col-3">
-                <User Name={Name} Stars={Stars} Photo={Photo} Friends={Friends}></User>
+            <div class="row col-12">
+              <div class="col-4"></div>
+              <div class="col-4">
+                  <User Name={Name} Stars={Stars} Photo={Photo} Friends={Friends}></User>
+                <div class="col-4"></div>
               </div>
             </div>
           </Route>
