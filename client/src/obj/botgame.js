@@ -46,6 +46,12 @@ const BotGame = () => {
             }
         }
     }
+    function Again()
+    {
+        SetPlace([{id:1, get:''},{id:2, get:''},{id:3, get:''},{id:4, get:''},{id:5, get:''},{id:6, get:''},{id:7, get:''},{id:8, get:''},{id:9, get:''}]);
+        SetTure(0);
+        SetWin('');
+    }
 
     useEffect(() =>
     {
@@ -128,6 +134,7 @@ const BotGame = () => {
                 {Win === 'x' && <div class="fs-1">X Win</div>}
                 {Win === 'o' && <div class="fs-1">O Win</div>}
                 {Ture === 5 && Win==='' && <div class="fs-1">Remis</div>}
+                {(Ture === 5 || Win!=='') && <div onClick={() => Again()} class="ms-2 btn btn-primary fs-3">Play Again</div>}
             </div>
             <div class="mx-5 row border rounded-5 p-3">
                 
