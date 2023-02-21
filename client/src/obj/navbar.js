@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-const NavBar = () => {
-    const [Name,setName] = useState('Anonim');
+const NavBar = ({Name}) => {
 
 
 

@@ -10794,3 +10794,23 @@ body {
     color: lightcoral;
   }
 }
+.img {
+  width: 100%;
+}
+
+.text-gold {
+  color: #ffe600;
+}
+
+.friendlist {
+  list-style: none;
+  text-align: center;
+}
+
+.useractive {
+  color: #2bd600;
+}
+
+.unuseractive {
+  color: #707070;
+}

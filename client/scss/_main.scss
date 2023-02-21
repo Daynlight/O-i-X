@@ -28,3 +28,26 @@ body
         color: lightcoral;
     }
 }
+.img
+{
+    width: 100%;
+}
+.text-gold
+{
+    color:$gold;
+}
+.friendlist
+{
+    list-style: none;
+    text-align: center;
+    
+}
+.useractive
+{
+    color: $active;
+
+}
+.unuseractive
+{
+    color: $unactive;
+}
