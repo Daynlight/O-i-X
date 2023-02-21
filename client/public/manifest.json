@@ -1,8 +1,12 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "O and X",
+  "name": "O and X",
   "icons": [
-   
+    {
+      "src": "favicon.png",
+      "sizes": "1084x1084",
+      "type": "image/x-icon"
+    }
   ],
   "start_url": ".",
   "display": "standalone",
