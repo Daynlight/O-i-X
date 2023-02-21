@@ -42,7 +42,7 @@ const Login = () => {
                     (  
                         
                         <form action="">
-                            <div className="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center">
                                 <div onClick={ () => ChangeAction('login') } class="btn me-2 notsetloginaction"><h1>Login</h1></div>
                                 <div class="btn btn-primary ms-2"><h1>Register</h1></div>
                             </div>
