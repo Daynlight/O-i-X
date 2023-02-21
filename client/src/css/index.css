@@ -10818,3 +10818,8 @@ body {
 .unuseractive {
   color: #707070;
 }
+
+.plcae {
+  height: 28vh;
+  border: 1px solid red;
+}

@@ -7,7 +7,7 @@ const NavBar = ({Name}) => {
     return ( 
         <div>
             
-            <ul class="nav justify-content-center fs-3">
+            <ul class="nav bg-dark fixed-top justify-content-center fs-3">
                 <li class="nav-item ">
                     <Link to="/User" class="nav-link active " aria-current="page">Hello { Name }</Link>
                 </li>
@@ -18,6 +18,8 @@ const NavBar = ({Name}) => {
                     <Link to="/" class="nav-link">Bot Game</Link>
                 </li>
             </ul>
+            <div className="py-5"></div>
+
 
             
         </div>
