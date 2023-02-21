@@ -1,16 +1,16 @@
 import { useState } from "react";
 
 const NavBar = () => {
-    const [Name,setName] = useState('');
+    const [Name,setName] = useState('Anonim');
 
 
 
     return ( 
         <div>
             
-            <ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link active " aria-current="page">{ Name }</a>
+            <ul class="nav justify-content-center fs-3">
+                <li class="nav-item ">
+                    <a class="nav-link active " aria-current="page">Hello { Name }</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link">Link</a>
