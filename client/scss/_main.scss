@@ -91,4 +91,47 @@ body
 .term
 {
     color:#3bfc00;
+    
+}
+.loginBack
+{
+    background-image: url(https://i.pinimg.com/564x/f4/e4/8f/f4e48f4c3c97dcfa982b0ad9ac5cf716.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.teminal
+{
+    background-color: #00000059;
+}
+.colors
+{
+    border: 5px solid;
+    border-radius: 5px;
+    animation-name: colors;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+@keyframes colors {
+    0%
+    {
+        border-color: #3bfc00;
+    }
+    25%
+    {
+        border-color:  aqua;
+    }
+    50%
+    {
+        border-color: rebeccapurple;
+    }
+    75%
+    {
+        border-color: pink;
+    }
+    100%
+    {
+        border-color: #3bfc00;
+    }
+
 }
