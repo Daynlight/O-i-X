@@ -53,6 +53,31 @@ const Login = () => {
         
     }
 
+    function RunActionRegister()
+    {
+        const url="http://localhost:8080/Login/"+md5(Nick)+"/"+md5(Password);
+        fetch(url)
+        .then((resp) => resp.json())
+        .then((apidata) =>
+        {
+
+            cookies.set('UserID', md5(apidata[0].id),timexpire)
+            cookies.set('UserNick', md5(Nick),timexpire)
+            cookies.set('UserPass', md5(Password),timexpire)
+            window.location.reload(true);
+            
+            
+        })
+        if( typeof cookies.get('UserID')==='undefined')
+        {
+            Error = 'Password or Username is wrong!';
+            SetEtap(0);
+            SetText(Error + ' ' + 'Your Nick: ')
+            Error = '';
+        }
+        
+    }
+
     function UpdateLogin(e,etap)
     {
         e.preventDefault();
@@ -102,18 +127,21 @@ const Login = () => {
         if(etap.etap==2)
         {
             SetPassword(Z);
-            SetText(Text + Z +' RePassword: ');
+            SetText(Text + "*********" +' RePassword: ');
             SetZ('');
             SetEtap(3);
         }
         if(etap.etap==3)
         {
             SetPasssword1(Z);
-            SetText(Text + Z);
+            SetText(Text + "********* Press Enter");
             SetZ('');
             SetEtap(4);
         }
-
+        if(etap.etap==4)
+        {
+            RunActionRegister();
+        }
         console.log(etap);
         
         
