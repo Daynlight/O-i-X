@@ -1,11 +1,13 @@
 const express = require('express');
-var mysql = require('mysql');
+const mysql = require('mysql');
+const cors = require('cors');
 const app = express();
 
 
 
 
 app.set("view engine","ejs");
+app.use(cors());
 
 
 app.get("/Login/:nick/:password",(req,res) =>
@@ -24,9 +26,10 @@ app.get("/Login/:nick/:password",(req,res) =>
 
       con.connect(function(err) {
          if (err) throw err;
-         con.query('SELECT id FROM Users where Nick="'+req.params.nick+'" and Password="'+req.params.password+'"', function (err, result, fields) {
+         con.query('SELECT id FROM Users where md5(Nick)="'+req.params.nick+'" and Password="'+req.params.password+'"', function (err, result, fields) {
          if (err) throw err;
             res.json(result)
+            
          });
       });
    }

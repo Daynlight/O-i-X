@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import Typical from 'react-typical'
+import Cookies from "universal-cookie";
+var md5 = require('md5');
+
 
 const Login = () => {
+
+    const cookies = new Cookies();
     var [Action,SetAction] = useState('login');
     var [Nick,SetNick] = useState('');
     var [Email,SetEmail] = useState('');
@@ -10,6 +15,11 @@ const Login = () => {
     var [Text,SetText] = useState('Your Nick: ')
     var [Z,SetZ] = useState('')
     var [etap,SetEtap] = useState(0);
+    var Error = '';
+    
+   
+    const timexpire = {path: '/', maxAge: 1209600 };
+
     
 
     function ChangeAction(action)
@@ -18,12 +28,32 @@ const Login = () => {
         if(action==='register')SetText('Give Us Your UserName: ');
         SetEtap(0);
         SetAction(action);
+        Error = '';
     }
     
     function RunActionLogin()
     {
-        
+        const url="http://localhost:8080/Login/"+md5(Nick)+"/"+md5(Password);
+        fetch(url)
+        .then((resp) => resp.json())
+        .then((apidata) =>
+        {
 
+            cookies.set('UserID', md5(apidata[0].id),timexpire)
+            cookies.set('UserNick', md5(Nick),timexpire)
+            cookies.set('UserPass', md5(Password),timexpire)
+            window.location.reload(true);
+            
+            
+        })
+        if( typeof cookies.get('UserID')==='undefined')
+        {
+            Error = 'Password or Username is wrong!';
+            SetEtap(0);
+            SetText(Error + ' ' + 'Your Nick: ')
+            Error = '';
+        }
+        
     }
     
     function UpdateLogin(e,etap)
@@ -42,16 +72,13 @@ const Login = () => {
         if(etap.etap==1)
         {
             SetPassword(Z);
-            Z='********';
+            Z='******** Press Enter';
             SetText(Text + Z);
             SetZ('');
             SetEtap(2);
-        }
+            
+        } 
         if(etap.etap==2)RunActionLogin();
-
-        console.log(etap);
-        
-        
 
     }
     function UpdateRgister(e,etap)
@@ -171,7 +198,9 @@ const Login = () => {
 
 
                     </div>
+                    
                     <div class="col-3"></div>
+                    
                 </div>
             </div>
         </body>

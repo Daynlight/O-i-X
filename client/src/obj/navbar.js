@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 const NavBar = ({Name}) => {
+    const cookies = new Cookies()
 
+
+    function LogOut()
+    {
+        cookies.remove('UserID');
+        cookies.remove('UserPass');
+        cookies.remove('UserNick');
+        window.location.reload(true);
+    }
 
 
     return ( 
@@ -19,6 +29,9 @@ const NavBar = ({Name}) => {
                 </li>
                 <li class="nav-item">
                     <Link to="/Bot" class="nav-link">Bot Game</Link>
+                </li>
+                <li class="nav-item">
+                    <a onClick={ () => LogOut() } class="nav-link">LogOut</a>
                 </li>
             </ul>
             <div class="py-5"></div>
