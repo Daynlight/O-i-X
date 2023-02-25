@@ -34,6 +34,50 @@ app.get("/Login/:nick/:password",(req,res) =>
       
 })
 
+app.get("/Register/:nick/:password/:email",(req,res) =>
+{
+   
+
+   if(req.params.nick!==undefined && req.params.password!==undefined && req.params.email!==undefined)
+   {
+
+      var con = mysql.createConnection({
+         host: "localhost",
+         user: "root",
+         password: "",
+         database: "O and X"
+      });
+
+      con.connect(function(err) {
+         if (err) throw err;
+         con.query('SELECT EXISTS(SELECT id FROM Users WHERE Nick="'+req.params.nick+'") as "check";', function (err, result, fields) {
+         if (err) throw err;
+            if(result[0].check==0)
+            {
+               var con1 = mysql.createConnection({
+                  host: "localhost",
+                  user: "root",
+                  password: "",
+                  database: "O and X"
+               });
+
+               con1.connect(function(err) {
+                  if (err) throw err;
+                  con1.query('INSERT INTO Users(`Nick`,`Password`,`Email`) Value("'+req.params.nick+'","'+req.params.password+'","'+req.params.email+'");', function (err, fields) {
+                  if (err) throw err;
+                     res.json([{"err": "User Added"}]);
+                  });
+               });
+            }
+            else
+               res.json([{"err": "UserExist"}])
+            
+         });
+      });
+   }
+      
+})
+
 
 app.get("*",(req,res) =>
 {

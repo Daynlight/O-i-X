@@ -14,6 +14,7 @@ const Login = () => {
     var [Text,SetText] = useState('Your Nick: \n')
     var [Z,SetZ] = useState('')
     var [etap,SetEtap] = useState(0);
+    var ADD = '';
     var Error = '';
     
    
@@ -55,27 +56,35 @@ const Login = () => {
 
     function RunActionRegister()
     {
-        const url="http://localhost:8080/Login/"+md5(Nick)+"/"+md5(Password);
-        fetch(url)
-        .then((resp) => resp.json())
-        .then((apidata) =>
+        if(Nick!='' && Password!='' && Email!='')
         {
+            if(Password===Passsword1)
+            {
+                const url="http://localhost:8080/Register/"+Nick+"/"+md5(Password)+"/"+Email;
+                fetch(url)
+                .then((resp) => resp.json())
+                .then((apidata) =>
+                {
+                    ADD = apidata[0].err; 
+                    SetText(ADD + ' '+ 'Give Us Your UserName: ');
+                    SetEtap(0);
+                })
+            }
+            else
+            {
+                ADD = 'Passwords are not same';
+                SetText(ADD + ' '+ 'Give Us Your UserName: ');
+                SetEtap(0);
+            }
 
-            cookies.set('UserID', md5(apidata[0].id),timexpire)
-            cookies.set('UserNick', md5(Nick),timexpire)
-            cookies.set('UserPass', md5(Password),timexpire)
-            window.location.reload(true);
-            
-            
-        })
-        if( typeof cookies.get('UserID')==='undefined')
-        {
-            Error = 'Password or Username is wrong!';
-            SetEtap(0);
-            SetText(Error + ' ' + 'Your Nick: ')
-            Error = '';
         }
-        
+        else
+        {
+            ADD = 'Add All Data';
+            SetText(ADD + ' '+ 'Give Us Your UserName: ');
+            SetEtap(0);
+        }
+
     }
 
     function UpdateLogin(e,etap)
@@ -142,7 +151,6 @@ const Login = () => {
         {
             RunActionRegister();
         }
-        console.log(etap);
         
         
 
@@ -196,6 +204,7 @@ const Login = () => {
                                 <div onClick={ () => ChangeAction('login') } class="btn me-2 notsetloginaction"><h1>Login</h1></div>
                                 <div  class="btn ms-2 btn-primary "><h1>Register</h1></div>
                             </div>
+                            
 
                             <div class="">
                                 <div class="col-6 term">
@@ -203,7 +212,7 @@ const Login = () => {
                                         <Typical
                                             wrapper="p"
                                             loop={1}
-                                            steps={[Text + Z]}
+                                            steps={Text + Z}
                                         />
                                     </h3>
                                 </div>
