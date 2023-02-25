@@ -12,7 +12,7 @@ const Login = () => {
     var [Email,SetEmail] = useState('');
     var [Password,SetPassword] = useState('');
     var [Passsword1,SetPasssword1] = useState('');
-    var [Text,SetText] = useState('Your Nick: ')
+    var [Text,SetText] = useState('Your Nick: \n')
     var [Z,SetZ] = useState('')
     var [etap,SetEtap] = useState(0);
     var Error = '';
@@ -72,7 +72,7 @@ const Login = () => {
         if(etap.etap==1)
         {
             SetPassword(Z);
-            Z='******** Press Enter';
+            Z='******** \nPress Enter';
             SetText(Text + Z);
             SetZ('');
             SetEtap(2);
@@ -147,7 +147,7 @@ const Login = () => {
                                     <div class="col-6 term">
                                         <h3>
                                             <Typical
-                                                wrapper="p"
+                                                wrapper="n"
                                                 loop={1}
                                                 steps={[Text + Z]}
                                             />
