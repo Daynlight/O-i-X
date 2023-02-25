@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Typical from 'react-typical'
 import Cookies from "universal-cookie";
 var md5 = require('md5');
-
 
 const Login = () => {
 
@@ -20,8 +19,6 @@ const Login = () => {
    
     const timexpire = {path: '/', maxAge: 1209600 };
 
-    
-
     function ChangeAction(action)
     {
         if(action==='login')SetText('Your Nick: ');
@@ -30,7 +27,7 @@ const Login = () => {
         SetAction(action);
         Error = '';
     }
-    
+
     function RunActionLogin()
     {
         const url="http://localhost:8080/Login/"+md5(Nick)+"/"+md5(Password);
@@ -55,7 +52,7 @@ const Login = () => {
         }
         
     }
-    
+
     function UpdateLogin(e,etap)
     {
         e.preventDefault();
@@ -81,6 +78,7 @@ const Login = () => {
         if(etap.etap==2)RunActionLogin();
 
     }
+
     function UpdateRgister(e,etap)
     {
         e.preventDefault();
@@ -121,9 +119,6 @@ const Login = () => {
         
 
     }
-
-
-
 
     return ( 
         <body class="loginBack">
