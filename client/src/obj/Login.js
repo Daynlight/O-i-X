@@ -6,155 +6,65 @@ var md5 = require('md5');
 const Login = () => {
 
     const cookies = new Cookies();
-    var [Action,SetAction] = useState('login');
-    var [Nick,SetNick] = useState('');
-    var [Email,SetEmail] = useState('');
-    var [Password,SetPassword] = useState('');
-    var [Passsword1,SetPasssword1] = useState('');
-    var [Text,SetText] = useState('Your Nick: \n')
-    var [Z,SetZ] = useState('')
-    var [etap,SetEtap] = useState(0);
-    var ADD = '';
-    var Error = '';
+    const [Action,SetAction] = useState('login');
+    const [Nick,SetNick] = useState('');
+    const [Email,SetEmail] = useState('');
+    const [Password,SetPassword] = useState('');
+    const [Password1,SetPassword1] = useState('');
+    const [Text,SetText] = useState('');
     
-   
     const timexpire = {path: '/', maxAge: 1209600 };
 
-    function ChangeAction(action)
-    {
-        if(action==='login')SetText('Your Nick: ');
-        if(action==='register')SetText('Give Us Your UserName: ');
-        SetEtap(0);
-        SetAction(action);
-        Error = '';
-    }
 
-    function RunActionLogin()
+
+    function RunActionLogin(e)
     {
+        e.preventDefault();
         const url="http://localhost:8080/Login/"+md5(Nick)+"/"+md5(Password);
         fetch(url)
         .then((resp) => resp.json())
         .then((apidata) =>
         {
-
             cookies.set('UserID', md5(apidata[0].id),timexpire)
             cookies.set('UserNick', md5(Nick),timexpire)
             cookies.set('UserPass', md5(Password),timexpire)
-            window.location.reload(true);
-            
-            
         })
         if( typeof cookies.get('UserID')==='undefined')
         {
-            Error = 'Password or Username is wrong!';
-            SetEtap(0);
-            SetText(Error + ' ' + 'Your Nick: ')
-            Error = '';
+            SetText('User Do not Exist');
         }
-        
+        if(typeof cookies.get('UserID')!=='undefined')
+        {
+            window.location.reload(true);
+        } 
     }
 
-    function RunActionRegister()
+    function RunActionRegister(e)
     {
-        if(Nick!='' && Password!='' && Email!='')
+        e.preventDefault();
+        if(Nick!='' && Password!='' && Password1!='' && Email!='')
         {
-            if(Password===Passsword1)
+            if(Password===Password1)
             {
                 const url="http://localhost:8080/Register/"+Nick+"/"+md5(Password)+"/"+Email;
                 fetch(url)
                 .then((resp) => resp.json())
                 .then((apidata) =>
                 {
-                    ADD = apidata[0].err; 
-                    SetText(ADD + ' '+ 'Give Us Your UserName: ');
-                    SetEtap(0);
+                    SetText(apidata[0].err); 
                 })
             }
             else
             {
-                ADD = 'Passwords are not same';
-                SetText(ADD + ' '+ 'Give Us Your UserName: ');
-                SetEtap(0);
+                SetText('Passwords are not same');
             }
-
         }
         else
         {
-            ADD = 'Add All Data';
-            SetText(ADD + ' '+ 'Give Us Your UserName: ');
-            SetEtap(0);
+            SetText('Fill All Forms');
         }
-
     }
 
-    function UpdateLogin(e,etap)
-    {
-        e.preventDefault();
-        
-       
-        if(etap.etap==0)
-        {
-            SetNick(Z);
-            SetText(Text+Z+' Your Password: ');
-            SetZ('');
-            SetEtap(1);
-        }
-
-        if(etap.etap==1)
-        {
-            SetPassword(Z);
-            Z='******** \nPress Enter';
-            SetText(Text + Z);
-            SetZ('');
-            SetEtap(2);
-            
-        } 
-        if(etap.etap==2)RunActionLogin();
-
-    }
-
-    function UpdateRgister(e,etap)
-    {
-        e.preventDefault();
-        
-       
-        if(etap.etap==0)
-        {
-            SetNick(Z);
-            SetText(Text+Z+' Your Email: ');
-            SetZ('');
-            SetEtap(1);
-        }
-
-        if(etap.etap==1)
-        {
-            SetEmail(Z);
-            SetText(Text + Z +' Password: ');
-            SetZ('');
-            SetEtap(2);
-        }
-        if(etap.etap==2)
-        {
-            SetPassword(Z);
-            SetText(Text + "*********" +' RePassword: ');
-            SetZ('');
-            SetEtap(3);
-        }
-        if(etap.etap==3)
-        {
-            SetPasssword1(Z);
-            SetText(Text + "********* Press Enter");
-            SetZ('');
-            SetEtap(4);
-        }
-        if(etap.etap==4)
-        {
-            RunActionRegister();
-        }
-        
-        
-
-    }
 
     return ( 
         <body class="loginBack">
@@ -171,64 +81,46 @@ const Login = () => {
                             <div class=" colors teminal px-5 pt-5">
                                 <div className="d-flex justify-content-center mb-5">
                                     <div class="btn btn-primary me-2"><h1>Login</h1></div>
-                                    <div onClick={ () => ChangeAction('register') } class="btn ms-2 notsetloginaction"><h1>Register</h1></div>
+                                    <div onClick={ () => SetAction('register') } class="btn ms-2 notsetloginaction"><h1>Register</h1></div>
                                 </div>
-
+                                    <div class="d-flex justify-content-center fs-2 text-warning">{Text}</div>
                                 <div class="">
-                                    <div class="col-6 term">
-                                        <h3>
-                                            <Typical
-                                                wrapper="n"
-                                                loop={1}
-                                                steps={[Text + Z]}
-                                            />
-                                        </h3>
-                                    </div>
-                                    <form class="tt" onSubmit={(e) => UpdateLogin(e,{etap})}>
-                                        <input type="text" class="col-12" value={Z} autoFocus onChange={(e) => {SetZ(e.target.value)}} />
+                                    
+                                    <form class="" onSubmit={(e) => RunActionLogin(e)}>
+                                        <div class="mb-3">
+                                          <input type="text" class="form-control mt-1" required value={Nick} onChange={(e)=> SetNick(e.target.value)} placeholder="Nick" />
+                                          <input type="password" class="form-control mt-1" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
+                                          <input type="submit" class="form-control mt-1" required value="Login" />
+                                        </div>
                                     </form>
-
                                 </div>
-
                             </div>
                             
                         )}
-
-
 
                         {Action==='register' &&
                         (  
                             
                             <div class="colors teminal px-5 pt-5">
                             <div className="d-flex justify-content-center mb-5">
-                                <div onClick={ () => ChangeAction('login') } class="btn me-2 notsetloginaction"><h1>Login</h1></div>
+                                <div onClick={ () => SetAction('login') } class="btn me-2 notsetloginaction"><h1>Login</h1></div>
                                 <div  class="btn ms-2 btn-primary "><h1>Register</h1></div>
                             </div>
-                            
-
+                                <div class="d-flex justify-content-center fs-2 text-warning">{Text}</div>
                             <div class="">
-                                <div class="col-6 term">
-                                    <h3>
-                                        <Typical
-                                            wrapper="p"
-                                            loop={1}
-                                            steps={Text + Z}
-                                        />
-                                    </h3>
-                                </div>
-                                <form class="tt" onSubmit={(e) => UpdateRgister(e,{etap})}>
-                                    <input type="text" class="col-12" value={Z} autoFocus onChange={(e) => {SetZ(e.target.value)}} />
+                                
+                                <form class="" onSubmit={(e) => RunActionRegister(e)}>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control mt-1" required value={Nick} onChange={(e)=> SetNick(e.target.value)} placeholder="Nick" />
+                                        <input type="password" class="form-control mt-1" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
+                                        <input type="password" class="form-control mt-1" required value={Password1} onChange={(e)=> SetPassword1(e.target.value)} placeholder="RePassword" />
+                                        <input type="email" class="form-control mt-1" required value={Email} onChange={(e)=> SetEmail(e.target.value)} placeholder="Email" />
+                                        <input type="submit" class="form-control mt-1" value="Register" />
+                                    </div> 
                                 </form>
-
                             </div>
                         </div>
-                        
                         )}
-
-
-
-
-
                     </div>
                     
                     <div class="col-3"></div>
