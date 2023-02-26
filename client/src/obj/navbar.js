@@ -1,15 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 const NavBar = ({Name}) => {
     const cookies = new Cookies()
-
+    const history =useHistory();
 
     function LogOut()
     {
         cookies.remove('UserID');
         cookies.remove('UserPass');
         cookies.remove('UserNick');
+        history.push('/');
         window.location.reload(true);
     }
 
