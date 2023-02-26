@@ -72,10 +72,6 @@ body
     transform: scale(0.9);
     
 }
-.form-login input
-{
-    background-color: transparent;
-}
 .notsetloginaction
 {
     transition: 2s;
@@ -87,6 +83,30 @@ body
     color:#3bfc00;
     
 }
+.loginform, .loginform:focus
+{
+    color: white;
+    background-color: #00000027;
+    font-size: 30px;
+    border: 1px solid;
+    border-radius: 5px;
+    animation-name: colors;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+.loginform:hover ,.loginform:focus
+{
+    background-color: #36363677;
+    transition: 1s;
+    margin-left: 10px;
+}
+.loginsubmit
+{
+    animation-name: backcolors;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    color: black;
+}
 .loginBack
 {
     background-image: url(https://i.pinimg.com/564x/f4/e4/8f/f4e48f4c3c97dcfa982b0ad9ac5cf716.jpg);
@@ -96,7 +116,7 @@ body
 }
 .teminal
 {
-    background-color: #00000059;
+    background-color: #0000002f;
 }
 .colors
 {
@@ -109,23 +129,46 @@ body
 @keyframes colors {
     0%
     {
-        border-color: #3bfc00;
+        border-color: #fc0000;
     }
     25%
     {
-        border-color:  aqua;
+        border-color:  rgb(255, 196, 0);
     }
     50%
     {
-        border-color: rebeccapurple;
+        border-color: rgb(107, 0, 214);
     }
     75%
     {
-        border-color: pink;
+        border-color: rgb(0, 3, 202);
     }
     100%
     {
-        border-color: #3bfc00;
+        border-color: #fc0000;
+    }
+
+}
+@keyframes backcolors {
+    0%
+    {
+        background-color: #fc0000;
+    }
+    25%
+    {
+        background-color:  rgb(255, 196, 0);
+    }
+    50%
+    {
+        background-color: rgb(107, 0, 214);
+    }
+    75%
+    {
+        background-color: rgb(0, 3, 202);
+    }
+    100%
+    {
+        background-color: #fc0000;
     }
 
 }

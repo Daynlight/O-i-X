@@ -83,14 +83,14 @@ const Login = () => {
                                     <div class="btn btn-primary me-2"><h1>Login</h1></div>
                                     <div onClick={ () => SetAction('register') } class="btn ms-2 notsetloginaction"><h1>Register</h1></div>
                                 </div>
-                                    <div class="d-flex justify-content-center fs-2 text-warning">{Text}</div>
+                                    <div class="d-flex justify-content-center fs-2 text-warning ">{Text}</div>
                                 <div class="">
                                     
                                     <form class="" onSubmit={(e) => RunActionLogin(e)}>
                                         <div class="mb-3">
-                                          <input type="text" class="form-control mt-1" required value={Nick} onChange={(e)=> SetNick(e.target.value)} placeholder="Nick" />
-                                          <input type="password" class="form-control mt-1" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
-                                          <input type="submit" class="form-control mt-1" required value="Login" />
+                                          <input type="text" class="form-control mt-1 loginform" required value={Nick} onChange={(e)=> SetNick(e.target.value)} placeholder="Nick" />
+                                          <input type="password" class="form-control mt-1 loginform" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
+                                          <input type="submit" class="form-control mt-1 loginform loginsubmit" required value="Login" />
                                         </div>
                                     </form>
                                 </div>
@@ -111,11 +111,11 @@ const Login = () => {
                                 
                                 <form class="" onSubmit={(e) => RunActionRegister(e)}>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control mt-1" required value={Nick} onChange={(e)=> SetNick(e.target.value)} placeholder="Nick" />
-                                        <input type="password" class="form-control mt-1" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
-                                        <input type="password" class="form-control mt-1" required value={Password1} onChange={(e)=> SetPassword1(e.target.value)} placeholder="RePassword" />
-                                        <input type="email" class="form-control mt-1" required value={Email} onChange={(e)=> SetEmail(e.target.value)} placeholder="Email" />
-                                        <input type="submit" class="form-control mt-1" value="Register" />
+                                        <input type="text" class="form-control mt-1 loginform" required value={Nick} onChange={(e)=> SetNick(e.target.value)} placeholder="Nick" />
+                                        <input type="password" class="form-control mt-1 loginform" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
+                                        <input type="password" class="form-control mt-1 loginform" required value={Password1} onChange={(e)=> SetPassword1(e.target.value)} placeholder="RePassword" />
+                                        <input type="email" class="form-control mt-1 loginform" required value={Email} onChange={(e)=> SetEmail(e.target.value)} placeholder="Email" />
+                                        <input type="submit" class="form-control mt-1 loginform loginsubmit" value="Register" />
                                     </div> 
                                 </form>
                             </div>
