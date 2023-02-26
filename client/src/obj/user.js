@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 const User = ({Name,Stars,Photo,Friends}) => {
 
@@ -53,7 +52,7 @@ const User = ({Name,Stars,Photo,Friends}) => {
                 </div>
             </div>
             <div class="justify-content-center grid d-flex">
-                <h1><a href="" class="text-info">Settings</a></h1>
+                <h1><a class="text-info">Settings</a></h1>
             </div>
         </div>
     );

@@ -4,6 +4,7 @@ import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import Cookies from 'universal-cookie';
 
 // --------------- Components ------------//
+
 import NavBar from './obj/navbar';
 import Error from './obj/Error';
 import User from './obj/user';
@@ -13,11 +14,34 @@ import Login from './obj/Login';
 
 
 function App() {
+  const cookies = new Cookies();
   const [Name,SetName] = useState('Annonim');
   const [Stars, SetStars] = useState(0);
-  const [Photo,SetPhoto] = useState(require('./img/1.png'));
+  const [Photo,SetPhoto] = useState(require('./img/prof.png'));
   const [Friends,SetFriends] = useState([{id:1, name: 'asd',active: true},{id:2,name:'asdasda',active: false}]);
-  const cookies = new Cookies();
+
+
+  const url = 'http://localhost:8080/Data/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass');
+
+  async function getData()
+  {
+    await fetch(url)
+    .then((res) =>res.json())
+    .then((r) =>
+    {
+      SetStars(r[0].points);
+      SetName(r[0].nick);
+    })
+  }
+  
+  function update()
+  {
+    getData();
+  }
+
+  update();
+
+
 
   return (
     <div class="App">

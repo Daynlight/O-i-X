@@ -78,6 +78,28 @@ app.get("/Register/:nick/:password/:email",(req,res) =>
       
 })
 
+app.get("/Data/:id/:nick/:password",(req,res) =>
+{
+   if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined)
+   {
+      var con = mysql.createConnection({
+         host: "localhost",
+         user: "root",
+         password: "",
+         database: "O and X"
+      });
+
+      con.connect(function(err) {
+         if (err) throw err;
+         con.query('SELECT nick,points FROM Users where md5(Nick)="'+req.params.nick+'" and Password="'+req.params.password+'";', function (err, result, fields) {
+         if (err) throw err;
+            res.json(result)
+            
+         });
+      });
+   }
+
+})
 
 app.get("*",(req,res) =>
 {
