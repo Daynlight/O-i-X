@@ -15,6 +15,7 @@ const LocalGame = () => {
             SetPlace(NewPlace);
             SetMove(1);
             SetTure(Ture+1);
+            check();
         }
         if(Move===1)
         {
@@ -22,6 +23,7 @@ const LocalGame = () => {
             NewPlace[id-1].get = 'o';
             SetPlace(NewPlace);
             SetMove(0);
+            check();
         }
     }
 
@@ -32,10 +34,8 @@ const LocalGame = () => {
         SetWin('');
     }
 
-
-    useEffect(() =>
-    {
-       
+    function check() 
+       {
        var us = 'o';
        if(Place[0].get===us && Place[1].get===us && Place[2].get===us)
        {
@@ -103,12 +103,12 @@ const LocalGame = () => {
        {
         SetWin(us);
        }
-    });
+    }
 
 
     return ( 
         <div>
-            {(Win !== '' && Ture!==5) &&
+            {
                 <div class="mx-5 d-flex justify-content-center border rounded-5">
                     {Win === 'x' && <div class="fs-1">X Win</div>}
                     {Win === 'o' && <div class="fs-1">O Win</div>}

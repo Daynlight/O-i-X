@@ -42,6 +42,7 @@ const BotGame = () => {
                     suc = 1;
                 }
             }
+            check();
             }      
             if(suc===0)
             {
@@ -133,10 +134,10 @@ const BotGame = () => {
 
     return ( 
         <div>
-            {Start===false && (Win !== '' && Ture!==5) &&
+            {Start===false &&
                 <div class="mx-5 d-flex justify-content-center border rounded-5">
-                    {Win === 'x'  && <div class="fs-1">X Win</div>}
-                    {Win === 'o'  && <div class="fs-1">O Win</div>}
+                    {Ture!==5 && Win === 'x'  && <div class="fs-1">X Win</div>}
+                    {Ture!==5 && Win === 'o'  && <div class="fs-1">O Win</div>}
                     {Ture === 5  && Win==='' && <div class="fs-1">Draw</div>}
                     {(Ture === 5|| Win!=='') && <div onClick={() => Again()} class="ms-2 btn btn-primary fs-3">Play Again</div>}
                 </div>
