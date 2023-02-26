@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 var md5 = require('md5');
 
@@ -17,7 +17,7 @@ const Login = () => {
 
     function RunActionLogin(e)
     {
-        e.preventDefault();
+        
         const url="http://localhost:8080/Login/"+md5(Nick)+"/"+md5(Password);
         fetch(url)
         .then((resp) => resp.json())
@@ -26,17 +26,10 @@ const Login = () => {
             cookies.set('UserID', md5(apidata[0].id),timexpire)
             cookies.set('UserNick', md5(Nick),timexpire)
             cookies.set('UserPass', md5(Password),timexpire)
+            console.log(apidata)
         })
-        if( typeof cookies.get('UserID')==='undefined')
-        {
-            SetText('User Do not Exist');
-        }
-        if(typeof cookies.get('UserID')!=='undefined')
-        {
-            window.location.reload(true);
-        } 
     }
-
+    
     function RunActionRegister(e)
     {
         e.preventDefault();
