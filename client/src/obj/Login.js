@@ -1,11 +1,12 @@
 import { useState } from "react";
-import Typical from 'react-typical'
 import Cookies from "universal-cookie";
 var md5 = require('md5');
 
 const Login = () => {
 
     const cookies = new Cookies();
+    const timexpire = {path: '/', maxAge: 1209600 };
+
     const [Action,SetAction] = useState('login');
     const [Nick,SetNick] = useState('');
     const [Email,SetEmail] = useState('');
@@ -13,9 +14,6 @@ const Login = () => {
     const [Password1,SetPassword1] = useState('');
     const [Text,SetText] = useState('');
     
-    const timexpire = {path: '/', maxAge: 1209600 };
-
-
 
     function RunActionLogin(e)
     {
