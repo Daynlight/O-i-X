@@ -17,16 +17,14 @@ const Login = () => {
 
     function RunActionLogin(e)
     {
-        
         const url="http://localhost:8080/Login/"+md5(Nick)+"/"+md5(Password);
         fetch(url)
         .then((resp) => resp.json())
         .then((apidata) =>
         {
-            cookies.set('UserID', md5(apidata[0].id),timexpire)
-            cookies.set('UserNick', md5(Nick),timexpire)
-            cookies.set('UserPass', md5(Password),timexpire)
-            console.log(apidata)
+            cookies.set('UserID', md5(apidata[0].ID),timexpire);
+            cookies.set('UserNick', md5(Nick),timexpire);
+            cookies.set('UserPass', md5(Password),timexpire);
         })
     }
     
