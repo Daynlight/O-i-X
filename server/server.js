@@ -93,10 +93,11 @@ app.get("/Data/:id/:nick/:password",(req,res) =>
          if (err) throw err;
          con.query('SELECT nick,points FROM Users where md5(Nick)="'+req.params.nick+'" and Password="'+req.params.password+'";', function (err, result, fields) {
          if (err) throw err;
-            res.json(result)
-            
+            res.json(result);
+            con.end();
          });
       });
+      
    }
 
 })

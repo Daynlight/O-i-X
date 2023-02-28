@@ -1,5 +1,5 @@
 import './css/index.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import Cookies from 'universal-cookie';
 
@@ -32,14 +32,12 @@ function App() {
       SetStars(r[0].points);
       SetName(r[0].nick);
     })
-  }
-  
-  function update()
-  {
-    getData();
+    setTimeout(getData(),5000);
   }
 
-  update();
+
+  getData();
+
 
 
 
