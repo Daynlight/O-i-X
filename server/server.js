@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const app = express();
+const mysqlcon = require('./mysqlconnection');
 
 
 app.set("view engine","ejs");
@@ -15,12 +16,7 @@ app.get("/Login/:nick/:password",(req,res) =>
    if(req.params.nick!==undefined && req.params.password!==undefined)
    {
 
-      var con = mysql.createConnection({
-         host: "localhost",
-         user: "root",
-         password: "",
-         database: "O and X"
-      });
+      var con = mysql.createConnection(mysqlcon);
 
       con.connect(function(err) {
          if (err) throw err;
@@ -54,12 +50,7 @@ app.get("/Register/:nick/:password/:email",(req,res) =>
          if (err) throw err;
             if(result[0].check==0)
             {
-               var con1 = mysql.createConnection({
-                  host: "localhost",
-                  user: "root",
-                  password: "",
-                  database: "O and X"
-               });
+               var con1 = mysql.createConnection(mysqlcon);
 
                con1.connect(function(err) {
                   if (err) throw err;
@@ -82,12 +73,7 @@ app.get("/Data/:id/:nick/:password",(req,res) =>
 {
    if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined)
    {
-      var con = mysql.createConnection({
-         host: "localhost",
-         user: "root",
-         password: "",
-         database: "O and X"
-      });
+      var con = mysql.createConnection(mysqlcon);
 
       con.connect(function(err) {
          if (err) throw err;
