@@ -24,6 +24,7 @@ function App() {
   const [Now, SetNow] = useState(0);
 
   const url = 'http://localhost:8080/Data/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass');
+  const urlFriend = 'http://localhost:8080/Friends/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass');
   const activeurl = 'http://localhost:8080/Active/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass');
 
  
@@ -40,8 +41,9 @@ function App() {
     }
   }
 
+
   async function getData()
-  {
+  { 
     await fetch(url)
     .then((res) =>res.json())
     .then((r) =>
@@ -50,7 +52,12 @@ function App() {
       SetName(r[0].nick);
       SetNow(r[0].now);
     })
-    getData();
+    await fetch(urlFriend)
+    .then((res) =>res.json())
+    .then((r) =>
+    {
+      SetFriends(r);
+    })
   }
 
 
@@ -72,7 +79,7 @@ function App() {
               <div class="row col-12">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <User Name={Name} Stars={Stars} Friends={Friends}></User>
+                    <User Name={Name} Now={Now} Stars={Stars} Friends={Friends}></User>
                   <div class="col-4"></div>
                 </div>
               </div>
@@ -84,7 +91,7 @@ function App() {
                     <BotGame></BotGame>
                 </div>
                 <div class="col-3">
-                  <User Name={Name} Stars={Stars} Friends={Friends}></User>
+                  <User Name={Name} Now={Now} Stars={Stars} Friends={Friends}></User>
                 </div>
               </div>
             </Route>
@@ -95,7 +102,7 @@ function App() {
                     <LocalGame></LocalGame>
                 </div>
                 <div class="col-3">
-                  <User Name={Name} Stars={Stars} Friends={Friends}></User>
+                  <User Name={Name} Now={Now} Stars={Stars} Friends={Friends}></User>
                 </div>
               </div>
             </Route>
@@ -104,7 +111,7 @@ function App() {
               <div class="row col-12">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <User Name={Name} Stars={Stars} Friends={Friends}></User>
+                    <User Name={Name} Now={Now} Stars={Stars} Friends={Friends}></User>
                   <div class="col-4"></div>
                 </div>
               </div>
