@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 28, 2023 at 07:13 PM
+-- Generation Time: Feb 28, 2023 at 11:25 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `O and X`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Friends`
+--
+
+CREATE TABLE `Friends` (
+  `ID` int(11) NOT NULL,
+  `ID1` int(11) NOT NULL,
+  `ID2` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -41,11 +53,19 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`ID`, `Nick`, `Password`, `Email`, `Points`, `active`) VALUES
-(7, 'Daynlight', 'b171fc43696e4a053270d6fc4ece8b11', 'danielstodulski000@gmail.com', 0, '2023-02-28 18:11:57');
+(7, 'Daynlight', 'b171fc43696e4a053270d6fc4ece8b11', 'danielstodulski000@gmail.com', 0, '2023-02-28 22:20:45');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `Friends`
+--
+ALTER TABLE `Friends`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Me_FriendList` (`ID1`),
+  ADD KEY `Friend_FriendList` (`ID2`);
 
 --
 -- Indexes for table `Users`
@@ -58,10 +78,27 @@ ALTER TABLE `Users`
 --
 
 --
+-- AUTO_INCREMENT for table `Friends`
+--
+ALTER TABLE `Friends`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Friends`
+--
+ALTER TABLE `Friends`
+  ADD CONSTRAINT `Friend_FriendList` FOREIGN KEY (`ID2`) REFERENCES `Users` (`ID`),
+  ADD CONSTRAINT `Me_FriendList` FOREIGN KEY (`ID1`) REFERENCES `Users` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
