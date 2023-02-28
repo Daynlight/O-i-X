@@ -1,5 +1,5 @@
 
-const User = ({Name,Stars,Photo,Friends}) => {
+const User = ({Name,Stars,Friends}) => {
 
 
     return ( 
@@ -9,11 +9,7 @@ const User = ({Name,Stars,Photo,Friends}) => {
                     <h1>{ Name }</h1>
                 </div>
             </div>
-            <div class="justify-content-center grid d-flex">
-                <div class="img">
-                    <img src={ Photo } class="img" alt="user photo" />
-                </div>
-            </div> 
+
             <div class="justify-content-center grid d-flex text-gold">
                 <h2>
                     {Stars}

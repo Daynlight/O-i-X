@@ -88,6 +88,8 @@ app.get("/Data/:id/:nick/:password",(req,res) =>
 
 })
 
+
+
 app.get("*",(req,res) =>
 {
    res.render("Error");

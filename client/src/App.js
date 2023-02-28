@@ -13,15 +13,20 @@ import LocalGame from './obj/localgame';
 import Login from './obj/Login';
 
 
+
+
+
 function App() {
   const cookies = new Cookies();
   const [Name,SetName] = useState('Annonim');
   const [Stars, SetStars] = useState(0);
-  const [Photo,SetPhoto] = useState(require('./img/prof.png'));
   const [Friends,SetFriends] = useState([{id:1, name: 'asd',active: true},{id:2,name:'asdasda',active: false}]);
 
 
   const url = 'http://localhost:8080/Data/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass');
+
+  
+
 
   async function getData()
   {
@@ -32,12 +37,11 @@ function App() {
       SetStars(r[0].points);
       SetName(r[0].nick);
     })
-    setTimeout(getData(),1);
+    getData();
   }
 
 
   getData();
-
 
 
 
@@ -53,7 +57,7 @@ function App() {
               <div class="row col-12">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <User Name={Name} Stars={Stars} Photo={Photo} Friends={Friends}></User>
+                    <User Name={Name} Stars={Stars} Friends={Friends}></User>
                   <div class="col-4"></div>
                 </div>
               </div>
@@ -65,7 +69,7 @@ function App() {
                     <BotGame></BotGame>
                 </div>
                 <div class="col-3">
-                  <User Name={Name} Stars={Stars} Photo={Photo} Friends={Friends}></User>
+                  <User Name={Name} Stars={Stars} Friends={Friends}></User>
                 </div>
               </div>
             </Route>
@@ -76,7 +80,7 @@ function App() {
                     <LocalGame></LocalGame>
                 </div>
                 <div class="col-3">
-                  <User Name={Name} Stars={Stars} Photo={Photo} Friends={Friends}></User>
+                  <User Name={Name} Stars={Stars} Friends={Friends}></User>
                 </div>
               </div>
             </Route>
@@ -85,7 +89,7 @@ function App() {
               <div class="row col-12">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <User Name={Name} Stars={Stars} Photo={Photo} Friends={Friends}></User>
+                    <User Name={Name} Stars={Stars} Friends={Friends}></User>
                   <div class="col-4"></div>
                 </div>
               </div>
