@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Cookies from "universal-cookie";
 var md5 = require('md5');
 
@@ -38,7 +38,7 @@ const Login = () => {
     function RunActionRegister(e)
     {
         e.preventDefault();
-        if(Nick!='' && Password!='' && Password1!='' && Email!='')
+        if(Nick!=='' && Password!=='' && Password1!=='' && Email!=='')
         {
             if(Password===Password1)
             {

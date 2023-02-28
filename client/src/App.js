@@ -1,6 +1,6 @@
 import './css/index.css'
-import { useEffect, useState } from 'react';
-import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+import { useState } from 'react';
+import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import Cookies from 'universal-cookie';
 
 // --------------- Components ------------//
@@ -46,7 +46,7 @@ function App() {
       <body></body>
       
       <Router>
-        {cookies.get('UserID')!=undefined &&
+        {cookies.get('UserID')!==undefined &&
           <Switch>
           <Route exact path="/">
               <NavBar Name={Name}></NavBar>
@@ -96,7 +96,7 @@ function App() {
             
           </Switch>
         }
-        {cookies.get('UserID')==undefined &&
+        {cookies.get('UserID')===undefined &&
           <Switch>
             <Route exact path="/">
               <Login></Login>
