@@ -1,5 +1,5 @@
 
-const User = ({Name,Stars,Friends,Now}) => {
+const User = ({Name,Stars,Friends,Now,ADD}) => {
 
     
     return ( 
@@ -91,11 +91,19 @@ const User = ({Name,Stars,Friends,Now}) => {
                                 </li>
                                 
                             ))}
+                            
+                    
+
                     </ul>
                 </div>
             </div>
+            {ADD!==undefined &&
+                <div class="justify-content-center grid d-flex">
+                    <h1><div class="btn btn-warning text-dark">ADD Friend</div></h1>
+                </div>
+            }
             <div class="justify-content-center grid d-flex">
-                <h1><a class="text-info">Settings</a></h1>
+                <h1><div class="text-info">Settings</div></h1>
             </div>
         </div>
     </div>

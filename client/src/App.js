@@ -79,7 +79,7 @@ function App() {
               <div class="row col-12">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <User Name={Name} Now={Now} Stars={Stars} Friends={Friends}></User>
+                    <User Name={Name} ADD={true} Now={Now} Stars={Stars} Friends={Friends}></User>
                   <div class="col-4"></div>
                 </div>
               </div>
@@ -111,7 +111,7 @@ function App() {
               <div class="row col-12">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <User Name={Name} Now={Now} Stars={Stars} Friends={Friends}></User>
+                    <User Name={Name} ADD={true} Now={Now} Stars={Stars} Friends={Friends}></User>
                   <div class="col-4"></div>
                 </div>
               </div>

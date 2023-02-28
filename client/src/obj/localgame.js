@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const LocalGame = () => {
     const [Place,SetPlace] = useState([{id:1, get:''},{id:2, get:''},{id:3, get:''},{id:4, get:''},{id:5, get:''},{id:6, get:''},{id:7, get:''},{id:8, get:''},{id:9, get:''}])
     const [Move,SetMove] = useState(0);
@@ -19,7 +19,7 @@ const LocalGame = () => {
         }
         if(Move===1)
         {
-            var NewPlace = [...Place];
+            NewPlace = [...Place];
             NewPlace[id-1].get = 'o';
             SetPlace(NewPlace);
             SetMove(0);
@@ -70,7 +70,7 @@ const LocalGame = () => {
         SetWin(us);
        }
 
-       var us = 'x';
+       us = 'x';
        if(Place[0].get===us && Place[1].get===us && Place[2].get===us)
        {
         SetWin(us);

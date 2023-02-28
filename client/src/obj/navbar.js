@@ -23,7 +23,7 @@ const NavBar = ({Name}) => {
                     <Link to="/User" class="nav-link active " aria-current="page">Hello { Name }</Link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Find Game</a>
+                    <Link class="nav-link">Find Game</Link>
                 </li>
                 <li class="nav-item">
                     <Link to="/Local" class="nav-link">Local Game</Link>
@@ -32,7 +32,7 @@ const NavBar = ({Name}) => {
                     <Link to="/Bot" class="nav-link">Bot Game</Link>
                 </li>
                 <li class="nav-item">
-                    <a onClick={ () => LogOut() } class="nav-link">LogOut</a>
+                    <Link onClick={ () => LogOut() } class="nav-link">LogOut</Link>
                 </li>
             </ul>
             <div class="py-5"></div>
