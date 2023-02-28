@@ -3,6 +3,8 @@ const User = ({Name,Stars,Friends}) => {
 
 
     return ( 
+    <div>
+        
         <div class="border">
             <div class="justify-content-center grid d-flex">
                 <div>
@@ -51,6 +53,7 @@ const User = ({Name,Stars,Friends}) => {
                 <h1><a class="text-info">Settings</a></h1>
             </div>
         </div>
+    </div>
     );
 }
  

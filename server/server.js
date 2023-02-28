@@ -77,7 +77,7 @@ app.get("/Data/:id/:nick/:password",(req,res) =>
 
       con.connect(function(err) {
          if (err) throw err;
-         con.query('SELECT nick,points FROM Users where md5(Nick)="'+req.params.nick+'" and Password="'+req.params.password+'";', function (err, result, fields) {
+         con.query('SELECT now() as now,nick,points FROM Users where md5(Nick)="'+req.params.nick+'" and Password="'+req.params.password+'";', function (err, result, fields) {
          if (err) throw err;
             res.json(result);
             con.end();
@@ -86,6 +86,23 @@ app.get("/Data/:id/:nick/:password",(req,res) =>
       
    }
 
+})
+
+app.get("/Active/:id/:nick/:password",(req,res) =>
+{
+   if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined)
+   {
+      var con = mysql.createConnection(mysqlcon);
+
+      con.connect(function(err) {
+         if (err) throw err;
+         con.query('UPDATE Users SET Users.active = CURRENT_TIMESTAMP() WHERE md5(Nick)="'+req.params.nick+'" and Password="'+req.params.password+'";', function (err, result) {
+         if (err) throw err;
+            con.end();
+            res.end();
+         });
+      });
+   }
 })
 
 
