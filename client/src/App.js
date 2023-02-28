@@ -32,7 +32,7 @@ function App() {
       SetStars(r[0].points);
       SetName(r[0].nick);
     })
-    setTimeout(getData(),10000000);
+    setTimeout(getData(),1);
   }
 
 
