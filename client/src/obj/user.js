@@ -29,7 +29,7 @@ const User = ({Name,Stars,Friends,Now}) => {
                 </h2>
             </div>
             <div class="justify-content-center grid d-flex">
-                <h1>Friends</h1>
+                <h1>Following</h1>
             </div>
             <div class="justify-content-center grid d-flex">
                 <div class="d-flex grid col-9 justigy-content-center border fs-3">
