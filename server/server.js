@@ -107,6 +107,4 @@ app.get("*",(req,res) =>
    res.render("Error");
 })
 
-
-
 app.listen(8080,() => {console.log("Server is runing")});

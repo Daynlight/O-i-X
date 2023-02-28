@@ -13,15 +13,22 @@ const Login = () => {
     const [Password,SetPassword] = useState('');
     const [Password1,SetPassword1] = useState('');
     const [Text,SetText] = useState('');
+    const [ShowPassword,SetShowPassword] = useState(false);
     
+    function setShow(as)
+    {
+        SetShowPassword(as);
+    }
 
     function RunActionLogin(e)
     {
+        
         const url="http://localhost:8080/Login/"+md5(Nick)+"/"+md5(Password);
         fetch(url)
         .then((resp) => resp.json())
         .then((apidata) =>
         {
+            console.log(apidata);
             cookies.set('UserID', md5(apidata[0].ID),timexpire);
             cookies.set('UserNick', md5(Nick),timexpire);
             cookies.set('UserPass', md5(Password),timexpire);
@@ -78,7 +85,13 @@ const Login = () => {
                                     <form class="" onSubmit={(e) => RunActionLogin(e)}>
                                         <div class="mb-3">
                                           <input type="text" class="form-control mt-1 loginform" required value={Nick} onChange={(e)=> SetNick(e.target.value)} placeholder="Nick" />
-                                          <input type="password" class="form-control mt-1 loginform" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
+                                          <div class="">
+                                            {!ShowPassword &&<input type="password" class="form-control mt-1 loginform" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
+                                            {ShowPassword &&<input type="text" class="form-control mt-1 loginform" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
+                                            {!ShowPassword &&<button type="button" onClick={() => setShow(true)} class="btn btn-dark mt-2 col-12" >Show Password</button>}
+                                            {ShowPassword &&<button type="button" onClick={() => setShow(false)} class="btn btn-secondary mt-2 col-12">Hide Password</button>}
+                                            
+                                          </div>
                                           <input type="submit" class="form-control mt-1 loginform loginsubmit" required value="Login" />
                                         </div>
                                     </form>
