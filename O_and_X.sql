@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 28, 2023 at 11:25 PM
+-- Generation Time: Mar 01, 2023 at 05:38 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -30,8 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `Friends` (
   `ID` int(11) NOT NULL,
   `ID1` int(11) NOT NULL,
-  `ID2` int(11) NOT NULL
+  `ID2` int(11) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Friends`
+--
+
+INSERT INTO `Friends` (`ID`, `ID1`, `ID2`, `active`) VALUES
+(7, 7, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -53,7 +61,8 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`ID`, `Nick`, `Password`, `Email`, `Points`, `active`) VALUES
-(7, 'Daynlight', 'b171fc43696e4a053270d6fc4ece8b11', 'danielstodulski000@gmail.com', 0, '2023-02-28 22:20:45');
+(7, 'Daynlight', 'b171fc43696e4a053270d6fc4ece8b11', 'danielstodulski000@gmail.com', 0, '2023-03-01 16:38:27'),
+(10, 'asd', '7815696ecbf1c96e6894b779456d330e', 'asd@asd', 0, '2023-03-01 12:33:56');
 
 --
 -- Indexes for dumped tables
@@ -81,13 +90,13 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Friends`
 --
 ALTER TABLE `Friends`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
