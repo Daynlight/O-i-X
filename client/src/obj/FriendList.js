@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Cookies from 'universal-cookie';
-import md5 from "md5";
 
 const FriendList = ({Event}) => {
     const cookies = new Cookies();
@@ -13,7 +12,6 @@ const FriendList = ({Event}) => {
     {
         var url = 'http://localhost:8080/FriendRemove/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass')+'/'+FriendID;
         fetch(url);
-        console.log(url)
     }
 
     return ( 
