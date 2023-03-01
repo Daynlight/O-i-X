@@ -5,10 +5,11 @@
 
 body
 {
-    background-color: $body;
-    color: $primary;
-    
+    background: url(https://i.pinimg.com/564x/f4/e4/8f/f4e48f4c3c97dcfa982b0ad9ac5cf716.jpg) no-repeat center fixed; ;
+    background-size: cover;
+    color: $primary;    
 }
+
 .weberror
 {
     width: 100%;
@@ -110,13 +111,6 @@ body
     animation-duration: 5s;
     animation-iteration-count: infinite;
     color: black;
-}
-.loginBack
-{
-    background-image: url(https://i.pinimg.com/564x/f4/e4/8f/f4e48f4c3c97dcfa982b0ad9ac5cf716.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
 }
 
 .colors
@@ -226,4 +220,8 @@ body
 {
     transition: 1s;
     height: 380px;
+}
+.darker
+{
+    background-color: #000000a2;
 }

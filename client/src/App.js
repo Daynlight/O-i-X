@@ -68,6 +68,8 @@ function App() {
 
   return (
     <div class="App">
+      <html></html>
+      <head></head>
       <body></body>
       
       <Router>

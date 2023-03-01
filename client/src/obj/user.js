@@ -7,7 +7,7 @@ const User = ({Name,Stars,Friends,Now,ADD}) => {
     return ( 
     <div>
         
-        <div class="border pb-2">
+        <div class="border darker pb-2">
             <div class="justify-content-center grid d-flex">
                 <div>
                     <h1>{ Name }</h1>
@@ -57,9 +57,6 @@ const User = ({Name,Stars,Friends,Now,ADD}) => {
                 </div>
             </div>
             
-            <div class="justify-content-center grid d-flex">
-                <h1><div class="text-info">Settings</div></h1>
-            </div>
         {ADD!==undefined && <AddFriend></AddFriend>}
         </div>
     </div>

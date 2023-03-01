@@ -109,14 +109,14 @@ const LocalGame = () => {
     return ( 
         <div>
             {(Win!=='' || Ture=== 5) &&
-                <div class="mx-5 d-flex justify-content-center border rounded-5">
+                <div class="mx-5 d-flex mb-1 darker justify-content-center border rounded-5">
                     {Win === 'x' && <div class="fs-1">X Win</div>}
                     {Win === 'o' && <div class="fs-1">O Win</div>}
                     {Ture === 5 && Win==='' && <div class="fs-1">Draw</div>}
                     {(Ture === 5 || Win!=='') && <div onClick={() => Again()} class="ms-2 btn btn-primary fs-3">Play Again</div>}
                 </div>
             }
-            <div class="mx-5 row border rounded-5 p-3">
+            <div class="mx-5 row border darker rounded-5 p-3">
                 {Place.map(e=>(
                     (e.get==='x' && <div key={e.id} class="col-4 plcae">
                         

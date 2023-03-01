@@ -110,7 +110,7 @@ const Login = () => {
 
 
     return ( 
-        <body class="loginBack">
+        <body class="">
             
         
             <div>

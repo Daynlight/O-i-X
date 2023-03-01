@@ -22,7 +22,7 @@ const AddFriend = () => {
     <div>
         <div class="d-flex justify-content-center">
         <form onSubmit={ (e)=> AddFriendFunction(e) }>
-            <input type="text" class="form-control" value={FriendNick} onChange={(e)=>SetFriendNick(e.target.value)} placeholder="Friend Nick" />
+            <input type="text" class="form-control my-2" value={FriendNick} onChange={(e)=>SetFriendNick(e.target.value)} placeholder="Friend Nick to ADD" />
 
             <div class="d-flex justify-content-center">
                 <input type="submit" class="btn btn-warning text-dark" value="ADD Friend" />
