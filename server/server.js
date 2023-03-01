@@ -107,6 +107,67 @@ app.get("/Friends/:id/:nick/:password",(req,res) =>
 
 })
 
+app.get("/FirendAdd/:id/:nick/:password/:FriendNick",(req,res) =>
+{
+   if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined && req.params.FriendNick != undefined)
+   {
+      var con = mysql.createConnection(mysqlcon);
+
+      con.connect(function(err) {
+         if (err) throw err;
+         con.query('SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'";', function (err, result, fields) {
+         if (err) throw err;
+            con.end();
+            var UserID = result[0].ID;
+
+            var con1 = mysql.createConnection(mysqlcon);
+            con1.connect(function(err) {
+               if (err) throw err;
+               con1.query('SELECT Exists (SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.FriendNick+'") as "check";', function (err, result, fields) {
+               if (err) throw err;
+                  con1.end();
+                  if(result[0].check) 
+                  {
+                     var con2 = mysql.createConnection(mysqlcon);
+                     con2.connect(function(err) {
+                        if (err) throw err;
+                        con2.query('SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.FriendNick+'";', function (err, result, fields) {
+                        if (err) throw err;
+                           con2.end();
+                           var FriendID = result[0].ID;
+
+                           var con3 = mysql.createConnection(mysqlcon);
+                           con3.connect(function(err) {
+                              if (err) throw err;
+                              con3.query('SELECT EXISTS (SELECT Friends.ID FROM Friends WHERE Friends.ID1='+UserID+' and Friends.ID2='+FriendID+') as "check";', function (err, result, fields) {
+                              if (err) throw err;
+                                 con3.end();
+                                 if(!result[0].check)
+                                 {
+                                    var con4 = mysql.createConnection(mysqlcon);
+                                    con4.connect(function(err) {
+                                       if (err) throw err;
+                                       con4.query('INSERT INTO Friends(ID1,ID2) VALUES('+UserID+','+FriendID+');', function (err, result) {
+                                       if (err) throw err;
+                                          con4.end();
+                                          res.json([{"status": "Friend Aded"}]);
+                                       });
+                                    });
+                                 }
+                                 else res.json([{"status": "Alredy Aded"}]);
+                              });
+                           });
+                        });
+                     });
+                  }
+                  else res.json([{"status": "User Do Not Exist"}]);
+               });
+            });
+         });
+      });     
+   }
+})
+
 app.get("/Active/:id/:nick/:password",(req,res) =>
 {
    if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined)

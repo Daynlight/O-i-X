@@ -1,6 +1,7 @@
-
+import AddFriend from "./AddFriend";
 import FriendList from "./FriendList";
 const User = ({Name,Stars,Friends,Now,ADD}) => {
+
 
     
     return ( 
@@ -52,19 +53,14 @@ const User = ({Name,Stars,Friends,Now,ADD}) => {
                                 (Now-e.active>(10*60)) && <li class="me-4 unuseractive" key={e.ID}><FriendList Event={e}></FriendList></li>
                             ))}
                             
-                    
-
                     </ul>
                 </div>
             </div>
-            {ADD!==undefined &&
-                <div class="justify-content-center grid d-flex">
-                    <h1><div class="btn btn-warning text-dark">ADD Friend</div></h1>
-                </div>
-            }
+            
             <div class="justify-content-center grid d-flex">
                 <h1><div class="text-info">Settings</div></h1>
             </div>
+        {ADD!==undefined && <AddFriend></AddFriend>}
         </div>
     </div>
     );
