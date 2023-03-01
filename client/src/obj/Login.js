@@ -39,7 +39,7 @@ const Login = () => {
         const observer = new IntersectionObserver((ent)  => 
         {
             const entry = ent[0];
-            if(entry.isIntersecting==true)
+            if(entry.isIntersecting===true)
             {
                 visa(option);
             }
@@ -59,7 +59,7 @@ const Login = () => {
         if(FirstLoginPassword) vis(ShowPasswordRef,SetShowPasswordAnimation,'changeanimationmove'); else SetShowPasswordAnimation('changeanimationmove');
         if(FirstLoginPassword) vis(TerminalRef,SetTerminalAnimation,'terminalanimation'); else SetTerminalAnimation('terminalanimation');
         SetFirstLoginPassword(false);
-    })
+    },[FirstLoginPassword,NickAnimation,PasswordAnimation,SubmitAnimaton,ShowPasswordAnimation,TerminalAnimation])
 
     function setShow(as)
     {
