@@ -118,10 +118,7 @@ body
     background-size: cover;
     height: 100vh;
 }
-.teminal
-{
-    background-color: #0000002f;
-}
+
 .colors
 {
     border: 5px solid;
@@ -186,4 +183,47 @@ body
     background-color: $danger;
     transition: 1s;
     
+}
+.loginanimation
+{
+    position: absolute;
+}
+.teminal
+{
+    position: relative;
+    background-color: #0000002f;
+    height: 380px;
+}
+.loginanimationmove
+{
+    transition: 1s;
+    transform: translateY(215px);
+}
+.changeanimationmove
+{
+    transition: 1s;
+    transform: translateY(170px);
+}
+.passwordanimationmove
+{
+    transition: 1s;
+    transform: translateY(100px);
+}
+.nickanimationmove
+{
+    transition: 1s;
+    transform: translateY(20px);
+}
+.terminalregister
+{
+    height: 420px;
+}
+.termianllogin
+{
+    height: 200px;
+}
+.terminalanimation
+{
+    transition: 1s;
+    height: 380px;
 }
