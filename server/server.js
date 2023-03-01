@@ -96,7 +96,7 @@ app.get("/Friends/:id/:nick/:password",(req,res) =>
 
       con.connect(function(err) {
          if (err) throw err;
-         con.query('SELECT FriendData.ID,FriendData.Nick,FriendData.Points,(year(FriendData.active)*365*24*60*60+day(FriendData.active)*24*60*60+hour(FriendData.active)*60*60+minute(FriendData.active)*60+second(FriendData.active)) as active FROM Users join Friends on Friends.ID1=Users.ID join Users as FriendData on FriendData.ID=Friends.ID2 where Friends.active=true and md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'";', function (err, result, fields) {
+         con.query('SELECT Friends.id as ind, FriendData.ID,FriendData.Nick,FriendData.Points,(year(FriendData.active)*365*24*60*60+day(FriendData.active)*24*60*60+hour(FriendData.active)*60*60+minute(FriendData.active)*60+second(FriendData.active)) as active FROM Users join Friends on Friends.ID1=Users.ID join Users as FriendData on FriendData.ID=Friends.ID2 where Friends.active=true and md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'";', function (err, result, fields) {
          if (err) throw err;
             res.json(result);
             con.end();
@@ -189,6 +189,35 @@ app.get("/FirendAdd/:id/:nick/:password/:FriendNick",(req,res) =>
             });
          });
       });     
+   }
+})
+
+app.get("/FriendRemove/:id/:nick/:password/:FriendID",(req,res) =>
+{
+   if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined && req.params.FriendID!=undefined)
+   {
+
+      var con = mysql.createConnection(mysqlcon);
+      con.connect(function(err) {
+         if (err) throw err;
+         con.query('SELECT EXISTS(SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'") as "check";', function (err, result,fields) {
+         if (err) throw err;
+            con.end();
+            if(result[0].check)
+            {
+               var con1 = mysql.createConnection(mysqlcon);
+               con1.connect(function(err) {
+                  if (err) throw err;
+                  con1.query('UPDATE Friends SET Friends.active=false WHERE ID = '+req.params.FriendID+';', function (err, result) {
+                  if (err) throw err;
+                        res.json([{"status": "Removed"}]);
+                     con1.end();
+                  });
+               });
+            }
+            else res.json([{"status": "No Permision"}]);
+         });
+      });   
    }
 })
 

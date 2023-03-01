@@ -176,3 +176,14 @@ body
     }
 
 }
+.FriendOptions, .FriendOptionList
+{
+    border-radius: 10px;
+    background-color: $secondary;
+}
+.FriendOptions:hover
+{
+    background-color: $danger;
+    transition: 1s;
+    
+}
