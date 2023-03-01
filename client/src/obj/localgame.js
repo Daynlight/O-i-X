@@ -108,7 +108,7 @@ const LocalGame = () => {
 
     return ( 
         <div>
-            {
+            {(Win!=='' || Ture=== 5) &&
                 <div class="mx-5 d-flex justify-content-center border rounded-5">
                     {Win === 'x' && <div class="fs-1">X Win</div>}
                     {Win === 'o' && <div class="fs-1">O Win</div>}
