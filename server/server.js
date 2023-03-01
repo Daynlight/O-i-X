@@ -154,7 +154,31 @@ app.get("/FirendAdd/:id/:nick/:password/:FriendNick",(req,res) =>
                                        });
                                     });
                                  }
-                                 else res.json([{"status": "Alredy Aded"}]);
+                                 else 
+                                 {
+                                    var con4 = mysql.createConnection(mysqlcon);
+                                    con4.connect(function(err) {
+                                       if (err) throw err;
+                                       con4.query('Select Friends.active from Friends WHERE ID1='+UserID+' and ID2='+FriendID+';', function (err, result) {
+                                       if (err) throw err;
+                                          con4.end();
+
+                                          if(result[0].active===1) res.json([{"status": "Alredy Aded"}]);
+                                          else
+                                          {
+                                             var con5 = mysql.createConnection(mysqlcon);
+                                             con5.connect(function(err) {
+                                                if (err) throw err;
+                                                con5.query('UPDATE Friends Set Friends.active=true WHERE ID1='+UserID+' and ID2='+FriendID+';', function (err, result) {
+                                                if (err) throw err;
+                                                   con5.end();
+                                                   res.json([{"status": "Friend Aded"}]);
+                                                });
+                                             });
+                                          }
+                                       });
+                                    });
+                                 };
                               });
                            });
                         });
