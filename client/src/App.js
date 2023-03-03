@@ -19,7 +19,7 @@ function App() {
   const {DataURL,FriendURL,ActiveURL} = require('./BackendLinks');
   const {FetchReq,FetchData} = require('./Functions/Fetch');
   
-  const [Name,SetName] = useState('Annonim');
+  const [Name,SetName] = useState('anonymous');
   const [Stars, SetStars] = useState(0);
   const [Friends,SetFriends] = useState([]);
   const [ActualTime, SetActualTime] = useState(0);
@@ -102,7 +102,6 @@ function App() {
           </Switch>
         }
       </Router>
-      
     </div>
   );
 }

@@ -19,7 +19,7 @@ const FriendList = ({Event}) => {
     return ( 
     <div >
         <div class="col-12" type="button" onClick={()=>{if(Options)SetOptions(false); else SetOptions(true)}}>
-        {Event.Nick}
+        {Event.Nick.charAt().toUpperCase()+Event.Nick.substring(1)}
             <svg fill="#ffe600" height="18" class="mb-1" width="23" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 489.4 489.4" >
                 <g>

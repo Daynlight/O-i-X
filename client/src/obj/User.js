@@ -1,17 +1,14 @@
 import AddFriend from "./AddFriend";
 import FriendList from "./FriendList";
 const User = ({Name,Stars,Friends,ActualTime,AddUser}) => {
-    
     return ( 
     <div>
-        
-        <div class="border darker pb-2">
+        <div class="border DarkerBackground rounded-3 pb-2">
             <div class="justify-content-center grid d-flex">
                 <div>
-                    <h1>{ Name }</h1>
+                    <h1>{ Name.charAt().toUpperCase()+Name.substring(1) }</h1>
                 </div>
             </div>
-
             <div class="justify-content-center grid d-flex text-gold">
                 <h2>
                     {Stars}
@@ -29,32 +26,27 @@ const User = ({Name,Stars,Friends,ActualTime,AddUser}) => {
                 </h2>
             </div>
             <div class="justify-content-center grid d-flex">
-                <h1>Following</h1>
+                <h2>Friends</h2>
             </div>
             <div class="justify-content-center grid d-flex">
                 <div class="d-flex grid col-9 justigy-content-center border fs-3">
                     <ul class="friendlist col-12">
                         {Friends.map(e =>
                             (
-                                
                                 (ActualTime-e.active<=(5*60)) && <li class="me-4 useractive" key={e.ID}><FriendList Event={e}></FriendList></li>
-                                
                             ))}
                             {Friends.map(e =>
                             (
-                                
                                 (ActualTime-e.active>(5*60)) && (ActualTime-e.active<=(10*60)) && <li class="me-4 unusersleep" key={e.ID}><FriendList Event={e}></FriendList></li>
-                                
                             ))}
                             {Friends.map(e =>
                             (  
                                 (ActualTime-e.active>(10*60)) && <li class="me-4 unuseractive" key={e.ID}><FriendList Event={e}></FriendList></li>
-                            ))}
-                            
+                            ))
+                        }
                     </ul>
                 </div>
             </div>
-            
         {AddUser!==undefined && <AddFriend></AddFriend>}
         </div>
     </div>

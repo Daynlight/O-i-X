@@ -151,7 +151,7 @@ const Login = () => {
                                     <form class="" onSubmit={(e) => RunActionLogin(e)}>
                                         <div class="mb-3">
 
-                                            <input type="text" ref={NickRef} class={`form-control loginform loginanimation ${NickAnimation}`}  required value={Nick} onChange={(e)=> SetNick(e.target.value)} placeholder="Nick" />
+                                            <input type="text" ref={NickRef} class={`form-control loginform loginanimation ${NickAnimation}`}  required value={Nick} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
                                           
                                             {!ShowPassword &&<input type="password" ref={PasswordRef} class={`form-control loginform loginanimation ${PasswordAnimation}`} required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
                                             {ShowPassword &&<input type="text" ref={PasswordRef} class={`form-control loginform loginanimation ${PasswordAnimation}`} required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
@@ -177,10 +177,10 @@ const Login = () => {
                                 
                                 <form class="" onSubmit={(e) => RunActionRegister(e)}>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control mt-1 loginform" required value={Nick} onChange={(e)=> SetNick(e.target.value)} placeholder="Nick" />
+                                        <input type="text" class="form-control mt-1 loginform" required value={Nick} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
                                         <input type="password" class="form-control mt-1 loginform" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
                                         <input type="password" class="form-control mt-1 loginform" required value={Password1} onChange={(e)=> SetPassword1(e.target.value)} placeholder="RePassword" />
-                                        <input type="email" class="form-control mt-1 loginform" required value={Email} onChange={(e)=> SetEmail(e.target.value)} placeholder="Email" />
+                                        <input type="email" class="form-control mt-1 loginform" required value={Email} onChange={(e)=> SetEmail(e.target.value.toLowerCase())} placeholder="Email" />
                                         <input type="submit" class="form-control mt-1 loginform loginsubmit" value="Register" />
                                     </div> 
                                 </form>
