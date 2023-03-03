@@ -1,89 +1,45 @@
 const express = require('express');
-const mysql = require('mysql');
 const cors = require('cors');
 const app = express();
-const mysqlcon = require('./mysqlconnection');
-
+const {GetDataFromMysqlServer,PosTDataToMysqlServer} = require('./Components/DataBaseFunctions');
 
 app.set("view engine","ejs");
 app.use(cors());
 
-
 app.get("/Login/:nick/:password",(req,res) =>
 {
-   
-
    if(req.params.nick!==undefined && req.params.password!==undefined)
-   {
-
-      var con = mysql.createConnection(mysqlcon);
-
-      con.connect(function(err) {
-         if (err) throw err;
-         con.query('SELECT ID FROM Users where md5(Nick)="'+req.params.nick+'" and Password="'+req.params.password+'"', function (err, result, fields) {
-         if (err) throw err;
-            res.json(result)
-            
-         });
-      });
+   { 
+      var sql = 'SELECT ID FROM Users where md5(Nick)="'+req.params.nick+'" and Password="'+req.params.password+'";';
+      GetDataFromMysqlServer(sql,(data)=>res.json(data));
    }
-      
 })
 
 app.get("/Register/:nick/:password/:email",(req,res) =>
 {
-   
-
    if(req.params.nick!==undefined && req.params.password!==undefined && req.params.email!==undefined)
    {
-
-      var con = mysql.createConnection({
-         host: "localhost",
-         user: "root",
-         password: "",
-         database: "O and X"
+      var sql = 'SELECT EXISTS(SELECT id FROM Users WHERE Nick="'+req.params.nick+'") as "check";';
+      GetDataFromMysqlServer(sql,
+      (data)=>
+      { 
+         if(data[0].check==0)
+         {
+            var sql='INSERT INTO Users(`Nick`,`Password`,`Email`) Value("'+req.params.nick+'","'+req.params.password+'","'+req.params.email+'");';
+            PosTDataToMysqlServer(sql);
+            res.json([{"err": "User Added"}]);
+         }
+         else res.json([{"err": "UserExist"}]);
       });
-
-      con.connect(function(err) {
-         if (err) throw err;
-         con.query('SELECT EXISTS(SELECT id FROM Users WHERE Nick="'+req.params.nick+'") as "check";', function (err, result, fields) {
-         if (err) throw err;
-            if(result[0].check==0)
-            {
-               var con1 = mysql.createConnection(mysqlcon);
-
-               con1.connect(function(err) {
-                  if (err) throw err;
-                  con1.query('INSERT INTO Users(`Nick`,`Password`,`Email`) Value("'+req.params.nick+'","'+req.params.password+'","'+req.params.email+'");', function (err, fields) {
-                  if (err) throw err;
-                     res.json([{"err": "User Added"}]);
-                  });
-               });
-            }
-            else
-               res.json([{"err": "UserExist"}])
-            
-         });
-      });
-   }
-      
+   } 
 })
 
 app.get("/Data/:id/:nick/:password",(req,res) =>
 {
    if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined)
    {
-      var con = mysql.createConnection(mysqlcon);
-
-      con.connect(function(err) {
-         if (err) throw err;
-         con.query('SELECT (year(now())*365*24*60*60+day(now())*24*60*60+hour(now())*60*60+minute(now())*60+second(now())) as now,Users.nick,Users.points FROM Users where md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'";', function (err, result, fields) {
-         if (err) throw err;
-            res.json(result);
-            con.end();
-         });
-      });
-      
+      var sql = 'SELECT (year(now())*365*24*60*60+day(now())*24*60*60+hour(now())*60*60+minute(now())*60+second(now())) as now,Users.nick,Users.points FROM Users where md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'";';
+      GetDataFromMysqlServer(sql,(data)=>res.json(data));
    }
 
 })
@@ -92,103 +48,59 @@ app.get("/Friends/:id/:nick/:password",(req,res) =>
 {
    if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined)
    {
-      var con = mysql.createConnection(mysqlcon);
-
-      con.connect(function(err) {
-         if (err) throw err;
-         con.query('SELECT Friends.id as ind, FriendData.ID,FriendData.Nick,FriendData.Points,(year(FriendData.active)*365*24*60*60+day(FriendData.active)*24*60*60+hour(FriendData.active)*60*60+minute(FriendData.active)*60+second(FriendData.active)) as active FROM Users join Friends on Friends.ID1=Users.ID join Users as FriendData on FriendData.ID=Friends.ID2 where Friends.active=true and md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'";', function (err, result, fields) {
-         if (err) throw err;
-            res.json(result);
-            con.end();
-         });
-      });
-      
+      var sql = 'SELECT Friends.id as ind, FriendData.ID,FriendData.Nick,FriendData.Points,(year(FriendData.active)*365*24*60*60+day(FriendData.active)*24*60*60+hour(FriendData.active)*60*60+minute(FriendData.active)*60+second(FriendData.active)) as active FROM Users join Friends on Friends.ID1=Users.ID join Users as FriendData on FriendData.ID=Friends.ID2 where Friends.active=true and md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'";';
+      GetDataFromMysqlServer(sql,
+         (data)=>res.json(data))
    }
-
 })
 
 app.get("/FirendAdd/:id/:nick/:password/:FriendNick",(req,res) =>
 {
    if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined && req.params.FriendNick != undefined)
    {
-      var con = mysql.createConnection(mysqlcon);
-
-      con.connect(function(err) {
-         if (err) throw err;
-         con.query('SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'";', function (err, result, fields) {
-         if (err) throw err;
-            con.end();
-            var UserID = result[0].ID;
-
-            var con1 = mysql.createConnection(mysqlcon);
-            con1.connect(function(err) {
-               if (err) throw err;
-               con1.query('SELECT Exists (SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.FriendNick+'") as "check";', function (err, result, fields) {
-               if (err) throw err;
-                  con1.end();
-                  if(result[0].check) 
+      var sql = 'SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'";';
+      GetDataFromMysqlServer(sql,
+         (data)=>
+         {
+            var UserID = data[0].ID;
+            var sql ='SELECT Exists (SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.FriendNick+'") as "check";';
+            GetDataFromMysqlServer(sql,
+               (data)=>{
+                  if(data[0].check) 
                   {
-                     var con2 = mysql.createConnection(mysqlcon);
-                     con2.connect(function(err) {
-                        if (err) throw err;
-                        con2.query('SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.FriendNick+'";', function (err, result, fields) {
-                        if (err) throw err;
-                           con2.end();
-                           var FriendID = result[0].ID;
-
-                           var con3 = mysql.createConnection(mysqlcon);
-                           con3.connect(function(err) {
-                              if (err) throw err;
-                              con3.query('SELECT EXISTS (SELECT Friends.ID FROM Friends WHERE Friends.ID1='+UserID+' and Friends.ID2='+FriendID+') as "check";', function (err, result, fields) {
-                              if (err) throw err;
-                                 con3.end();
-                                 if(!result[0].check)
+                     var sql = 'SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.FriendNick+'";';
+                     GetDataFromMysqlServer(sql,(data)=>
+                     {
+                        var FriendID = data[0].ID;
+                        var sql = 'SELECT EXISTS (SELECT Friends.ID FROM Friends WHERE Friends.ID1='+UserID+' and Friends.ID2='+FriendID+') as "check";';
+                        GetDataFromMysqlServer(sql, (data)=>
+                        {
+                           if(!data[0].check)
+                           {
+                              var sql = 'INSERT INTO Friends(ID1,ID2) VALUES('+UserID+','+FriendID+');';
+                              PosTDataToMysqlServer(sql);
+                              res.json([{"status": "Friend Aded"}]);
+                           }
+                           else
+                           {
+                              var sql ='Select Friends.active from Friends WHERE ID1='+UserID+' and ID2='+FriendID+';';
+                              GetDataFromMysqlServer(sql,(data)=>
+                              {
+                                 if(data[0].active===1) res.json([{"status": "Alredy Aded"}]);
+                                 else
                                  {
-                                    var con4 = mysql.createConnection(mysqlcon);
-                                    con4.connect(function(err) {
-                                       if (err) throw err;
-                                       con4.query('INSERT INTO Friends(ID1,ID2) VALUES('+UserID+','+FriendID+');', function (err, result) {
-                                       if (err) throw err;
-                                          con4.end();
-                                          res.json([{"status": "Friend Aded"}]);
-                                       });
-                                    });
+                                    var sql = 'UPDATE Friends Set Friends.active=true WHERE ID1='+UserID+' and ID2='+FriendID+';';
+                                    PosTDataToMysqlServer(sql);
+                                    res.json([{"status": "Friend Aded"}]);
                                  }
-                                 else 
-                                 {
-                                    var con4 = mysql.createConnection(mysqlcon);
-                                    con4.connect(function(err) {
-                                       if (err) throw err;
-                                       con4.query('Select Friends.active from Friends WHERE ID1='+UserID+' and ID2='+FriendID+';', function (err, result) {
-                                       if (err) throw err;
-                                          con4.end();
-
-                                          if(result[0].active===1) res.json([{"status": "Alredy Aded"}]);
-                                          else
-                                          {
-                                             var con5 = mysql.createConnection(mysqlcon);
-                                             con5.connect(function(err) {
-                                                if (err) throw err;
-                                                con5.query('UPDATE Friends Set Friends.active=true WHERE ID1='+UserID+' and ID2='+FriendID+';', function (err, result) {
-                                                if (err) throw err;
-                                                   con5.end();
-                                                   res.json([{"status": "Friend Aded"}]);
-                                                });
-                                             });
-                                          }
-                                       });
-                                    });
-                                 };
-                              });
-                           });
-                        });
-                     });
+                              })
+                           }
+                        })
+                     })
                   }
                   else res.json([{"status": "User Do Not Exist"}]);
-               });
-            });
-         });
-      });     
+               })
+         })
    }
 })
 
@@ -196,28 +108,17 @@ app.get("/FriendRemove/:id/:nick/:password/:FriendID",(req,res) =>
 {
    if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined && req.params.FriendID!=undefined)
    {
-
-      var con = mysql.createConnection(mysqlcon);
-      con.connect(function(err) {
-         if (err) throw err;
-         con.query('SELECT EXISTS(SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'") as "check";', function (err, result,fields) {
-         if (err) throw err;
-            con.end();
-            if(result[0].check)
-            {
-               var con1 = mysql.createConnection(mysqlcon);
-               con1.connect(function(err) {
-                  if (err) throw err;
-                  con1.query('UPDATE Friends SET Friends.active=false WHERE ID = '+req.params.FriendID+';', function (err, result) {
-                  if (err) throw err;
-                        res.json([{"status": "Removed"}]);
-                     con1.end();
-                  });
-               });
-            }
-            else res.json([{"status": "No Permision"}]);
-         });
-      });   
+      var sql = 'SELECT EXISTS(SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'") as "check";';
+      GetDataFromMysqlServer(sql,(data)=>
+      {
+         if(data[0].check)
+         {
+            var sql = 'UPDATE Friends SET Friends.active=false WHERE ID = '+req.params.FriendID+';';
+            PosTDataToMysqlServer(sql);
+            res.json([{"status": "Removed"}]);
+         }
+         else res.json([{"status": "No Permision"}]);
+      })
    }
 })
 
@@ -225,20 +126,11 @@ app.get("/Active/:id/:nick/:password",(req,res) =>
 {
    if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined)
    {
-      var con = mysql.createConnection(mysqlcon);
-
-      con.connect(function(err) {
-         if (err) throw err;
-         con.query('UPDATE Users SET Users.active = CURRENT_TIMESTAMP() WHERE md5(Nick)="'+req.params.nick+'" and Password="'+req.params.password+'";', function (err, result) {
-         if (err) throw err;
-            con.end();
-            res.end();
-         });
-      });
+      var sql = 'UPDATE Users SET Users.active = CURRENT_TIMESTAMP() WHERE md5(Nick)="'+req.params.nick+'" and Password="'+req.params.password+'";';
+      PosTDataToMysqlServer((sql));
+      res.end();
    }
 })
-
-
 
 app.get("*",(req,res) =>
 {

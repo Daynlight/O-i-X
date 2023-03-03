@@ -68,7 +68,6 @@ const Login = () => {
 
     function RunActionLogin(e)
     {
-        
         const url="http://localhost:8080/Login/"+md5(Nick)+"/"+md5(Password);
         fetch(url)
         .then((resp) => resp.json())
