@@ -7,8 +7,6 @@ const Login = () => {
     const cookies = new Cookies();
     const timexpire = {path: '/', maxAge: 1209600 };
 
-    
-
     const [Action,SetAction] = useState('login');
     const [Nick,SetNick] = useState('');
     const [Email,SetEmail] = useState('');
@@ -31,8 +29,6 @@ const Login = () => {
     const TerminalRef = useRef();
     const [TerminalAnimation,SetTerminalAnimation] = useState('');
 
-
-
     const vis = (ref,visa,option) =>
     {
 
@@ -51,6 +47,7 @@ const Login = () => {
         observer.observe(ref.current);
         
     }
+
     useEffect(()=>
     {
         if(FirstLoginPassword) vis(NickRef,SetNickAnimation,'nickanimationmove'); else SetNickAnimation('nickanimationmove');
@@ -119,13 +116,12 @@ const Login = () => {
                         
                         {Action==='login' && 
                         (  
-                            
                             <div ref={TerminalRef} class={`colors teminal termianllogin col-12 ${TerminalAnimation}`} >
                                 <div className="d-flex justify-content-center mt-3">
                                     <div class="btn btn-primary me-2"><h1>Login</h1></div>
                                     <div onClick={ () => SetAction('register') } class="btn ms-2 notsetloginaction"><h1>Register</h1></div>
                                 </div>
-                                    <div class="d-flex justify-content-center fs-2 text-warning ">{Text}</div>
+                                    
                                 <div class="d-flex justify-content-start">
                                     
                                     <form class="" onSubmit={(e) => RunActionLogin(e)}>
@@ -138,24 +134,21 @@ const Login = () => {
                                             {!ShowPassword &&<button type="button" ref={ShowPasswordRef} onClick={() => setShow(true)} class={`btn btn-dark col-12 loginanimation ${ShowPasswordAnimation}`} >Show Password</button>}
                                             {ShowPassword &&<button type="button" ref={ShowPasswordRef} onClick={() => setShow(false)} class={`btn btn-secondary col-12 loginanimation ${ShowPasswordAnimation}`}>Hide Password</button>}
                                             
-                                          
                                           <input type="submit" ref={SubmitRef} class={`form-control loginform loginsubmit loginanimation ${SubmitAnimaton} `}value="Login" />
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            
                         )}
 
                         {Action==='register' &&
                         (  
-                            
                             <div class="colors teminal terminalregister col-12">
                             <div className="d-flex justify-content-center mt-3">
                                 <div onClick={ () => SetAction('login') } class="btn me-2 notsetloginaction"><h1>Login</h1></div>
                                 <div  class="btn ms-2 btn-primary "><h1>Register</h1></div>
                             </div>
-                                <div class="d-flex justify-content-center fs-2 text-warning">{Text}</div>
+                               
                             <div class="">
                                 
                                 <form class="" onSubmit={(e) => RunActionRegister(e)}>
@@ -171,10 +164,9 @@ const Login = () => {
                         </div>
                         )}
                     </div>
-                    
                     <div class="col-4"></div>
-                    
                 </div>
+                <div class="d-flex justify-content-center fs-2 text-danger">{Text}</div>
             </div>
         </body>
      );
