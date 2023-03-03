@@ -23,7 +23,7 @@ const Navbar = ({Name}) => {
             
             <ul class="nav bg-dark fixed-top justify-content-center fs-3">
                 <li class="nav-item ">
-                    <Link to="/User" class="nav-link active " aria-current="page">Hello { Name }</Link>
+                    <Link to="/" class="nav-link active " aria-current="page">Hello { Name }</Link>
                 </li>
                 <li class="nav-item">
                     <Link class="nav-link">Find Game</Link>

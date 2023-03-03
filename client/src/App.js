@@ -15,7 +15,6 @@ import Login from './obj/Login';
 
 function App() {
   const cookies = new Cookies();
-  const CheckIFLogin = cookies.get('UserID')!==undefined && cookies.get('UserNick') !==undefined && cookies.get('UserPass') !==undefined;
 
   const {DataURL,FriendURL,ActiveURL} = require('./BackendLinks');
   const {FetchReq,FetchData} = require('./Functions/Fetch');
@@ -28,7 +27,7 @@ function App() {
 
   async function CheckIfActive()
   {
-    if(CheckIFLogin)
+    if(cookies.get('UserID')!==undefined && cookies.get('UserNick') !==undefined && cookies.get('UserPass') !==undefined)
     {
       document.body.onmouseup = function() {FetchReq(ActiveURL,{UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')})};
       document.body.onkeyup = function() {FetchReq(ActiveURL,{UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')})};
@@ -53,15 +52,14 @@ function App() {
   return (
     <div class="App">  
       <Router>
-        {CheckIFLogin &&
+        {cookies.get('UserID')!==undefined && cookies.get('UserNick') !==undefined && cookies.get('UserPass') !==undefined &&
           <Switch>
-            
           <Route exact path="/">
-              <Navbar  Name={Name}></Navbar>
+              <Navbar Name={Name}></Navbar>
               <div class="row col-12">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <User Name={Name} ADD={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
+                    <User Name={Name} AddUser={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
                   <div class="col-4"></div>
                 </div>
               </div>
@@ -88,23 +86,12 @@ function App() {
                 </div>
               </div>
             </Route>
-            <Route exact path="/User">
-              <Navbar  Name={Name}></Navbar>
-              <div class="row col-12">
-                <div class="col-4"></div>
-                <div class="col-4">
-                    <User Name={Name} ADD={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
-                  <div class="col-4"></div>
-                </div>
-              </div>
-            </Route>
             <Route exact path="*">
               <Error></Error>
             </Route>
-            
           </Switch>
         }
-        {cookies.get('UserID')===undefined &&
+        {(cookies.get('UserID') === undefined || cookies.get('UserNick') === undefined || cookies.get('UserPass') === undefined) &&
           <Switch>
             <Route exact path="/">
               <Login></Login>

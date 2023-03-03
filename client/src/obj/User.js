@@ -1,6 +1,6 @@
 import AddFriend from "./AddFriend";
 import FriendList from "./FriendList";
-const User = ({Name,Stars,Friends,ActualTime,ADD}) => {
+const User = ({Name,Stars,Friends,ActualTime,AddUser}) => {
     
     return ( 
     <div>
@@ -55,7 +55,7 @@ const User = ({Name,Stars,Friends,ActualTime,ADD}) => {
                 </div>
             </div>
             
-        {ADD!==undefined && <AddFriend></AddFriend>}
+        {AddUser!==undefined && <AddFriend></AddFriend>}
         </div>
     </div>
     );
