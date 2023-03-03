@@ -1,12 +1,15 @@
 import { Link, useHistory } from "react-router-dom";
 import Cookies from "universal-cookie";
 
-const NavBar = ({Name}) => {
-    const cookies = new Cookies()
+const Navbar = ({Name}) => {
+    const cookies = new Cookies();
+    const {LogoutURL} = require('../BackendLinks');
+    const {FetchReq} = require('../Functions/Fetch');
     const history =useHistory();
 
     function LogOut()
     {
+        FetchReq(LogoutURL,{UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')});
         cookies.remove('UserID');
         cookies.remove('UserPass');
         cookies.remove('UserNick');
@@ -43,4 +46,4 @@ const NavBar = ({Name}) => {
      );
 }
  
-export default NavBar;
+export default Navbar;

@@ -18,6 +18,18 @@ app.post("/Login",(req,res) =>
    }
 })
 
+app.post("/Logout",(req,res) =>
+{
+   var { UserNick, UserPass } = req.body;
+
+   if(UserNick!==undefined && UserPass!==undefined)
+   { 
+      var sql = 'UPDATE Users Set Users.active = Users.active - INTERVAL 9 Minute WHERE md5(Users.Nick)="'+UserNick+'" and Users.Password="'+UserPass+'";';
+      PostDataToMysqlServer(sql);
+      res.json([{"status":"LogOut"}]);
+   }
+})
+
 app.post("/Register",(req,res) =>
 {
    var {UserNick, UserPass, Email} = req.body;

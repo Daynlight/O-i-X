@@ -3,7 +3,8 @@ import Cookies from "universal-cookie";
 var md5 = require('md5');
 
 const Login = () => {
-    const {RegisterURL,LoginURL} = require('../BackendLinks');
+    const {RegisterURL,LoginURL,ActiveURL} = require('../BackendLinks');
+    const {FetchReq} = require('../Functions/Fetch');
 
     const cookies = new Cookies();
     const timexpire = {path: '/', maxAge: 1209600 };
@@ -84,7 +85,11 @@ const Login = () => {
 
     function CheckIFLogin()
     {
-        if(cookies.get("UserID") !== undefined && cookies.get("UserNick") !== undefined && cookies.get("UserPass") !== undefined) document.location.reload(true);
+        if(cookies.get("UserID") !== undefined && cookies.get("UserNick") !== undefined && cookies.get("UserPass") !== undefined) 
+        {
+            FetchReq(ActiveURL,{UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')}); 
+            document.location.reload(true);
+        }
     }
 
 
