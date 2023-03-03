@@ -2,18 +2,22 @@ import { useState } from "react";
 import Cookies from 'universal-cookie';
 import md5 from "md5";
 
+
 const AddFriend = () => {
+    const { AddFriendURL } = require("../BackendLinks");
     const cookies = new Cookies();
 
     const [FriendAded,SetFriendAded] = useState(false);
     const [FriendNick,SetFriendNick] = useState('');
 
-    var url = 'http://localhost:8080/FirendAdd/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass')+'/'+md5(FriendNick);
-
     function AddFriendFunction(e)
     {
         e.preventDefault();
-        fetch(url)
+        fetch(AddFriendURL,{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({UserNick: cookies.get("UserNick"), UserPass: cookies.get("UserPass"), FriendNick: md5(FriendNick)})
+          })
         .then((r)=>r.json())
         .then((res)=>SetFriendAded(res[0].status));
     }

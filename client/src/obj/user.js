@@ -1,8 +1,6 @@
 import AddFriend from "./AddFriend";
 import FriendList from "./FriendList";
-const User = ({Name,Stars,Friends,Now,ADD}) => {
-
-
+const User = ({Name,Stars,Friends,ActualTime,ADD}) => {
     
     return ( 
     <div>
@@ -39,18 +37,18 @@ const User = ({Name,Stars,Friends,Now,ADD}) => {
                         {Friends.map(e =>
                             (
                                 
-                                (Now-e.active<=(5*60)) && <li class="me-4 useractive" key={e.ID}><FriendList Event={e}></FriendList></li>
+                                (ActualTime-e.active<=(5*60)) && <li class="me-4 useractive" key={e.ID}><FriendList Event={e}></FriendList></li>
                                 
                             ))}
                             {Friends.map(e =>
                             (
                                 
-                                (Now-e.active>(5*60)) && (Now-e.active<=(10*60)) && <li class="me-4 unusersleep" key={e.ID}><FriendList Event={e}></FriendList></li>
+                                (ActualTime-e.active>(5*60)) && (ActualTime-e.active<=(10*60)) && <li class="me-4 unusersleep" key={e.ID}><FriendList Event={e}></FriendList></li>
                                 
                             ))}
                             {Friends.map(e =>
                             (  
-                                (Now-e.active>(10*60)) && <li class="me-4 unuseractive" key={e.ID}><FriendList Event={e}></FriendList></li>
+                                (ActualTime-e.active>(10*60)) && <li class="me-4 unuseractive" key={e.ID}><FriendList Event={e}></FriendList></li>
                             ))}
                             
                     </ul>

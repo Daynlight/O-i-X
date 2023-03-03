@@ -13,46 +13,62 @@ import LocalGame from './obj/localgame';
 import Login from './obj/Login';
 
 
-
-
-
 function App() {
+  const {DataURL,FriendURL,ActiveURL} = require('./BackendLinks');
   const cookies = new Cookies();
+
   const [Name,SetName] = useState('Annonim');
   const [Stars, SetStars] = useState(0);
-  const [Friends,SetFriends] = useState([{id:1, name: 'asd',active: true},{id:2,name:'asdasda',active: false}]);
-  const [Now, SetNow] = useState(0);
+  const [Friends,SetFriends] = useState([]);
+  const [ActualTime, SetActualTime] = useState(0);
 
-  const url = 'http://localhost:8080/Data/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass');
-  const urlFriend = 'http://localhost:8080/Friends/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass');
-  const activeurl = 'http://localhost:8080/Active/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass');
 
- 
-  async function getinput()
+
+  async function CheckIfActive()
   {
     if(cookies.get('UserID')!==undefined)
     {
       document.body.onmouseup = function() { 
-        fetch(activeurl);
+        fetch(ActiveURL,
+          {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')})
+          });
       }
       document.body.onkeyup = function() { 
-        fetch(activeurl);
+        fetch(ActiveURL,
+          {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')})
+          });
       }
     }
   }
 
-
-  async function getData()
+  async function GetDataFromServer()
   { 
-    await fetch(url)
+    await fetch(DataURL,
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')})
+      })
     .then((res) =>res.json())
     .then((r) =>
     {
       SetStars(r[0].points);
       SetName(r[0].nick);
-      SetNow(r[0].now);
+      SetActualTime(r[0].now);
     })
-    await fetch(urlFriend)
+
+    await fetch(FriendURL,
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')})
+      })
     .then((res) =>res.json())
     .then((r) =>
     {
@@ -61,8 +77,8 @@ function App() {
   }
 
 
-  getData();
-  getinput();
+  GetDataFromServer();
+  CheckIfActive();
 
 
 
@@ -73,7 +89,7 @@ function App() {
       <body></body>
       
       <Router>
-        {cookies.get('UserID')!==undefined &&
+        {cookies.get('UserID')!==undefined && cookies.get('UserNick') && cookies.get('UserPass') &&
           <Switch>
             
           <Route exact path="/">
@@ -81,7 +97,7 @@ function App() {
               <div class="row col-12">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <User Name={Name} ADD={true} Now={Now} Stars={Stars} Friends={Friends}></User>
+                    <User Name={Name} ADD={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
                   <div class="col-4"></div>
                 </div>
               </div>
@@ -93,7 +109,7 @@ function App() {
                     <BotGame></BotGame>
                 </div>
                 <div class="col-3">
-                  <User Name={Name} Now={Now} Stars={Stars} Friends={Friends}></User>
+                  <User Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
                 </div>
               </div>
             </Route>
@@ -104,7 +120,7 @@ function App() {
                     <LocalGame></LocalGame>
                 </div>
                 <div class="col-3">
-                  <User Name={Name} Now={Now} Stars={Stars} Friends={Friends}></User>
+                  <User Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
                 </div>
               </div>
             </Route>
@@ -113,7 +129,7 @@ function App() {
               <div class="row col-12">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <User Name={Name} ADD={true} Now={Now} Stars={Stars} Friends={Friends}></User>
+                    <User Name={Name} ADD={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
                   <div class="col-4"></div>
                 </div>
               </div>

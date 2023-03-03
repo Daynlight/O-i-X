@@ -3,6 +3,7 @@ import Cookies from "universal-cookie";
 var md5 = require('md5');
 
 const Login = () => {
+    const {RegisterURL,LoginURL} = require('../BackendLinks');
 
     const cookies = new Cookies();
     const timexpire = {path: '/', maxAge: 1209600 };
@@ -64,9 +65,13 @@ const Login = () => {
     }
 
     function RunActionLogin(e)
-    {
-        const url="http://localhost:8080/Login/"+md5(Nick)+"/"+md5(Password);
-        fetch(url)
+    {  
+        e.preventDefault();
+        fetch(LoginURL,{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({UserNick: Nick, UserPass: md5(Password)})
+          })
         .then((resp) => resp.json())
         .then((apidata) =>
         {
@@ -74,7 +79,9 @@ const Login = () => {
             cookies.set('UserID', md5(apidata[0].ID),timexpire);
             cookies.set('UserNick', md5(Nick),timexpire);
             cookies.set('UserPass', md5(Password),timexpire);
+            
         })
+        setTimeout(() => document.location.reload(true),1);
     }
     
     function RunActionRegister(e)
@@ -84,8 +91,11 @@ const Login = () => {
         {
             if(Password===Password1)
             {
-                const url="http://localhost:8080/Register/"+Nick+"/"+md5(Password)+"/"+Email;
-                fetch(url)
+                fetch(RegisterURL,{
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({UserNick: Nick, UserPass: md5(Password), Email: Email})
+                  })
                 .then((resp) => resp.json())
                 .then((apidata) =>
                 {
