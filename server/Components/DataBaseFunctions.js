@@ -14,7 +14,7 @@ function GetDataFromMysqlServer(sql,callback)
    });
 }
 
-function PosTDataToMysqlServer(sql)
+function PostDataToMysqlServer(sql)
 {
    var con = mysql.createConnection(mysqlconf);  
    con.connect(function(err) {
@@ -26,4 +26,4 @@ function PosTDataToMysqlServer(sql)
    });
 }
 
-module.exports = {GetDataFromMysqlServer,PosTDataToMysqlServer};
+module.exports = {GetDataFromMysqlServer,PostDataToMysqlServer};
