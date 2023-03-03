@@ -75,14 +75,19 @@ const Login = () => {
         .then((resp) => resp.json())
         .then((apidata) =>
         {
-            console.log(apidata);
             cookies.set('UserID', md5(apidata[0].ID),timexpire);
             cookies.set('UserNick', md5(Nick),timexpire);
             cookies.set('UserPass', md5(Password),timexpire);
-            
         })
-        setTimeout(() => document.location.reload(true),1);
+        setTimeout(CheckIFLogin,1000);
     }
+
+    function CheckIFLogin()
+    {
+        if(cookies.get("UserID") !== undefined && cookies.get("UserNick") !== undefined && cookies.get("UserPass") !== undefined) document.location.reload(true);
+    }
+
+
     
     function RunActionRegister(e)
     {
@@ -111,8 +116,12 @@ const Login = () => {
         {
             SetText('Fill All Forms');
         }
-
     }
+
+    useEffect(()=>
+    {
+        CheckIFLogin();
+    })
 
 
     return ( 
