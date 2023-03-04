@@ -1,149 +1,111 @@
 import { useState } from "react";
 const BotGame = () => {
-    const [Place,SetPlace] = useState([{id:1, get:''},{id:2, get:''},{id:3, get:''},{id:4, get:''},{id:5, get:''},{id:6, get:''},{id:7, get:''},{id:8, get:''},{id:9, get:''}])
+    const [Place,SetPlace] = useState([{id:1, Pose:''},{id:2, Pose:''},{id:3, Pose:''},{id:4, Pose:''},{id:5, Pose:''},{id:6, Pose:''},{id:7, Pose:''},{id:8, Pose:''},{id:9, Pose:''}])
     const [Ture,SetTure] = useState(0);
     const [Win, SetWin] = useState('');
-    const [Start, SetStart] = useState(true);
-    const [Pion, SetPion] = useState('o');
-    const [Pion1, SetPion1] = useState('x');
-
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * max);
-      }
+    const [Player, SetPlayer] = useState('o');
+    const [Bot, SetBot] = useState('x');
+    var Runing = true;
     
-    function setPos(id) 
+    function SetNewPose(PlayerMove,id)
     {
-        
         var NewPlace = [...Place];
-        NewPlace[id-1].get = Pion;
+        NewPlace[id-1].Pose = PlayerMove;
         SetPlace(NewPlace);
-        SetTure(Ture+1);
-        check();
-        omove();
-        
     }
 
-    function omove()
+    function BotMove(Player)
     {
-        if(Ture!==4)
-        {
-            var NewPlace = [...Place];
-            var suc = 0;
-            var rand = getRandomInt(8)+1;
 
-            for(var i=0;i<=8;i++)
+        var Sucessful = 0;
+        var PoseRandomPose =( Math.floor(Math.random() * 9 ))+1;
+
+        for(var i=0;i<=8;i++)
+        {
+            if(Place[i].Pose==='')
             {
-            if(Place[i].get==='')
-            {
-                if(rand === Place[i].id)
+                if(PoseRandomPose === Place[i].id)
                 {
-                    NewPlace[i].get = Pion1;
-                    SetPlace(NewPlace);
-                    suc = 1;
+                    SetNewPose(Player,PoseRandomPose)
+                    Sucessful = 1;
                 }
             }
-            check();
-            }      
-            if(suc===0)
-            {
-                omove();
-            }
-        }
-    }
-    function Again()
-    {
-        SetPlace([{id:1, get:''},{id:2, get:''},{id:3, get:''},{id:4, get:''},{id:5, get:''},{id:6, get:''},{id:7, get:''},{id:8, get:''},{id:9, get:''}]);
-        SetTure(0);
-        SetWin('');
-        SetStart(true);
+        }      
+        if(Sucessful===0) BotMove(Player);
     }
 
-    function check()
+
+    function CheckIfWin()
     {
        
-       var us = Pion1;
-       if(Place[0].get===us && Place[1].get===us && Place[2].get===us)
+       var us = Bot;
+       if(Place[0].Pose===us && Place[1].Pose===us && Place[2].Pose===us){SetWin(us); Runing=false;}
+       if(Place[3].Pose===us && Place[4].Pose===us && Place[5].Pose===us){SetWin(us); Runing=false;}
+       if(Place[6].Pose===us && Place[7].Pose===us && Place[8].Pose===us){SetWin(us); Runing=false;}
+       if(Place[0].Pose===us && Place[3].Pose===us && Place[6].Pose===us){SetWin(us); Runing=false;}
+       if(Place[1].Pose===us && Place[4].Pose===us && Place[7].Pose===us){SetWin(us); Runing=false;}
+       if(Place[2].Pose===us && Place[5].Pose===us && Place[8].Pose===us){SetWin(us); Runing=false;}
+       if(Place[0].Pose===us && Place[4].Pose===us && Place[8].Pose===us){SetWin(us); Runing=false;}
+       if(Place[2].Pose===us && Place[4].Pose===us && Place[6].Pose===us){SetWin(us); Runing=false;}
+
+       us = Player;
+       if(Place[0].Pose===us && Place[1].Pose===us && Place[2].Pose===us){SetWin(us); Runing=false;}
+       if(Place[3].Pose===us && Place[4].Pose===us && Place[5].Pose===us){SetWin(us); Runing=false;}
+       if(Place[6].Pose===us && Place[7].Pose===us && Place[8].Pose===us){SetWin(us); Runing=false;}
+       if(Place[0].Pose===us && Place[3].Pose===us && Place[6].Pose===us){SetWin(us); Runing=false;}
+       if(Place[1].Pose===us && Place[4].Pose===us && Place[7].Pose===us){SetWin(us); Runing=false;}
+       if(Place[2].Pose===us && Place[5].Pose===us && Place[8].Pose===us){SetWin(us); Runing=false;}
+       if(Place[0].Pose===us && Place[4].Pose===us && Place[8].Pose===us){SetWin(us); Runing=false;}
+       if(Place[2].Pose===us && Place[4].Pose===us && Place[6].Pose===us){SetWin(us); Runing=false;}
+       
+       if(Runing)
        {
-        SetWin(us);
-       }
-       if(Place[3].get===us && Place[4].get===us && Place[5].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[6].get===us && Place[7].get===us && Place[8].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[0].get===us && Place[3].get===us && Place[6].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[1].get===us && Place[4].get===us && Place[7].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[2].get===us && Place[5].get===us && Place[8].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[0].get===us && Place[4].get===us && Place[8].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[2].get===us && Place[4].get===us && Place[6].get===us)
-       {
-        SetWin(us);
+        var c = 0
+        for(var i=0;i<9;i++)
+        {
+            if(Place[i].Pose==='')
+            {
+                c++;
+            }
+        }
+        if(c===0)
+        {
+            SetWin("Draw");
+            Runing = false;
+        }
        }
 
-       us = Pion;
-       if(Place[0].get===us && Place[1].get===us && Place[2].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[3].get===us && Place[4].get===us && Place[5].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[6].get===us && Place[7].get===us && Place[8].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[0].get===us && Place[3].get===us && Place[6].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[1].get===us && Place[4].get===us && Place[7].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[2].get===us && Place[5].get===us && Place[8].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[0].get===us && Place[4].get===us && Place[8].get===us)
-       {
-        SetWin(us);
-       }
-       if(Place[2].get===us && Place[4].get===us && Place[6].get===us)
-       {
-        SetWin(us);
-       }
-        
 
     };
 
+    function Game(id)
+    {
+        if(Runing) SetNewPose(Player,id);
+        CheckIfWin();
+        if(Runing) BotMove(Bot);
+        CheckIfWin();
+    }
+
+    function PlayAgain()
+    {
+        SetPlace([{id:1, Pose:''},{id:2, Pose:''},{id:3, Pose:''},{id:4, Pose:''},{id:5, Pose:''},{id:6, Pose:''},{id:7, Pose:''},{id:8, Pose:''},{id:9, Pose:''}]);
+        SetTure(0);
+        SetWin('');
+        Runing = true;
+    }
+
     return ( 
         <div>
-            {Start===false &&
+            {Win!=='' &&
                 <div class="mx-5 d-flex mb-1 DarkerBackground ActualTime justify-content-center border rounded-5">
-                    {Ture!==5 && Win === 'x'  && <div class="fs-1">X Win</div>}
-                    {Ture!==5 && Win === 'o'  && <div class="fs-1">O Win</div>}
-                    {Ture === 5  && Win==='' && <div class="fs-1">Draw</div>}
-                    {(Ture === 5|| Win!=='') && <div onClick={() => Again()} class="ms-2 btn btn-primary fs-3">Play Again</div>}
+                    {Win === 'x'  && <div class="fs-1">X Win</div>}
+                    {Win === 'o'  && <div class="fs-1">O Win</div>}
+                    {Win==='Draw' && <div class="fs-1">Draw</div>}
+                    {(Win!=='') && <div onClick={() => PlayAgain()} class="ms-2 btn btn-primary fs-3">Play PlayAgain</div>}
                 </div>
             }
-            {Start===true && <div class="mx-5 row DarkerBackground ActualTime border rounded-5 p-3">
-                <div class="col-6 btn btn-dark" onClick={ () => {SetPion('x'); SetPion1('o'); SetStart(false)} }>
+            {Ture===0 && <div class="mx-5 row DarkerBackground ActualTime border rounded-5 p-3">
+                <div class="col-6 btn btn-dark" onClick={ () => {SetPlayer('x'); SetBot('o');BotMove('o'); SetTure(Ture+1)} }>
                     <svg fill="#6c757d" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                         width="100%" height="100%" class="p-5" viewBox="0 0 94.926 94.926">
                     <g>
@@ -155,18 +117,18 @@ const BotGame = () => {
                     </g>
                     </svg>
                     </div>
-                    <div className="col-6 btn btn-dark" onClick={ () => {SetPion('o'); SetPion1('x'); SetStart(false)} }>
+                    <div className="col-6 btn btn-dark" onClick={ () => {SetPlayer('o'); SetBot('x'); SetTure(Ture+1)} }>
                         <svg fill="#6c757d" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" class="bi bi-circle p-5" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         </svg>
                     </div>
             </div>}
 
-            {Start===false && 
+            {Ture!==0 && 
             <div class="mx-5 row DarkerBackground ActualTime border rounded-5 p-3">
                 
                 {Place.map(e=>(
-                    (e.get==='x' && <div key={e.id} class="col-4 plcae">
+                    (e.Pose==='x' && <div key={e.id} class="col-4 plcae">
                         
                     <svg fill="#6c757d" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                         width="100%" height="100%" class="p-5" viewBox="0 0 94.926 94.926">
@@ -180,13 +142,13 @@ const BotGame = () => {
                     </svg>
 
                     </div>) ||
-                    (e.get==='o' && <div key={e.id} class="col-4 plcae">
+                    (e.Pose==='o' && <div key={e.id} class="col-4 plcae">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-circle p-5" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         </svg>
                     </div>) || 
-                ( e.get==='' && Win==='' && <div key={e.id} onClick={() => setPos(e.id) } class="col-4 plcae"></div>) ||
-                ( e.get==='' && Win!=='' && <div key={e.id} class="col-4 plcae"></div>)
+                ( e.Pose==='' && Win==='' && <div key={e.id} onClick={() => Game(e.id) } class="col-4 plcae"></div>) ||
+                ( e.Pose==='' && Win!=='' && <div key={e.id} class="col-4 plcae"></div>)
                 ))}
 
 
