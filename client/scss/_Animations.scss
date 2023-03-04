@@ -1,0 +1,60 @@
+@keyframes Error
+{
+    0%
+    {
+        color: lightcoral;
+    }
+    50%
+    {
+        color: red;
+    }
+    100%
+    {
+        color: lightcoral;
+    }
+}
+@keyframes BackGroundColor {
+    0%
+    {
+        background-color: #fc0000;
+    }
+    25%
+    {
+        background-color:  rgb(255, 196, 0);
+    }
+    50%
+    {
+        background-color: rgb(107, 0, 214);
+    }
+    75%
+    {
+        background-color: rgb(0, 3, 202);
+    }
+    100%
+    {
+        background-color: #fc0000;
+    }
+
+}
+@keyframes Colors {
+    0%
+    {
+        border-color: #fc0000;
+    }
+    25%
+    {
+        border-color:  rgb(255, 196, 0);
+    }
+    50%
+    {
+        border-color: rgb(107, 0, 214);
+    }
+    75%
+    {
+        border-color: rgb(0, 3, 202);
+    }
+    100%
+    {
+        border-color: #fc0000;
+    }
+}
