@@ -3,16 +3,16 @@ import FriendList from "./FriendList";
 const User = ({Name,Stars,Friends,ActualTime,AddUser}) => {
     return ( 
     <div>
-        <div class="border DarkerBackground rounded-3 pb-2">
-            <div class="justify-content-center grid d-flex">
+        <div className="border DarkerBackground rounded-3 pb-2">
+            <div className="justify-content-center grid d-flex">
                 <div>
                     <h1>{ Name.charAt().toUpperCase()+Name.substring(1) }</h1>
                 </div>
             </div>
-            <div class="justify-content-center grid d-flex text-gold">
+            <div className="justify-content-center grid d-flex text-gold">
                 <h2>
                     {Stars}
-                    <svg fill="#ffe600" height="23" class="mb-2" width="23" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" 
+                    <svg fill="#ffe600" height="23" className="mb-2" width="23" version="1.1" xmlns="http://www.w3.org/2000/svg" 
                         viewBox="0 0 489.4 489.4" >
                     <g>
                         <path d="M369.75,0h-250.2v44.3h-85.6V110c0,47.2,38.4,85.6,85.6,85.6h1.5c7.9,51.3,47,92.2,97.2,103v70.9h-30.7
@@ -25,23 +25,23 @@ const User = ({Name,Stars,Friends,ActualTime,AddUser}) => {
                     </svg>
                 </h2>
             </div>
-            <div class="justify-content-center grid d-flex">
+            <div className="justify-content-center grid d-flex">
                 <h2>Friends</h2>
             </div>
-            <div class="justify-content-center grid d-flex">
-                <div class="d-flex grid col-9 justigy-content-center border fs-3">
-                    <ul class="FriendList col-12">
+            <div className="justify-content-center grid d-flex">
+                <div className="d-flex grid col-9 justigy-content-center border fs-3">
+                    <ul className="FriendList col-12">
                         {Friends.map(e =>
                             (
-                                (ActualTime-e.active<=(5*60)) && <li class="me-4 UserActive" key={e.ID}><FriendList Event={e}></FriendList></li>
+                                (ActualTime-e.active<=(5*60)) && <li className="me-4 UserActive" key={e.ID}><FriendList Event={e}></FriendList></li>
                             ))}
                             {Friends.map(e =>
                             (
-                                (ActualTime-e.active>(5*60)) && (ActualTime-e.active<=(10*60)) && <li class="me-4 UserAway" key={e.ID}><FriendList Event={e}></FriendList></li>
+                                (ActualTime-e.active>(5*60)) && (ActualTime-e.active<=(10*60)) && <li className="me-4 UserAway" key={e.ID}><FriendList Event={e}></FriendList></li>
                             ))}
                             {Friends.map(e =>
                             (  
-                                (ActualTime-e.active>(10*60)) && <li class="me-4 UserNotActive" key={e.ID}><FriendList Event={e}></FriendList></li>
+                                (ActualTime-e.active>(10*60)) && <li className="me-4 UserNotActive" key={e.ID}><FriendList Event={e}></FriendList></li>
                             ))
                         }
                     </ul>

@@ -50,38 +50,38 @@ function App() {
   CheckIfActive();
 
   return (
-    <div class="App">  
+    <div className="App">  
       <Router>
         {cookies.get('UserID')!==undefined && cookies.get('UserNick') !==undefined && cookies.get('UserPass') !==undefined &&
           <Switch>
           <Route exact path="/">
               <Navbar Name={Name}></Navbar>
-              <div class="row col-12">
-                <div class="col-4"></div>
-                <div class="col-4">
+              <div className="row col-12">
+                <div className="col-4"></div>
+                <div className="col-4">
                     <User Name={Name} AddUser={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
-                  <div class="col-4"></div>
+                  <div className="col-4"></div>
                 </div>
               </div>
             </Route>
             <Route exact path="/Bot">
               <Navbar  Name={Name}></Navbar>
-              <div class='row col-12'>
-                <div class="col-9">
+              <div className='row col-12'>
+                <div className="col-9">
                     <BotGame></BotGame>
                 </div>
-                <div class="col-3">
+                <div className="col-3">
                   <User Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
                 </div>
               </div>
             </Route>
             <Route exact path="/Local">
               <Navbar  Name={Name}></Navbar>
-              <div class='row col-12'>
-                <div class="col-9">
+              <div className='row col-12'>
+                <div className="col-9">
                     <LocalGame></LocalGame>
                 </div>
-                <div class="col-3">
+                <div className="col-3">
                   <User Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
                 </div>
               </div>

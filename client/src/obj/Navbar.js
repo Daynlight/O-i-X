@@ -16,27 +16,27 @@ const Navbar = ({Name}) => {
         history.push('/');
         window.location.reload(true);
     }
-    
+
     return ( 
         <div>
-            <ul class="nav bg-dark fixed-top justify-content-center fs-3">
-                <li class="nav-item ">
-                    <Link to="/" class="nav-link active " aria-current="page">Hello { Name.charAt().toUpperCase()+Name.substring(1) }</Link>
+            <ul className="nav bg-dark fixed-top justify-content-center fs-3">
+                <li className="nav-item ">
+                    <Link to="/" className="nav-link active">Hello { Name.charAt().toUpperCase()+Name.substring(1) }</Link>
                 </li>
-                <li class="nav-item">
-                    <Link class="nav-link">Find Game</Link>
+                <li className="nav-item">
+                    <div className="nav-link">Find Game</div>
                 </li>
-                <li class="nav-item">
-                    <Link to="/Local" class="nav-link">Local Game</Link>
+                <li className="nav-item">
+                    <Link to="/Local" className="nav-link">Local Game</Link>
                 </li>
-                <li class="nav-item">
-                    <Link to="/Bot" class="nav-link">Bot Game</Link>
+                <li className="nav-item">
+                    <Link to="/Bot" className="nav-link">Bot Game</Link>
                 </li>
-                <li class="nav-item">
-                    <div type="button" onClick={ () => LogOutFunction() } class="nav-link">LogOut</div>
+                <li className="nav-item">
+                    <div type="button" onClick={ () => LogOutFunction() } className="nav-link">LogOut</div>
                 </li>
             </ul>
-            <div class="py-5"></div>
+            <div className="py-5"></div>
         </div>
      );
 }

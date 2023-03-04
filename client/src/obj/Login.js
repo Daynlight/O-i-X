@@ -96,49 +96,49 @@ const Login = () => {
     return ( 
             <div>
                 <div className="d-flex row col-12 pt-5 justify-content-center">
-                    <div class="col-4"></div>
-                    <div class="col-4  d-flex justify-content-center border-3">
+                    <div className="col-4"></div>
+                    <div className="col-4  d-flex justify-content-center border-3">
                         {Action && 
-                            <div ref={TerminalRef} class={`colors Terminal Login col-12 ${TerminalAnimation}`} >
+                            <div ref={TerminalRef} className={`colors Terminal Login col-12 ${TerminalAnimation}`} >
                                 <div className="d-flex justify-content-center mt-3">
-                                    <div onClick={ () => {SetAction(!Action);SetInfoText('')} } class="btn btn-primary me-2"><h1>Login</h1></div>
-                                    <div onClick={ () => {SetAction(!Action);SetInfoText('')} } class="btn ms-2 NotSetLoginSelection"><h1>Register</h1></div>
+                                    <div onClick={ () => {SetAction(!Action);SetInfoText('')} } className="btn btn-primary me-2"><h1>Login</h1></div>
+                                    <div onClick={ () => {SetAction(!Action);SetInfoText('')} } className="btn ms-2 NotSetLoginSelection"><h1>Register</h1></div>
                                 </div>
-                                <div class="d-flex justify-content-start">
-                                    <form class="" onSubmit={(e) => RunActionLogin(e)}>
-                                        <div class="mb-3">
-                                            <input type="text" ref={NickRef} class={`form-control LoginForm LoginAnimation ${NickAnimation}`}  required value={Nick} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
-                                            {!ShowPassword &&<input type="password" ref={PasswordRef} class={`form-control LoginForm LoginAnimation ${PasswordAnimation}`} required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
-                                            {ShowPassword &&<input type="text" ref={PasswordRef} class={`form-control LoginForm LoginAnimation ${PasswordAnimation}`} required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
-                                            {!ShowPassword &&<button type="button" ref={ShowPasswordRef} onClick={() => setShowFunction()} class={`btn btn-dark col-12 LoginAnimation ${ShowPasswordAnimation}`} >Show Password</button>}
-                                            {ShowPassword &&<button type="button" ref={ShowPasswordRef} onClick={() => setShowFunction()} class={`btn btn-secondary col-12 LoginAnimation ${ShowPasswordAnimation}`}>Hide Password</button>}
-                                          <input type="submit" ref={SubmitRef} class={`form-control LoginForm LoginAnimation LoginSubmit ${SubmitAnimaton} `}value="Login" />
+                                <div className="d-flex justify-content-start">
+                                    <form className="" onSubmit={(e) => RunActionLogin(e)}>
+                                        <div className="mb-3">
+                                            <input type="text" ref={NickRef} className={`form-control LoginForm LoginAnimation ${NickAnimation}`}  required value={Nick} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
+                                            {!ShowPassword &&<input type="password" ref={PasswordRef} className={`form-control LoginForm LoginAnimation ${PasswordAnimation}`} required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
+                                            {ShowPassword &&<input type="text" ref={PasswordRef} className={`form-control LoginForm LoginAnimation ${PasswordAnimation}`} required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
+                                            {!ShowPassword &&<button type="button" ref={ShowPasswordRef} onClick={() => setShowFunction()} className={`btn btn-dark col-12 LoginAnimation ${ShowPasswordAnimation}`} >Show Password</button>}
+                                            {ShowPassword &&<button type="button" ref={ShowPasswordRef} onClick={() => setShowFunction()} className={`btn btn-secondary col-12 LoginAnimation ${ShowPasswordAnimation}`}>Hide Password</button>}
+                                          <input type="submit" ref={SubmitRef} className={`form-control LoginForm LoginAnimation LoginSubmit ${SubmitAnimaton} `}value="Login" />
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         }
                         {!Action && 
-                            <div class="colors Terminal Register col-12">
+                            <div className="colors Terminal Register col-12">
                             <div className="d-flex justify-content-center mt-3">
-                                <div onClick={ () => {SetAction(!Action);SetInfoText('')} } class="btn me-2 NotSetLoginSelection"><h1>Login</h1></div>
-                                <div onClick={ () => {SetAction(!Action);SetInfoText('')} } class="btn ms-2 btn-primary "><h1>Register</h1></div>
+                                <div onClick={ () => {SetAction(!Action);SetInfoText('')} } className="btn me-2 NotSetLoginSelection"><h1>Login</h1></div>
+                                <div onClick={ () => {SetAction(!Action);SetInfoText('')} } className="btn ms-2 btn-primary "><h1>Register</h1></div>
                             </div>
-                            <form class="" onSubmit={(e) => RunActionRegister(e)}>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control mt-1 LoginForm" required value={Nick} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
-                                    <input type="password" class="form-control mt-1 LoginForm" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
-                                    <input type="password" class="form-control mt-1 LoginForm" required value={RePassword} onChange={(e)=> SetRePassword(e.target.value)} placeholder="RePassword" />
-                                    <input type="email" class="form-control mt-1 LoginForm" required value={Email} onChange={(e)=> SetEmail(e.target.value.toLowerCase())} placeholder="Email" />
-                                    <input type="submit" class="form-control mt-1 LoginForm LoginSubmit" value="Register" />
+                            <form className="" onSubmit={(e) => RunActionRegister(e)}>
+                                <div className="mb-3">
+                                    <input type="text" className="form-control mt-1 LoginForm" required value={Nick} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
+                                    <input type="password" className="form-control mt-1 LoginForm" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
+                                    <input type="password" className="form-control mt-1 LoginForm" required value={RePassword} onChange={(e)=> SetRePassword(e.target.value)} placeholder="RePassword" />
+                                    <input type="email" className="form-control mt-1 LoginForm" required value={Email} onChange={(e)=> SetEmail(e.target.value.toLowerCase())} placeholder="Email" />
+                                    <input type="submit" className="form-control mt-1 LoginForm LoginSubmit" value="Register" />
                                 </div> 
                             </form>
                         </div>
                         }
                     </div>
-                    <div class="col-4"></div>
+                    <div className="col-4"></div>
                 </div>
-                <div class="d-flex justify-content-center fs-2 text-danger">{InfoText}</div>
+                <div className="d-flex justify-content-center fs-2 text-danger">{InfoText}</div>
             </div>
      );
 }

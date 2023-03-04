@@ -89,17 +89,17 @@ const BotGame = () => {
     return ( 
         <div>
             {Win!=='' &&
-                <div class="mx-5 d-flex mb-1 DarkerBackground ActualTime justify-content-center border rounded-5">
-                    {Win === 'x'  && <div class="fs-1">X Win</div>}
-                    {Win === 'o'  && <div class="fs-1">O Win</div>}
-                    {Win==='Draw' && <div class="fs-1">Draw</div>}
-                    <div onClick={() => PlayAgain()} class="ms-2 btn btn-primary fs-3">Play PlayAgain</div>
+                <div className="mx-5 d-flex mb-1 DarkerBackground ActualTime justify-content-center border rounded-5">
+                    {Win === 'x'  && <div className="fs-1">X Win</div>}
+                    {Win === 'o'  && <div className="fs-1">O Win</div>}
+                    {Win==='Draw' && <div className="fs-1">Draw</div>}
+                    <div onClick={() => PlayAgain()} className="ms-2 btn btn-primary fs-3">Play PlayAgain</div>
                 </div>
             }
-            {Ture===0 && <div class="mx-5 row DarkerBackground ActualTime border rounded-5 p-3">
-                <div class="col-6 btn btn-dark" onClick={ () => {SetPlayer('x'); SetBot('o');BotMove('o'); SetTure(Ture+1)} }>
-                    <svg fill="#6c757d" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                        width="100%" height="100%" class="p-5" viewBox="0 0 94.926 94.926">
+            {Ture===0 && <div className="mx-5 row DarkerBackground ActualTime border rounded-5 p-3">
+                <div className="col-6 btn btn-dark" onClick={ () => {SetPlayer('x'); SetBot('o');BotMove('o'); SetTure(Ture+1)} }>
+                    <svg fill="#6c757d" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        width="100%" height="100%" className="p-5" viewBox="0 0 94.926 94.926">
                     <g>
                         <path d="M55.931,47.463L94.306,9.09c0.826-0.827,0.826-2.167,0-2.994L88.833,0.62C88.436,0.224,87.896,0,87.335,0
                             c-0.562,0-1.101,0.224-1.498,0.62L47.463,38.994L9.089,0.62c-0.795-0.795-2.202-0.794-2.995,0L0.622,6.096
@@ -110,18 +110,18 @@ const BotGame = () => {
                     </svg>
                     </div>
                     <div className="col-6 btn btn-dark" onClick={ () => {SetPlayer('o'); SetBot('x'); SetTure(Ture+1)} }>
-                        <svg fill="#6c757d" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" class="bi bi-circle p-5" viewBox="0 0 16 16">
+                        <svg fill="#6c757d" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" className="bi bi-circle p-5" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         </svg>
                     </div>
             </div>}
             {Ture!==0 && 
-            <div class="mx-5 row DarkerBackground ActualTime border rounded-5 p-3">
+            <div className="mx-5 row DarkerBackground ActualTime border rounded-5 p-3">
                 
                 {Place.map(e=>(
-                    (e.Pose==='x' && <div key={e.id} class="col-4 Place">
+                    (e.Pose==='x' && <div key={e.id} className="col-4 Place">
                     <svg fill="#6c757d" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                        width="100%" height="100%" class="p-5" viewBox="0 0 94.926 94.926">
+                        width="100%" height="100%" className="p-5" viewBox="0 0 94.926 94.926">
                     <g>
                         <path d="M55.931,47.463L94.306,9.09c0.826-0.827,0.826-2.167,0-2.994L88.833,0.62C88.436,0.224,87.896,0,87.335,0
                             c-0.562,0-1.101,0.224-1.498,0.62L47.463,38.994L9.089,0.62c-0.795-0.795-2.202-0.794-2.995,0L0.622,6.096
@@ -131,13 +131,13 @@ const BotGame = () => {
                     </g>
                     </svg>
                     </div>) ||
-                    (e.Pose==='o' && <div key={e.id} class="col-4 Place">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-circle p-5" viewBox="0 0 16 16">
+                    (e.Pose==='o' && <div key={e.id} className="col-4 Place">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" className="bi bi-circle p-5" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         </svg>
                     </div>) || 
-                ( e.Pose==='' && Win==='' && <div key={e.id} onClick={() => Game(e.id) } class="col-4 Place"></div>) ||
-                ( e.Pose==='' && Win!=='' && <div key={e.id} class="col-4 Place"></div>)
+                ( e.Pose==='' && Win==='' && <div key={e.id} onClick={() => Game(e.id) } className="col-4 Place"></div>) ||
+                ( e.Pose==='' && Win!=='' && <div key={e.id} className="col-4 Place"></div>)
                 ))}
             </div>
             }

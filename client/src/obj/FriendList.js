@@ -9,9 +9,9 @@ const FriendList = ({Event}) => {
 
     return ( 
     <div>
-        <div class="col-12" type="button" onClick={()=>{if(RemoveFriendBTN)SetRemoveFriendBTN(false); else SetRemoveFriendBTN(true)}}>
+        <div className="col-12" type="button" onClick={()=>{if(RemoveFriendBTN)SetRemoveFriendBTN(false); else SetRemoveFriendBTN(true)}}>
         {Event.Nick.charAt().toUpperCase()+Event.Nick.substring(1)}
-            <svg fill="#ffe600" height="18" class="mb-1" width="23" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" 
+            <svg fill="#ffe600" height="18" className="mb-1" width="23" version="1.1" xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 489.4 489.4" >
                 <g>
                     <path d="M369.75,0h-250.2v44.3h-85.6V110c0,47.2,38.4,85.6,85.6,85.6h1.5c7.9,51.3,47,92.2,97.2,103v70.9h-30.7
@@ -25,7 +25,7 @@ const FriendList = ({Event}) => {
         {Event.Points}
         </div>
         {RemoveFriendBTN && <div className="col-12 ">
-            <div type="button" class="text-white FriendRemove" onClick={() => FetchReq(RemoveFriendURL,{UserNick: cookies.get("UserNick"), UserPass: cookies.get("UserPass"), FriendID: Event.ind})}>Remove Friend</div>
+            <div type="button" className="text-white FriendRemove" onClick={() => FetchReq(RemoveFriendURL,{UserNick: cookies.get("UserNick"), UserPass: cookies.get("UserPass"), FriendID: Event.ind})}>Remove Friend</div>
         </div>}
     </div> 
     );
