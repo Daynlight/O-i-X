@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 01, 2023 at 05:38 PM
+-- Generation Time: Mar 04, 2023 at 01:12 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -39,7 +39,8 @@ CREATE TABLE `Friends` (
 --
 
 INSERT INTO `Friends` (`ID`, `ID1`, `ID2`, `active`) VALUES
-(7, 7, 10, 1);
+(14, 20, 19, 1),
+(15, 19, 20, 1);
 
 -- --------------------------------------------------------
 
@@ -61,8 +62,8 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`ID`, `Nick`, `Password`, `Email`, `Points`, `active`) VALUES
-(7, 'Daynlight', 'b171fc43696e4a053270d6fc4ece8b11', 'danielstodulski000@gmail.com', 0, '2023-03-01 16:38:27'),
-(10, 'asd', '7815696ecbf1c96e6894b779456d330e', 'asd@asd', 0, '2023-03-01 12:33:56');
+(19, 'daynlight', 'b171fc43696e4a053270d6fc4ece8b11', 'danielstodulski000@gmail.com', 0, '2023-03-04 00:05:44'),
+(20, 'mimi', 'dde6ecd6406700aa000b213c843a3091', 'mimi@mimi', 0, '2023-03-03 22:44:54');
 
 --
 -- Indexes for dumped tables
@@ -90,13 +91,13 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Friends`
 --
 ALTER TABLE `Friends`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
