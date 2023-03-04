@@ -115,7 +115,6 @@ const BotGame = () => {
                         </svg>
                     </div>
             </div>}
-
             {Ture!==0 && 
             <div class="mx-5 row DarkerBackground ActualTime border rounded-5 p-3">
                 
