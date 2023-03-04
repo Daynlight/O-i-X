@@ -30,18 +30,18 @@ const User = ({Name,Stars,Friends,ActualTime,AddUser}) => {
             </div>
             <div class="justify-content-center grid d-flex">
                 <div class="d-flex grid col-9 justigy-content-center border fs-3">
-                    <ul class="friendlist col-12">
+                    <ul class="FriendList col-12">
                         {Friends.map(e =>
                             (
-                                (ActualTime-e.active<=(5*60)) && <li class="me-4 useractive" key={e.ID}><FriendList Event={e}></FriendList></li>
+                                (ActualTime-e.active<=(5*60)) && <li class="me-4 UserActive" key={e.ID}><FriendList Event={e}></FriendList></li>
                             ))}
                             {Friends.map(e =>
                             (
-                                (ActualTime-e.active>(5*60)) && (ActualTime-e.active<=(10*60)) && <li class="me-4 unusersleep" key={e.ID}><FriendList Event={e}></FriendList></li>
+                                (ActualTime-e.active>(5*60)) && (ActualTime-e.active<=(10*60)) && <li class="me-4 UserAway" key={e.ID}><FriendList Event={e}></FriendList></li>
                             ))}
                             {Friends.map(e =>
                             (  
-                                (ActualTime-e.active>(10*60)) && <li class="me-4 unuseractive" key={e.ID}><FriendList Event={e}></FriendList></li>
+                                (ActualTime-e.active>(10*60)) && <li class="me-4 UserNotActive" key={e.ID}><FriendList Event={e}></FriendList></li>
                             ))
                         }
                     </ul>

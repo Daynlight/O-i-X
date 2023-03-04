@@ -10,58 +10,37 @@ body
     color: $primary;    
 }
 
-.weberror
+.WebError
 {
     width: 100%;
     text-align: center;
     font-size: 400%;
-    animation-name: err;
+    animation-name: Error;
     animation-duration: 5s;
     animation-iteration-count: infinite;
-}
-@keyframes err
-{
-    0%
-    {
-        color: lightcoral;
-    }
-    50%
-    {
-        color: red;
-    }
-    100%
-    {
-        color: lightcoral;
-    }
-}
-.img
-{
-    width: 100%;
 }
 .text-gold
 {
     color:$gold;
 }
-.friendlist
+.FriendList
 {
     list-style: none;
-    text-align: center;
-    
+    text-align: center; 
 }
-.useractive
+.UserActive
 {
     color: $active;
-
 }
-.unusersleep
+.UserAway
 {
     color: $warning;
 }
-.unuseractive
+.UserNotActive
 {
     color: $unactive;
 }
-.plcae
+.Place
 {
     height: 28vh;
     border: 1px solid red;
@@ -70,103 +49,53 @@ body
     color:$secondary;
     
 }
-.plcae:hover
+.Place:hover
 {
     transition: 1s;
     background-color: transparent;
     transform: scale(0.9);
     
 }
-.notsetloginaction
+.NotSetLoginSelection
 {
     transition: 2s;
     background-color: $secondary;
     border: none;
 }
-.term
-{
-    color:#3bfc00;
-    
-}
-.loginform, .loginform:focus
+.LoginForm, .LoginForm:focus
 {
     color: white;
     background-color: #00000027;
     font-size: 30px;
     border: 1px solid;
     border-radius: 5px;
-    animation-name: colors;
+    animation-name: BorderColor;
     animation-duration: 5s;
     animation-iteration-count: infinite;
 }
-.loginform:hover ,.loginform:focus
+.LoginForm:hover ,.LoginForm:focus
 {
     background-color: #36363677;
     transition: 1s;
     margin-left: 10px;
 }
-.loginsubmit
+.LoginSubmit
 {
-    animation-name: backcolors;
+    animation-name: BackGroundColor;
     animation-duration: 5s;
     animation-iteration-count: infinite;
     color: black;
 }
 
-.colors
+.BorderColor
 {
     border: 5px solid;
     border-radius: 5px;
-    animation-name: colors;
+    animation-name: BorderColor;
     animation-duration: 5s;
     animation-iteration-count: infinite;
 }
-@keyframes colors {
-    0%
-    {
-        border-color: #fc0000;
-    }
-    25%
-    {
-        border-color:  rgb(255, 196, 0);
-    }
-    50%
-    {
-        border-color: rgb(107, 0, 214);
-    }
-    75%
-    {
-        border-color: rgb(0, 3, 202);
-    }
-    100%
-    {
-        border-color: #fc0000;
-    }
 
-}
-@keyframes backcolors {
-    0%
-    {
-        background-color: #fc0000;
-    }
-    25%
-    {
-        background-color:  rgb(255, 196, 0);
-    }
-    50%
-    {
-        background-color: rgb(107, 0, 214);
-    }
-    75%
-    {
-        background-color: rgb(0, 3, 202);
-    }
-    100%
-    {
-        background-color: #fc0000;
-    }
-
-}
 .FriendRemove, .FriendOptionList
 {
     border-radius: 10px;
@@ -178,45 +107,45 @@ body
     transition: 1s;
     
 }
-.loginanimation
+.LoginAnimation
 {
     position: absolute;
 }
-.teminal
+.Terminal
 {
     position: relative;
     background-color: #0000002f;
     height: 380px;
 }
-.loginanimationmove
+.LoginSubmitAnimation
 {
     transition: 1s;
     transform: translateY(215px);
 }
-.changeanimationmove
+.ChangeAnimationMove
 {
     transition: 1s;
     transform: translateY(170px);
 }
-.passwordanimationmove
+.PasswordAnimationMove
 {
     transition: 1s;
     transform: translateY(100px);
 }
-.nickanimationmove
+.NickAnimationMove
 {
     transition: 1s;
     transform: translateY(20px);
 }
-.terminalregister
+.Register
 {
     height: 420px;
 }
-.termianllogin
+.Login
 {
     height: 200px;
 }
-.terminalanimation
+.TerminalAnimation
 {
     transition: 1s;
     height: 380px;

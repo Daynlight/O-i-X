@@ -48,11 +48,11 @@ const Login = () => {
 
     useEffect(()=>
     {
-        if(FirstLogin) vis(NickRef,SetNickAnimation,'nickanimationmove'); else SetNickAnimation('nickanimationmove');
-        if(FirstLogin) vis(PasswordRef,SetPasswordAnimation,'passwordanimationmove'); else SetPasswordAnimation('passwordanimationmove');
-        if(FirstLogin) vis(SubmitRef,SetSubmitAnimaton,'loginanimationmove'); else SetSubmitAnimaton('loginanimationmove');
-        if(FirstLogin) vis(ShowPasswordRef,SetShowPasswordAnimation,'changeanimationmove'); else SetShowPasswordAnimation('changeanimationmove');
-        if(FirstLogin) vis(TerminalRef,SetTerminalAnimation,'terminalanimation'); else SetTerminalAnimation('terminalanimation');
+        if(FirstLogin) vis(NickRef,SetNickAnimation,'NickAnimationMove'); else SetNickAnimation('NickAnimationMove');
+        if(FirstLogin) vis(PasswordRef,SetPasswordAnimation,'PasswordAnimationMove'); else SetPasswordAnimation('PasswordAnimationMove');
+        if(FirstLogin) vis(SubmitRef,SetSubmitAnimaton,'LoginSubmitAnimation'); else SetSubmitAnimaton('LoginSubmitAnimation');
+        if(FirstLogin) vis(ShowPasswordRef,SetShowPasswordAnimation,'ChangeAnimationMove'); else SetShowPasswordAnimation('ChangeAnimationMove');
+        if(FirstLogin) vis(TerminalRef,SetTerminalAnimation,'TerminalAnimation'); else SetTerminalAnimation('TerminalAnimation');
         SetFirstLogin(false);
     },[FirstLogin,NickAnimation,PasswordAnimation,SubmitAnimaton,ShowPasswordAnimation,TerminalAnimation])
 
@@ -99,38 +99,38 @@ const Login = () => {
                     <div class="col-4"></div>
                     <div class="col-4  d-flex justify-content-center border-3">
                         {Action && 
-                            <div ref={TerminalRef} class={`colors teminal termianllogin col-12 ${TerminalAnimation}`} >
+                            <div ref={TerminalRef} class={`colors Terminal Login col-12 ${TerminalAnimation}`} >
                                 <div className="d-flex justify-content-center mt-3">
                                     <div onClick={ () => {SetAction(!Action);SetInfoText('')} } class="btn btn-primary me-2"><h1>Login</h1></div>
-                                    <div onClick={ () => {SetAction(!Action);SetInfoText('')} } class="btn ms-2 notsetloginaction"><h1>Register</h1></div>
+                                    <div onClick={ () => {SetAction(!Action);SetInfoText('')} } class="btn ms-2 NotSetLoginSelection"><h1>Register</h1></div>
                                 </div>
                                 <div class="d-flex justify-content-start">
                                     <form class="" onSubmit={(e) => RunActionLogin(e)}>
                                         <div class="mb-3">
-                                            <input type="text" ref={NickRef} class={`form-control loginform loginanimation ${NickAnimation}`}  required value={Nick} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
-                                            {!ShowPassword &&<input type="password" ref={PasswordRef} class={`form-control loginform loginanimation ${PasswordAnimation}`} required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
-                                            {ShowPassword &&<input type="text" ref={PasswordRef} class={`form-control loginform loginanimation ${PasswordAnimation}`} required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
-                                            {!ShowPassword &&<button type="button" ref={ShowPasswordRef} onClick={() => setShowFunction()} class={`btn btn-dark col-12 loginanimation ${ShowPasswordAnimation}`} >Show Password</button>}
-                                            {ShowPassword &&<button type="button" ref={ShowPasswordRef} onClick={() => setShowFunction()} class={`btn btn-secondary col-12 loginanimation ${ShowPasswordAnimation}`}>Hide Password</button>}
-                                          <input type="submit" ref={SubmitRef} class={`form-control loginform loginsubmit loginanimation ${SubmitAnimaton} `}value="Login" />
+                                            <input type="text" ref={NickRef} class={`form-control LoginForm LoginAnimation ${NickAnimation}`}  required value={Nick} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
+                                            {!ShowPassword &&<input type="password" ref={PasswordRef} class={`form-control LoginForm LoginAnimation ${PasswordAnimation}`} required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
+                                            {ShowPassword &&<input type="text" ref={PasswordRef} class={`form-control LoginForm LoginAnimation ${PasswordAnimation}`} required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
+                                            {!ShowPassword &&<button type="button" ref={ShowPasswordRef} onClick={() => setShowFunction()} class={`btn btn-dark col-12 LoginAnimation ${ShowPasswordAnimation}`} >Show Password</button>}
+                                            {ShowPassword &&<button type="button" ref={ShowPasswordRef} onClick={() => setShowFunction()} class={`btn btn-secondary col-12 LoginAnimation ${ShowPasswordAnimation}`}>Hide Password</button>}
+                                          <input type="submit" ref={SubmitRef} class={`form-control LoginForm LoginAnimation LoginSubmit ${SubmitAnimaton} `}value="Login" />
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         }
                         {!Action && 
-                            <div class="colors teminal terminalregister col-12">
+                            <div class="colors Terminal Register col-12">
                             <div className="d-flex justify-content-center mt-3">
-                                <div onClick={ () => {SetAction(!Action);SetInfoText('')} } class="btn me-2 notsetloginaction"><h1>Login</h1></div>
+                                <div onClick={ () => {SetAction(!Action);SetInfoText('')} } class="btn me-2 NotSetLoginSelection"><h1>Login</h1></div>
                                 <div onClick={ () => {SetAction(!Action);SetInfoText('')} } class="btn ms-2 btn-primary "><h1>Register</h1></div>
                             </div>
                             <form class="" onSubmit={(e) => RunActionRegister(e)}>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control mt-1 loginform" required value={Nick} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
-                                    <input type="password" class="form-control mt-1 loginform" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
-                                    <input type="password" class="form-control mt-1 loginform" required value={RePassword} onChange={(e)=> SetRePassword(e.target.value)} placeholder="RePassword" />
-                                    <input type="email" class="form-control mt-1 loginform" required value={Email} onChange={(e)=> SetEmail(e.target.value.toLowerCase())} placeholder="Email" />
-                                    <input type="submit" class="form-control mt-1 loginform loginsubmit" value="Register" />
+                                    <input type="text" class="form-control mt-1 LoginForm" required value={Nick} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
+                                    <input type="password" class="form-control mt-1 LoginForm" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
+                                    <input type="password" class="form-control mt-1 LoginForm" required value={RePassword} onChange={(e)=> SetRePassword(e.target.value)} placeholder="RePassword" />
+                                    <input type="email" class="form-control mt-1 LoginForm" required value={Email} onChange={(e)=> SetEmail(e.target.value.toLowerCase())} placeholder="Email" />
+                                    <input type="submit" class="form-control mt-1 LoginForm LoginSubmit" value="Register" />
                                 </div> 
                             </form>
                         </div>

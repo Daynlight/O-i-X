@@ -67,7 +67,7 @@ const LocalGame = () => {
             }
             <div class="mx-5 row border DarkerBackground ActualTime rounded-5 p-3">
                 {Place.map(e=>(
-                    (e.Pose==='x' && <div key={e.id} class="col-4 plcae">
+                    (e.Pose==='x' && <div key={e.id} class="col-4 Place">
                         
                     <svg fill="#6c757d" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                         width="100%" height="100%" class="p-5" viewBox="0 0 94.926 94.926">
@@ -80,13 +80,13 @@ const LocalGame = () => {
                     </g>
                     </svg>
                     </div>) ||
-                    (e.Pose==='o' && <div key={e.id} class="col-4 plcae">
+                    (e.Pose==='o' && <div key={e.id} class="col-4 Place">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-circle p-5" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         </svg>
                     </div>) || 
-                    ( e.Pose==='' && Win==='' && <div key={e.id} onClick={() => UpdatePlaces(e.id) } class="col-4 plcae"></div>) ||
-                    ( e.Pose==='' && Win!=='' && <div key={e.id} class="col-4 plcae"></div>)
+                    ( e.Pose==='' && Win==='' && <div key={e.id} onClick={() => UpdatePlaces(e.id) } class="col-4 Place"></div>) ||
+                    ( e.Pose==='' && Win!=='' && <div key={e.id} class="col-4 Place"></div>)
                 ))}
             </div>
         </div>
