@@ -16,7 +16,6 @@ const BotGame = () => {
 
     function BotMove(Player)
     {
-
         var Sucessful = 0;
         var PoseRandomPose =( Math.floor(Math.random() * 9 ))+1;
 
@@ -63,16 +62,9 @@ const BotGame = () => {
         var c = 0
         for(var i=0;i<9;i++)
         {
-            if(Place[i].Pose==='')
-            {
-                c++;
-            }
+            if(Place[i].Pose==='') c++;
         }
-        if(c===0)
-        {
-            SetWin("Draw");
-            Runing = false;
-        }
+        if(c===0){SetWin("Draw");Runing = false;}
        }
 
 
@@ -101,7 +93,7 @@ const BotGame = () => {
                     {Win === 'x'  && <div class="fs-1">X Win</div>}
                     {Win === 'o'  && <div class="fs-1">O Win</div>}
                     {Win==='Draw' && <div class="fs-1">Draw</div>}
-                    {(Win!=='') && <div onClick={() => PlayAgain()} class="ms-2 btn btn-primary fs-3">Play PlayAgain</div>}
+                    <div onClick={() => PlayAgain()} class="ms-2 btn btn-primary fs-3">Play PlayAgain</div>
                 </div>
             }
             {Ture===0 && <div class="mx-5 row DarkerBackground ActualTime border rounded-5 p-3">
@@ -129,7 +121,6 @@ const BotGame = () => {
                 
                 {Place.map(e=>(
                     (e.Pose==='x' && <div key={e.id} class="col-4 plcae">
-                        
                     <svg fill="#6c757d" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                         width="100%" height="100%" class="p-5" viewBox="0 0 94.926 94.926">
                     <g>
@@ -140,7 +131,6 @@ const BotGame = () => {
                             s1.101-0.224,1.498-0.62l5.473-5.476c0.826-0.827,0.826-2.167,0-2.994L55.931,47.463z"/>
                     </g>
                     </svg>
-
                     </div>) ||
                     (e.Pose==='o' && <div key={e.id} class="col-4 plcae">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-circle p-5" viewBox="0 0 16 16">
@@ -150,8 +140,6 @@ const BotGame = () => {
                 ( e.Pose==='' && Win==='' && <div key={e.id} onClick={() => Game(e.id) } class="col-4 plcae"></div>) ||
                 ( e.Pose==='' && Win!=='' && <div key={e.id} class="col-4 plcae"></div>)
                 ))}
-
-
             </div>
             }
         </div>
