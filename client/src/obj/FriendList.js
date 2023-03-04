@@ -1,24 +1,15 @@
 import { useState } from "react";
 import Cookies from 'universal-cookie';
 
-
 const FriendList = ({Event}) => {
     const {RemoveFriendURL} = require('../BackendLinks');
+    const {FetchReq} = require('../Functions/Fetch');
     const cookies = new Cookies();
-    const [Options,SetOptions] = useState(false);
-
-    function RemoveFriend(FriendID)
-    {
-        fetch(RemoveFriendURL,{
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({UserNick: cookies.get("UserNick"), UserPass: cookies.get("UserPass"), FriendID: FriendID})
-          });
-    }
+    const [RemoveFriendBTN,SetRemoveFriendBTN] = useState(false);
 
     return ( 
-    <div >
-        <div class="col-12" type="button" onClick={()=>{if(Options)SetOptions(false); else SetOptions(true)}}>
+    <div>
+        <div class="col-12" type="button" onClick={()=>{if(RemoveFriendBTN)SetRemoveFriendBTN(false); else SetRemoveFriendBTN(true)}}>
         {Event.Nick.charAt().toUpperCase()+Event.Nick.substring(1)}
             <svg fill="#ffe600" height="18" class="mb-1" width="23" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 489.4 489.4" >
@@ -33,12 +24,9 @@ const FriendList = ({Event}) => {
             </svg>
         {Event.Points}
         </div>
-
-        {Options&&<div className="col-12 ">
-            <div type="button" class="text-white FriendOptions" onClick={() => RemoveFriend(Event.ind)}>Remove Friend</div>
-            
+        {RemoveFriendBTN && <div className="col-12 ">
+            <div type="button" class="text-white FriendRemove" onClick={() => FetchReq(RemoveFriendURL,{UserNick: cookies.get("UserNick"), UserPass: cookies.get("UserPass"), FriendID: Event.ind})}>Remove Friend</div>
         </div>}
-       
     </div> 
     );
 }

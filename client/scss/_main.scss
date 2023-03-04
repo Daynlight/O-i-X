@@ -167,12 +167,12 @@ body
     }
 
 }
-.FriendOptions, .FriendOptionList
+.FriendRemove, .FriendOptionList
 {
     border-radius: 10px;
     background-color: $secondary;
 }
-.FriendOptions:hover
+.FriendRemove:hover
 {
     background-color: $danger;
     transition: 1s;
