@@ -11,6 +11,7 @@ import User from './obj/User';
 import BotGame from './obj/BotGame';
 import LocalGame from './obj/LocalGame';
 import Login from './obj/Login';
+import SmallNavbar from './obj/SmallNavbar';
 
 
 function App() {
@@ -57,12 +58,17 @@ function App() {
         {cookies.get('UserID')!==undefined && cookies.get('UserNick') !==undefined && cookies.get('UserPass') !==undefined &&
           <Switch>
           <Route exact path="/">
-              <Navbar Name={Name}></Navbar>
-              <div className="row col-12">
-                <div className="col-4"></div>
-                <div className="col-4">
+              <div className="d-none d-lg-block">
+                <Navbar Name={Name} ></Navbar>
+              </div>
+              <div className="d-block d-lg-none">
+                <SmallNavbar Name={Name} ></SmallNavbar>
+              </div>
+              <div className="row col-12 d-flex justify-content-center">
+                <div className="col-1"></div>
+                  <div className="col-10 col-md-8 col-lg-6">
                     <User Name={Name} AddUser={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
-                  <div className="col-4"></div>
+                  <div className="col-1"></div>
                 </div>
               </div>
             </Route>
