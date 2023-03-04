@@ -49,6 +49,8 @@ function App() {
   GetDataFromServer();
   CheckIfActive();
 
+
+
   return (
     <div className="App">  
       <Router>
