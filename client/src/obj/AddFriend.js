@@ -20,12 +20,12 @@ const AddFriend = () => {
     return ( 
     <div>
         <div class="d-flex justify-content-center">
-        <form onSubmit={ (e)=> AddFriendFunction(e) }>
-            <input type="text" class="form-control my-2" value={FriendNick} onChange={(e)=>SetFriendNick(e.target.value.toLowerCase())} placeholder="Friend Nick" />
-            <div class="d-flex justify-content-center">
-                <input type="submit" class="btn btn-warning text-dark" value="ADD Friend" />
-            </div>
-        </form>
+            <form onSubmit={ (e)=> AddFriendFunction(e) }>
+                <input type="text" class="form-control my-2" value={FriendNick} onChange={(e)=>SetFriendNick(e.target.value.toLowerCase())} placeholder="Friend Nick" />
+                <div class="d-flex justify-content-center">
+                    <input type="submit" class="btn btn-warning text-dark" value="ADD Friend" />
+                </div>
+            </form>
         </div>
         <div class="d-flex justify-content-center">{FriendAded}</div>
     </div> 
