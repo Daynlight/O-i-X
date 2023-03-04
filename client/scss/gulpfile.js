@@ -6,13 +6,13 @@ function build()
 {
     return src('index.scss')
     .pipe(sass())
-    .pipe(purgecss({ content: ['../src/**/*.js']}))
+    .pipe(purgecss({ content: ['../src/**/*.js','../public/*.html']}))
     .pipe(dest('../src/css'))
 }
 
 function watchStyle() 
 {
-    watch(['*.scss','../src/**/*.js'],build)
+    watch(['*.scss','../src/**/*.js','../public/*.html'],build)
 }
 
 

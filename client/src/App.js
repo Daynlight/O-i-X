@@ -3,128 +3,95 @@ import { useState } from 'react';
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import Cookies from 'universal-cookie';
 
+
 // --------------- Components ------------//
-
-import NavBar from './obj/navbar';
+import Navbar from './obj/Navbar';
 import Error from './obj/Error';
-import User from './obj/user';
-import BotGame from './obj/botgame';
-import LocalGame from './obj/localgame';
+import User from './obj/User';
+import BotGame from './obj/BotGame';
+import LocalGame from './obj/LocalGame';
 import Login from './obj/Login';
-
-
-
 
 
 function App() {
   const cookies = new Cookies();
-  const [Name,SetName] = useState('Annonim');
+
+  const {DataURL,FriendURL,ActiveURL} = require('./BackendLinks');
+  const {FetchReq,FetchData} = require('./Functions/Fetch');
+  
+  const [Name,SetName] = useState('anonymous');
   const [Stars, SetStars] = useState(0);
-  const [Friends,SetFriends] = useState([{id:1, name: 'asd',active: true},{id:2,name:'asdasda',active: false}]);
-  const [Now, SetNow] = useState(0);
+  const [Friends,SetFriends] = useState([]);
+  const [ActualTime, SetActualTime] = useState(0);
 
-  const url = 'http://localhost:8080/Data/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass');
-  const urlFriend = 'http://localhost:8080/Friends/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass');
-  const activeurl = 'http://localhost:8080/Active/'+cookies.get('UserID')+'/'+cookies.get('UserNick')+'/'+cookies.get('UserPass');
 
- 
-  async function getinput()
+  async function CheckIfActive()
   {
-    if(cookies.get('UserID')!==undefined)
+    if(cookies.get('UserID')!==undefined && cookies.get('UserNick') !==undefined && cookies.get('UserPass') !==undefined)
     {
-      document.body.onmouseup = function() { 
-        fetch(activeurl);
-      }
-      document.body.onkeyup = function() { 
-        fetch(activeurl);
-      }
+      document.body.onmouseup = function() {FetchReq(ActiveURL,{UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')})};
+      document.body.onkeyup = function() {FetchReq(ActiveURL,{UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')})};
     }
   }
 
-
-  async function getData()
+  async function GetDataFromServer()
   { 
-    await fetch(url)
-    .then((res) =>res.json())
-    .then((r) =>
+    FetchData(DataURL,{UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')},(Resoult)=>
     {
-      SetStars(r[0].points);
-      SetName(r[0].nick);
-      SetNow(r[0].now);
+      SetStars(Resoult[0].points);
+      SetName(Resoult[0].nick);
+      SetActualTime(Resoult[0].now);
     })
-    await fetch(urlFriend)
-    .then((res) =>res.json())
-    .then((r) =>
-    {
-      SetFriends(r);
-    })
+
+    FetchData(FriendURL,{UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')},(Resoult)=>SetFriends(Resoult))
   }
 
-
-  getData();
-  getinput();
-
-
+  GetDataFromServer();
+  CheckIfActive();
 
   return (
-    <div class="App">
-      <html></html>
-      <head></head>
-      <body></body>
-      
+    <div class="App">  
       <Router>
-        {cookies.get('UserID')!==undefined &&
+        {cookies.get('UserID')!==undefined && cookies.get('UserNick') !==undefined && cookies.get('UserPass') !==undefined &&
           <Switch>
-            
           <Route exact path="/">
-              <NavBar  Name={Name}></NavBar>
+              <Navbar Name={Name}></Navbar>
               <div class="row col-12">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <User Name={Name} ADD={true} Now={Now} Stars={Stars} Friends={Friends}></User>
+                    <User Name={Name} AddUser={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
                   <div class="col-4"></div>
                 </div>
               </div>
             </Route>
             <Route exact path="/Bot">
-              <NavBar  Name={Name}></NavBar>
+              <Navbar  Name={Name}></Navbar>
               <div class='row col-12'>
                 <div class="col-9">
                     <BotGame></BotGame>
                 </div>
                 <div class="col-3">
-                  <User Name={Name} Now={Now} Stars={Stars} Friends={Friends}></User>
+                  <User Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
                 </div>
               </div>
             </Route>
             <Route exact path="/Local">
-              <NavBar  Name={Name}></NavBar>
+              <Navbar  Name={Name}></Navbar>
               <div class='row col-12'>
                 <div class="col-9">
                     <LocalGame></LocalGame>
                 </div>
                 <div class="col-3">
-                  <User Name={Name} Now={Now} Stars={Stars} Friends={Friends}></User>
-                </div>
-              </div>
-            </Route>
-            <Route exact path="/User">
-              <NavBar  Name={Name}></NavBar>
-              <div class="row col-12">
-                <div class="col-4"></div>
-                <div class="col-4">
-                    <User Name={Name} ADD={true} Now={Now} Stars={Stars} Friends={Friends}></User>
-                  <div class="col-4"></div>
+                  <User Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
                 </div>
               </div>
             </Route>
             <Route exact path="*">
               <Error></Error>
             </Route>
-            
           </Switch>
         }
-        {cookies.get('UserID')===undefined &&
+        {(cookies.get('UserID') === undefined || cookies.get('UserNick') === undefined || cookies.get('UserPass') === undefined) &&
           <Switch>
             <Route exact path="/">
               <Login></Login>
@@ -135,7 +102,6 @@ function App() {
           </Switch>
         }
       </Router>
-      
     </div>
   );
 }

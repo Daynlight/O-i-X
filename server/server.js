@@ -5,27 +5,44 @@ const {GetDataFromMysqlServer,PostDataToMysqlServer} = require('./Components/Dat
 
 app.set("view engine","ejs");
 app.use(cors());
+app.use(express.json());
 
-app.get("/Login/:nick/:password",(req,res) =>
+app.post("/Login",(req,res) =>
 {
-   if(req.params.nick!==undefined && req.params.password!==undefined)
+   var { UserNick, UserPass } = req.body;
+
+   if(UserNick!==undefined && UserPass!==undefined)
    { 
-      var sql = 'SELECT ID FROM Users where md5(Nick)="'+req.params.nick+'" and Password="'+req.params.password+'";';
+      var sql = 'SELECT ID FROM Users where Nick="'+UserNick+'" and Password="'+UserPass+'";';
       GetDataFromMysqlServer(sql,(data)=>res.json(data));
    }
 })
 
-app.get("/Register/:nick/:password/:email",(req,res) =>
+app.post("/Logout",(req,res) =>
 {
-   if(req.params.nick!==undefined && req.params.password!==undefined && req.params.email!==undefined)
+   var { UserNick, UserPass } = req.body;
+
+   if(UserNick!==undefined && UserPass!==undefined)
+   { 
+      var sql = 'UPDATE Users Set Users.active = Users.active - INTERVAL 9 Minute WHERE md5(Users.Nick)="'+UserNick+'" and Users.Password="'+UserPass+'";';
+      PostDataToMysqlServer(sql);
+      res.json([{"status":"LogOut"}]);
+   }
+})
+
+app.post("/Register",(req,res) =>
+{
+   var {UserNick, UserPass, Email} = req.body;
+
+   if(UserNick!==undefined && UserPass!==undefined && Email!==undefined)
    {
-      var sql = 'SELECT EXISTS(SELECT id FROM Users WHERE Nick="'+req.params.nick+'") as "check";';
+      var sql = 'SELECT EXISTS(SELECT id FROM Users WHERE Nick="'+UserNick+'") as "check";';
       GetDataFromMysqlServer(sql,
       (data)=>
       { 
          if(data[0].check==0)
          {
-            var sql='INSERT INTO Users(`Nick`,`Password`,`Email`) Value("'+req.params.nick+'","'+req.params.password+'","'+req.params.email+'");';
+            var sql='INSERT INTO Users(`Nick`,`Password`,`Email`) Value("'+UserNick+'","'+UserPass+'","'+Email+'");';
             PostDataToMysqlServer(sql);
             res.json([{"err": "User Added"}]);
          }
@@ -34,41 +51,47 @@ app.get("/Register/:nick/:password/:email",(req,res) =>
    } 
 })
 
-app.get("/Data/:id/:nick/:password",(req,res) =>
+app.post("/Data",(req,res) =>
 {
-   if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined)
+   var { UserNick, UserPass } = req.body;
+
+   if(UserNick != undefined && UserPass != undefined)
    {
-      var sql = 'SELECT (year(now())*365*24*60*60+day(now())*24*60*60+hour(now())*60*60+minute(now())*60+second(now())) as now,Users.nick,Users.points FROM Users where md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'";';
+      var sql = 'SELECT (year(now())*365*24*60*60+day(now())*24*60*60+hour(now())*60*60+minute(now())*60+second(now())) as now,Users.nick,Users.points FROM Users where md5(Users.Nick)="'+UserNick+'" and Users.Password="'+UserPass+'";';
       GetDataFromMysqlServer(sql,(data)=>res.json(data));
    }
 
 })
 
-app.get("/Friends/:id/:nick/:password",(req,res) =>
+app.post("/Friends",(req,res) =>
 {
-   if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined)
+   var { UserNick, UserPass} = req.body;
+
+   if(UserNick != undefined && UserPass != undefined)
    {
-      var sql = 'SELECT Friends.id as ind, FriendData.ID,FriendData.Nick,FriendData.Points,(year(FriendData.active)*365*24*60*60+day(FriendData.active)*24*60*60+hour(FriendData.active)*60*60+minute(FriendData.active)*60+second(FriendData.active)) as active FROM Users join Friends on Friends.ID1=Users.ID join Users as FriendData on FriendData.ID=Friends.ID2 where Friends.active=true and md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'";';
+      var sql = 'SELECT Friends.id as ind, FriendData.ID,FriendData.Nick,FriendData.Points,(year(FriendData.active)*365*24*60*60+day(FriendData.active)*24*60*60+hour(FriendData.active)*60*60+minute(FriendData.active)*60+second(FriendData.active)) as active FROM Users join Friends on Friends.ID1=Users.ID join Users as FriendData on FriendData.ID=Friends.ID2 where Friends.active=true and md5(Users.Nick)="'+UserNick+'" and Users.Password="'+UserPass+'";';
       GetDataFromMysqlServer(sql,
          (data)=>res.json(data))
    }
 })
 
-app.get("/FirendAdd/:id/:nick/:password/:FriendNick",(req,res) =>
+app.post("/FirendAdd",(req,res) =>
 {
-   if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined && req.params.FriendNick != undefined)
+   var { UserNick , UserPass, FriendNick} = req.body;
+
+   if(UserNick != undefined && UserPass != undefined && FriendNick != undefined)
    {
-      var sql = 'SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'";';
+      var sql = 'SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+UserNick+'" and Users.Password="'+UserPass+'";';
       GetDataFromMysqlServer(sql,
          (data)=>
          {
             var UserID = data[0].ID;
-            var sql ='SELECT Exists (SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.FriendNick+'") as "check";';
+            var sql ='SELECT Exists (SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+FriendNick+'") as "check";';
             GetDataFromMysqlServer(sql,
                (data)=>{
                   if(data[0].check) 
                   {
-                     var sql = 'SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.FriendNick+'";';
+                     var sql = 'SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+FriendNick+'";';
                      GetDataFromMysqlServer(sql,(data)=>
                      {
                         var FriendID = data[0].ID;
@@ -104,16 +127,18 @@ app.get("/FirendAdd/:id/:nick/:password/:FriendNick",(req,res) =>
    }
 })
 
-app.get("/FriendRemove/:id/:nick/:password/:FriendID",(req,res) =>
+app.post("/FriendRemove",(req,res) =>
 {
-   if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined && req.params.FriendID!=undefined)
+   var { UserNick,UserPass,FriendID} = req.body;
+
+   if(UserNick != undefined && UserPass != undefined && FriendID!=undefined)
    {
-      var sql = 'SELECT EXISTS(SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+req.params.nick+'" and Users.Password="'+req.params.password+'") as "check";';
+      var sql = 'SELECT EXISTS(SELECT Users.ID FROM Users WHERE md5(Users.Nick)="'+UserNick+'" and Users.Password="'+UserPass+'") as "check";';
       GetDataFromMysqlServer(sql,(data)=>
       {
          if(data[0].check)
          {
-            var sql = 'UPDATE Friends SET Friends.active=false WHERE ID = '+req.params.FriendID+';';
+            var sql = 'UPDATE Friends SET Friends.active=false WHERE ID = '+FriendID+';';
             PostDataToMysqlServer(sql);
             res.json([{"status": "Removed"}]);
          }
@@ -122,11 +147,13 @@ app.get("/FriendRemove/:id/:nick/:password/:FriendID",(req,res) =>
    }
 })
 
-app.get("/Active/:id/:nick/:password",(req,res) =>
+app.post("/Active",(req,res) =>
 {
-   if(req.params.id != undefined && req.params.nick != undefined && req.params.password != undefined)
+   var { UserNick, UserPass } = req.body;
+
+   if(UserNick != undefined && UserPass != undefined)
    {
-      var sql = 'UPDATE Users SET Users.active = CURRENT_TIMESTAMP() WHERE md5(Nick)="'+req.params.nick+'" and Password="'+req.params.password+'";';
+      var sql = 'UPDATE Users SET Users.active = CURRENT_TIMESTAMP() WHERE md5(Nick)="'+UserNick+'" and Password="'+UserPass+'";';
       PostDataToMysqlServer((sql));
       res.end();
    }

@@ -135,14 +135,14 @@ const BotGame = () => {
     return ( 
         <div>
             {Start===false &&
-                <div class="mx-5 d-flex mb-1 darker justify-content-center border rounded-5">
+                <div class="mx-5 d-flex mb-1 DarkerBackground ActualTime justify-content-center border rounded-5">
                     {Ture!==5 && Win === 'x'  && <div class="fs-1">X Win</div>}
                     {Ture!==5 && Win === 'o'  && <div class="fs-1">O Win</div>}
                     {Ture === 5  && Win==='' && <div class="fs-1">Draw</div>}
                     {(Ture === 5|| Win!=='') && <div onClick={() => Again()} class="ms-2 btn btn-primary fs-3">Play Again</div>}
                 </div>
             }
-            {Start===true && <div class="mx-5 row darker border rounded-5 p-3">
+            {Start===true && <div class="mx-5 row DarkerBackground ActualTime border rounded-5 p-3">
                 <div class="col-6 btn btn-dark" onClick={ () => {SetPion('x'); SetPion1('o'); SetStart(false)} }>
                     <svg fill="#6c757d" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                         width="100%" height="100%" class="p-5" viewBox="0 0 94.926 94.926">
@@ -163,7 +163,7 @@ const BotGame = () => {
             </div>}
 
             {Start===false && 
-            <div class="mx-5 row darker border rounded-5 p-3">
+            <div class="mx-5 row DarkerBackground ActualTime border rounded-5 p-3">
                 
                 {Place.map(e=>(
                     (e.get==='x' && <div key={e.id} class="col-4 plcae">
