@@ -96,8 +96,8 @@ const Login = () => {
     return ( 
             <div>
                 <div className="d-flex row col-12 pt-5 justify-content-center">
-                    <div className="col-4"></div>
-                    <div className="col-4  d-flex justify-content-center border-3">
+                    <div className="col-2"></div>
+                    <div className="col-9 col-md-8 col-lg-6 d-flex justify-content-center border-3">
                         {Action && 
                             <div ref={TerminalRef} className={`colors Terminal Login col-12 ${TerminalAnimation}`} >
                                 <div className="d-flex justify-content-center mt-3">
@@ -136,7 +136,7 @@ const Login = () => {
                         </div>
                         }
                     </div>
-                    <div className="col-4"></div>
+                    <div className="col-1"></div>
                 </div>
                 <div className="d-flex justify-content-center fs-2 text-danger">{InfoText}</div>
             </div>

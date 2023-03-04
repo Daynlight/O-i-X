@@ -73,23 +73,33 @@ function App() {
               </div>
             </Route>
             <Route exact path="/Bot">
-              <Navbar  Name={Name}></Navbar>
+              <div className="d-none d-lg-block">
+                <Navbar Name={Name} ></Navbar>
+              </div>
+              <div className="d-block d-lg-none">
+                <SmallNavbar Name={Name} ></SmallNavbar>
+              </div>
               <div className='row col-12'>
-                <div className="col-9">
+                <div className="col-12 col-md-9">
                     <BotGame></BotGame>
                 </div>
-                <div className="col-3">
+                <div className="d-none col-md-3 d-md-block">
                   <User Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
                 </div>
               </div>
             </Route>
             <Route exact path="/Local">
-              <Navbar  Name={Name}></Navbar>
+              <div className="d-none d-lg-block">
+                <Navbar Name={Name} ></Navbar>
+              </div>
+              <div className="d-block d-lg-none">
+                <SmallNavbar Name={Name} ></SmallNavbar>
+              </div>
               <div className='row col-12'>
-                <div className="col-9">
+                <div className="col-12 col-md-9">
                     <LocalGame></LocalGame>
                 </div>
-                <div className="col-3">
+                <div className="d-none col-md-3 d-md-block">
                   <User Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
                 </div>
               </div>
