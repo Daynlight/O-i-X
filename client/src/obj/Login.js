@@ -69,7 +69,7 @@ const Login = () => {
                                 
                                 <form className="" onSubmit={(e) => RunActionLogin(e)}>
                                     <div className="">
-                                        <input type="text" className="LoginInputForm"   required value={Nick.charAt().toUpperCase()+Nick.substring(1)} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
+                                        <input type="text" className="LoginInputForm" required value={Nick.charAt().toUpperCase()+Nick.substring(1)} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
                                         {!ShowPassword &&<input type="password"  className="LoginInputForm"  required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
                                         {ShowPassword &&<input type="text" className="LoginInputForm" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
                                         {!ShowPassword &&<button type="button" onClick={() => setShowFunction()} className="LoginEventBtn" >Show Password</button>}
