@@ -1,8 +1,16 @@
 @media only screen and (max-width: 600px) {
     .LoginFormContainer
     {
-        
-        margin-left: -5px;
+        width: 90%;
+        justify-content: center;
+    }
+
+    .Login, body
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
     }
 
 

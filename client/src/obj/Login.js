@@ -57,8 +57,7 @@ const Login = () => {
     }
 
     return ( 
-            <div>
-                <div className="">
+            <div className="Login">
                     <div className="LoginFormContainer">
                         {Action && 
                             <div>
@@ -100,7 +99,6 @@ const Login = () => {
                             </div>
                         }
                     </div>
-                </div>
                 <div className="">{InfoText}</div>
             </div>
      );
