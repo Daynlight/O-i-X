@@ -133,3 +133,26 @@ html,body
 {
     font-size: 110%;
 }
+.Active
+{
+    color: $active;
+}
+.Sleep
+{
+    color: $sleep;
+}
+.UnActive
+{
+    color: $unactive;
+}
+.WebWarning
+{
+    text-align: center;
+    width: 400px;
+}
+.WebWarningConatiner
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

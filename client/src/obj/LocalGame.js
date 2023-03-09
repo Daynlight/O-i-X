@@ -58,20 +58,20 @@ const LocalGame = () => {
     return ( 
         <div>
             {Win!=='' &&
-                <div className="mx-5 d-flex mb-1 DarkerBackground ActualTime justify-content-center border rounded-5">
-                    {Win === 'x' && <div className="fs-1">X Win</div>}
-                    {Win === 'o' && <div className="fs-1">O Win</div>}
-                    {Win==='Draw' && <div className="fs-1">Draw</div>}
-                    <div onClick={() => Again()} className="ms-2 btn btn-primary fs-3">Play Again</div>
+                <div className="">
+                    {Win === 'x' && <div className="">X Win</div>}
+                    {Win === 'o' && <div className="">O Win</div>}
+                    {Win==='Draw' && <div className="">Draw</div>}
+                    <div onClick={() => Again()} cclassName="">Play Again</div>
                 </div>
             }
             <div>
-                <div className="mx-5 row border DarkerBackground ActualTime rounded-5 p-3">
+                <div className="">
                     {Place.map(e=>(
-                        (e.Pose==='x' && <div key={e.id} className="col-4 Place PlaceX">
+                        (e.Pose==='x' && <div key={e.id} className="">
                             
                         <svg fill="#6c757d" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                            width="100%" height="100%" className="p-5" viewBox="0 0 94.926 94.926">
+                            width="100%" height="100%" className="" viewBox="0 0 94.926 94.926">
                         <g>
                             <path d="M55.931,47.463L94.306,9.09c0.826-0.827,0.826-2.167,0-2.994L88.833,0.62C88.436,0.224,87.896,0,87.335,0
                                 c-0.562,0-1.101,0.224-1.498,0.62L47.463,38.994L9.089,0.62c-0.795-0.795-2.202-0.794-2.995,0L0.622,6.096
@@ -81,13 +81,13 @@ const LocalGame = () => {
                         </g>
                         </svg>
                         </div>) ||
-                        (e.Pose==='o' && <div key={e.id} className="col-4 Place PlaceO">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" className="bi bi-circle p-5" viewBox="0 0 16 16">
+                        (e.Pose==='o' && <div key={e.id} className="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" className="" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                             </svg>
                         </div>) || 
-                        ( e.Pose==='' && Win==='' && <div key={e.id} onClick={() => UpdatePlaces(e.id) } className="col-4 Place"></div>) ||
-                        ( e.Pose==='' && Win!=='' && <div key={e.id} className="col-4 Place"></div>)
+                        ( e.Pose==='' && Win==='' && <div key={e.id} onClick={() => UpdatePlaces(e.id) } className=""></div>) ||
+                        ( e.Pose==='' && Win!=='' && <div key={e.id} className=""></div>)
                     ))}
                 </div>
             </div>

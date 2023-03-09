@@ -32,20 +32,20 @@ const Main = ({Name,Stars,Friends,ActualTime,AddUser}) => {
                 <div className="TextGradiant">
                     <h2>Friends</h2>
                 </div>
-                <div className="TextGradiant">
+                <div className="">
                     <div className="FriendList">
                         <ul className="FriendListContainer">
                             {Friends.map(e =>
                                 (
-                                    (ActualTime-e.active<=(5*60)) && <li className="" key={e.ID}><FriendList Event={e}></FriendList></li>
+                                    (ActualTime-e.active<=(5*60)) && <li className="Active" key={e.ID}><FriendList Event={e}></FriendList></li>
                                 ))}
                                 {Friends.map(e =>
                                 (
-                                    (ActualTime-e.active>(5*60)) && (ActualTime-e.active<=(10*60)) && <li className="" key={e.ID}><FriendList Event={e}></FriendList></li>
+                                    (ActualTime-e.active>(5*60)) && (ActualTime-e.active<=(10*60)) && <li className="Sleep" key={e.ID}><FriendList Event={e}></FriendList></li>
                                 ))}
                                 {Friends.map(e =>
                                 (  
-                                    (ActualTime-e.active>(10*60)) && <li className="" key={e.ID}><FriendList Event={e}></FriendList></li>
+                                    (ActualTime-e.active>(10*60)) && <li className="UnActive" key={e.ID}><FriendList Event={e}></FriendList></li>
                                 ))
                             }
                         </ul>
