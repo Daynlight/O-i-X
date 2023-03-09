@@ -21,9 +21,9 @@ const AddFriend = () => {
     <div>
         <div className="">
             <form onSubmit={ (e)=> AddFriendFunction(e) }>
-                <input type="text" className="" value={FriendNick} onChange={(e)=>SetFriendNick(e.target.value.toLowerCase())} placeholder="Friend Nick" />
+                <input type="text" className="LoginInputForm" value={FriendNick} onChange={(e)=>SetFriendNick(e.target.value.toLowerCase())} placeholder="Friend Nick" />
                 <div className="">
-                    <input type="submit" className="" value="ADD Friend" />
+                    <input type="submit" className="LoginEventBtn TextGradiant" value="ADD Friend" />
                 </div>
             </form>
         </div>
