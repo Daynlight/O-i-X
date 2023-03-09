@@ -58,7 +58,7 @@ const Login = () => {
 
     return ( 
             <div className="Login">
-                    <div className="LoginFormContainer">
+                    <div className="LoginFormContainer MainGradiantBorder">
                         {Action && 
                             <div>
                                 <div className="LoginChoseAction">
@@ -72,9 +72,9 @@ const Login = () => {
                                         <input type="text" className="LoginInputForm" required value={Nick.charAt().toUpperCase()+Nick.substring(1)} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
                                         {!ShowPassword &&<input type="password"  className="LoginInputForm"  required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
                                         {ShowPassword &&<input type="text" className="LoginInputForm" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
-                                        {!ShowPassword &&<button type="button" onClick={() => setShowFunction()} className="LoginEventBtn" >Show Password</button>}
-                                        {ShowPassword &&<button type="button" onClick={() => setShowFunction()} className="LoginEventBtn">Hide Password</button>}
-                                        <input type="submit" className="LoginEventBtn" value="Login" />
+                                        {!ShowPassword &&<button type="button" onClick={() => setShowFunction()} className="LoginEventBtn TextGradiant" >Show Password</button>}
+                                        {ShowPassword &&<button type="button" onClick={() => setShowFunction()} className="LoginEventBtn TextGradiant">Hide Password</button>}
+                                        <input type="submit" className="LoginEventBtn TextGradiant" value="Login" />
                                     </div>
                                 </form>
                                 
@@ -93,7 +93,7 @@ const Login = () => {
                                         <input type="password" className="LoginInputForm" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
                                         <input type="password" className="LoginInputForm" required value={RePassword} onChange={(e)=> SetRePassword(e.target.value)} placeholder="RePassword" />
                                         <input type="email" className="LoginInputForm" required value={Email} onChange={(e)=> SetEmail(e.target.value.toLowerCase())} placeholder="Email" />
-                                        <input type="submit" className="LoginEventBtn" value="Register" />
+                                        <input type="submit" className="LoginEventBtn TextGradiant" value="Register" />
                                     </div> 
                                 </form>
                             </div>

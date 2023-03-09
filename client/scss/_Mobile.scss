@@ -21,6 +21,32 @@
         align-content: center;
         justify-content: center;
     }
+    .MainContainer
+    {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .MainScreen
+    { 
+        width: 90%;
+        border: 0px solid;
+        border-image-slice: 1;
+        border-width: 5px;
+        border-image-source: linear-gradient(to left, $primary, $secondary);
+        
+    }
+    .MainUserInfo
+    {
+        border: 0px;
+        width: 100%;
+    }
+
+    .MainUserFriend
+    {
+        border: 0px;
+        width: 100%; 
+    }
 
 
 

@@ -7,11 +7,10 @@ import Cookies from 'universal-cookie';
 // --------------- Components ------------//
 import Navbar from './obj/Navbar';
 import Error from './obj/Error';
-import User from './obj/User';
+import Main from './obj/Main';
 import BotGame from './obj/BotGame';
 import LocalGame from './obj/LocalGame';
 import Login from './obj/Login';
-import SmallNavbar from './obj/SmallNavbar';
 
 
 function App() {
@@ -58,49 +57,40 @@ function App() {
         {cookies.get('UserID')!==undefined && cookies.get('UserNick') !==undefined && cookies.get('UserPass') !==undefined &&
           <Switch>
           <Route exact path="/">
-              <div className="d-none d-lg-block">
+              <div className="">
                 <Navbar Name={Name} ></Navbar>
               </div>
-              <div className="d-block d-lg-none">
-                <SmallNavbar Name={Name} ></SmallNavbar>
-              </div>
-              <div className="row col-12 d-flex justify-content-center">
-                <div className="col-1"></div>
-                  <div className="col-10 col-md-8 col-lg-6">
-                    <User Name={Name} AddUser={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
-                  <div className="col-1"></div>
+              <div className="">
+                <div className=""></div>
+                  <div className="">
+                    <Main Name={Name} AddUser={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
+                  <div className=""></div>
                 </div>
               </div>
             </Route>
             <Route exact path="/Bot">
-              <div className="d-none d-lg-block">
+              <div className="">
                 <Navbar Name={Name} ></Navbar>
               </div>
-              <div className="d-block d-lg-none">
-                <SmallNavbar Name={Name} ></SmallNavbar>
-              </div>
-              <div className='row col-12'>
-                <div className="col-12 col-md-9">
+              <div className=''>
+                <div className="">
                     <BotGame></BotGame>
                 </div>
-                <div className="d-none col-md-3 d-md-block">
-                  <User Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
+                <div className="">
+                  <Main Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
                 </div>
               </div>
             </Route>
             <Route exact path="/Local">
-              <div className="d-none d-lg-block">
+              <div className="">
                 <Navbar Name={Name} ></Navbar>
               </div>
-              <div className="d-block d-lg-none">
-                <SmallNavbar Name={Name} ></SmallNavbar>
-              </div>
-              <div className='row col-12'>
-                <div className="col-12 col-md-9">
+              <div className=''>
+                <div className="">
                     <LocalGame></LocalGame>
                 </div>
-                <div className="d-none col-md-3 d-md-block">
-                  <User Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
+                <div className="">
+                  <Main Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
                 </div>
               </div>
             </Route>

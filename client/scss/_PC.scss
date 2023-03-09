@@ -21,6 +21,23 @@
         align-content: center;
         justify-content: center;
     }
+    .MainScreen
+    {
+        font-size: 200% !important;
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
+    }
+    .MainUserInfo
+    {
+        width: 45%;
+        margin-right: 5%; 
+    }
+
+    .MainUserFriend
+    {
+        width: 40%; 
+    }
 
 
 
