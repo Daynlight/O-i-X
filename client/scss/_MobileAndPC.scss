@@ -34,12 +34,14 @@ html,body
 {
     width: 50%;
     position: absolute;
+    cursor: pointer;
 }
 .RegisterActionBtn
 {
     width: 50%;
     position: absolute;
     transform: translateX(100%);
+    cursor: pointer;
 }
 
 .LoginActionSelect
@@ -74,6 +76,7 @@ html,body
     background-image: linear-gradient(to left, $primary,$secondary);
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    cursor: pointer;
 
 }
 

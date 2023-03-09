@@ -63,8 +63,8 @@ const Login = () => {
                             <div>
                                 <div className="LoginChoseAction">
                                     <div className="LoginActionSelect LoginActionSelectLogin"></div>
-                                    <div onClick={ () => {SetAction(!Action);SetInfoText('')} } className="LoginActionBtn"><h1>Login</h1></div>
-                                    <div onClick={ () => {SetAction(!Action);SetInfoText('')} } className="RegisterActionBtn"><h1>Register</h1></div>
+                                    <div type="button" onClick={ () => {SetAction(!Action);SetInfoText('')} } className="LoginActionBtn"><h1>Login</h1></div>
+                                    <div type="button" onClick={ () => {SetAction(!Action);SetInfoText('')} } className="RegisterActionBtn"><h1>Register</h1></div>
                                 </div>
                                 
                                 <form className="" onSubmit={(e) => RunActionLogin(e)}>
