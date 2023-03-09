@@ -208,3 +208,18 @@ html,body
     color: $link;
     cursor: pointer;
 }
+.MainLoad
+{
+    animation-name: MainLoad;
+    animation-iteration-count: 1;
+    animation-duration: 500ms;
+    animation-delay: 500ms;
+    animation-fill-mode: backwards;
+}
+.NavBarLoad
+{
+    animation-name: MainLoad;
+    animation-iteration-count: 1;
+    animation-duration: 500ms;
+    animation-fill-mode: backwards;
+}

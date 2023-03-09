@@ -56,15 +56,13 @@ function App() {
       <Router>
         {cookies.get('UserID')!==undefined && cookies.get('UserNick') !==undefined && cookies.get('UserPass') !==undefined &&
           <Switch>
-          <Route exact path="/">
+            <Route exact path="/" >
               <div className="">
-                <Navbar Name={Name} ></Navbar>
-              </div>
-              <div className="">
-                <div className=""></div>
-                  <div className="">
-                    <Main Name={Name} AddUser={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
-                  <div className=""></div>
+                <div className="NavBarLoad">
+                  <Navbar Name={Name} ></Navbar>
+                </div>
+                <div className="MainLoad">
+                  <Main Name={Name} AddUser={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
                 </div>
               </div>
             </Route>
