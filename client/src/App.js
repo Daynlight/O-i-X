@@ -72,7 +72,7 @@ function App() {
                 <Navbar Name={Name} ></Navbar>
               </div>
               <div className="">
-                  <BotGame></BotGame>
+                <BotGame></BotGame>
               </div>
               <div className="MainLoad">
                 <Main Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
