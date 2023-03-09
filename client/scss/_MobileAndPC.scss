@@ -127,6 +127,12 @@ html,body
     transition: 500ms;
     color: rgba(0, 247, 255, 0.815);
 }
+.FriendItemOption:hover
+{
+    background-image: linear-gradient(to left, rgba(0, 247, 255, 0.815),rgba(0, 247, 255, 0.815));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 .MainUserFriend
 {
     list-style-type: none;

@@ -27,7 +27,7 @@ const AddFriend = () => {
                 </div>
             </form>
         </div>
-        <div className="">{FriendAded}</div>
+        <div className="TextGradiant infotext">{FriendAded}</div>
     </div> 
     );
 }

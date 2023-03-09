@@ -24,8 +24,8 @@ const FriendList = ({Event}) => {
             </svg>
         {Event.Points}
         </div>
-        {RemoveFriendBTN && <div className="TextGradiant">
-            <div type="button" className="" onClick={() => FetchReq(RemoveFriendURL,{UserNick: cookies.get("UserNick"), UserPass: cookies.get("UserPass"), FriendID: Event.ind})}>Remove Friend</div>
+        {RemoveFriendBTN && <div className="">
+            <div type="button" className="TextGradiant FriendItemOption" onClick={() => FetchReq(RemoveFriendURL,{UserNick: cookies.get("UserNick"), UserPass: cookies.get("UserPass"), FriendID: Event.ind})}>Remove Friend</div>
         </div>}
     </div> 
     );
