@@ -57,40 +57,41 @@ function App() {
         {cookies.get('UserID')!==undefined && cookies.get('UserNick') !==undefined && cookies.get('UserPass') !==undefined &&
           <Switch>
             <Route exact path="/" >
-              <div className="">
-                <div className="NavBarLoad">
-                  <Navbar Name={Name} ></Navbar>
-                </div>
-                <div className="MainLoad">
-                  <Main Name={Name} AddUser={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
-                </div>
+              
+              <div className="NavBarLoad">
+                <Navbar Name={Name} ></Navbar>
               </div>
+              <div className="MainLoad">
+                <Main Name={Name} AddUser={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
+              </div>
+
             </Route>
             <Route exact path="/Bot">
-              <div className="">
+
+              <div className="NavBarLoad">
                 <Navbar Name={Name} ></Navbar>
               </div>
-              <div className=''>
-                <div className="">
-                    <BotGame></BotGame>
-                </div>
-                <div className="">
-                  <Main Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
-                </div>
+              <div className="">
+                  <BotGame></BotGame>
               </div>
+              <div className="MainLoad">
+                <Main Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
+              </div>
+              
             </Route>
             <Route exact path="/Local">
-              <div className="">
+
+              <div className="NavBarLoad">
                 <Navbar Name={Name} ></Navbar>
               </div>
-              <div className=''>
-                <div className="">
-                    <LocalGame></LocalGame>
-                </div>
-                <div className="">
-                  <Main Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
-                </div>
+              
+              <div className="">
+                  <LocalGame></LocalGame>
               </div>
+              <div className="MainLoad">
+                <Main Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
+              </div>
+              
             </Route>
             <Route exact path="*">
               <Error></Error>
@@ -103,8 +104,8 @@ function App() {
               <Login></Login>
             </Route>
             <Route exact path="*">
-                <Error></Error>
-              </Route>
+              <Error></Error>
+            </Route>
           </Switch>
         }
       </Router>
