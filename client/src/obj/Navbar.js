@@ -18,25 +18,22 @@ const Navbar = ({Name}) => {
     }
 
     return ( 
-        <div>
-            <ul className="">
-                <li className="">
-                    <Link to="/" className="">Hello { Name.charAt().toUpperCase()+Name.substring(1) }</Link>
-                </li>
-                <li className="">
-                    <div className="">Find Game</div>
-                </li>
-                <li className="">
-                    <Link to="/Local" className="">Local Game</Link>
-                </li>
-                <li className="">
-                    <Link to="/Bot" className="">Bot Game</Link>
-                </li>
-                <li className="">
-                    <div type="button" onClick={ () => LogOutFunction() } className="">LogOut</div>
-                </li>
-            </ul>
-            <div className=""></div>
+        <div className="NavBar">
+            <div className="NavBarItem">
+                <Link to="/" className="Link">{ Name.charAt().toUpperCase()+Name.substring(1) }</Link>
+            </div>
+            <div className="NavBarItem">
+                <div className="Link">Find Game</div>
+            </div>
+            <div className="NavBarItem">
+                <Link to="/Local" className="Link">Local Game</Link>
+            </div>
+            <div className="NavBarItem">
+                <Link to="/Bot" className="Link">Bot Game</Link>
+            </div>
+            <div className="NavBarItem">
+                <div type="button" onClick={ () => LogOutFunction() } className="Link">LogOut</div>
+            </div>
         </div>
      );
 }
