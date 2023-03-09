@@ -94,12 +94,13 @@ const Login = () => {
                                         <input type="password" className="LoginInputForm" required value={RePassword} onChange={(e)=> SetRePassword(e.target.value)} placeholder="RePassword" />
                                         <input type="email" className="LoginInputForm" required value={Email} onChange={(e)=> SetEmail(e.target.value.toLowerCase())} placeholder="Email" />
                                         <input type="submit" className="LoginEventBtn TextGradiant" value="Register" />
+                                        <div className="TextGradiant infotext">{InfoText}</div>
                                     </div> 
                                 </form>
                             </div>
                         }
                     </div>
-                <div className="">{InfoText}</div>
+                
             </div>
      );
 }

@@ -34,7 +34,7 @@ const Main = ({Name,Stars,Friends,ActualTime,AddUser}) => {
                 </div>
                 <div className="TextGradiant">
                     <div className="FriendList">
-                        <ul className="">
+                        <ul className="FriendListContainer">
                             {Friends.map(e =>
                                 (
                                     (ActualTime-e.active<=(5*60)) && <li className="" key={e.ID}><FriendList Event={e}></FriendList></li>

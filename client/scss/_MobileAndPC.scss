@@ -1,12 +1,18 @@
+::-webkit-scrollbar
+{
+    width: 0%;
+    height: 0%;
+}
 html,body
 {
-    overflow: hidden;
+    // overflow: hidden;
     height:100%;
     width: 100%;
     background-image: url(https://i.redd.it/s12lxev056m51.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
@@ -96,6 +102,10 @@ html,body
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.FriendListContainer
+{
+    height: fit-content;
+}
 .FriendList
 {
     cursor: pointer;
@@ -103,6 +113,7 @@ html,body
 .MainUserFriend
 {
     list-style-type: none;
+    
 }
 .MainGradiantBorder
 {
@@ -117,4 +128,8 @@ html,body
     margin-left: -10px;
     height: 100%;
     text-align: center;
+}
+.infotext
+{
+    font-size: 110%;
 }
