@@ -82,15 +82,16 @@ function App() {
             </Route>
             <Route exact path="/Local">
 
+              
               <div className="NavBarLoad">
                 <Navbar Name={Name} ></Navbar>
               </div>
-              
-              <div className="">
-                  <LocalGame></LocalGame>
-              </div>
-              <div className="MainLoad">
+              <div className="UserGame">
                 <UserGame Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></UserGame>
+              </div>
+              <div className="LocalGame">
+                  <LocalGame></LocalGame>
+
               </div>
               
             </Route>

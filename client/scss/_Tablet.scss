@@ -45,8 +45,57 @@
         height: 50px;
     }
 
+    .Plansza
+    {
+        height: 90%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
 
+    }
+    .PlanszaRow
+    {
+        height: 90%;
+    }
+    .LocalGame
+    {
+        height: 90%;
+        width: 100%;
+        position: absolute;
+        align-content: center;
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;  
+    }
+    .PlanszaSqr
+    {
+        height: 90%;
+        aspect-ratio: 1/1; 
+        display: grid;
+        grid-template-columns: calc(100%/3) calc(100%/3) calc(100%/3);
+        grid-auto-rows: calc(100%/3);
+    }
+    .UserGame
+    {
+        width: 100%;
 
+    }
+    .UserGameContainer
+    {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+    }
+    .UserGameText
+    {
+        font-size: 120%;
+        
+    }
+    .UserGameUserInfo
+    {
+        width: 70%;
+    }
     
     
 }

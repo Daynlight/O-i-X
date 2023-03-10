@@ -223,3 +223,37 @@ html,body
     animation-duration: 500ms;
     animation-fill-mode: backwards;
 }
+.UserGameUserInfo
+{
+    text-align: center;
+}
+.Tale
+{
+    color: #6c757d;
+    border: 1px solid black;
+}
+.WinTable
+{
+    display: flex;
+    justify-content: center;
+    font-size: 200%;
+}
+.WinState
+{
+    margin-right: 20px;
+}
+.PlayAgainBtn, .Tale
+{
+    cursor: pointer;
+}
+.PlayAgainBtn:hover
+{
+    background-image: linear-gradient(to left, lighten($primary,20%),lighten($secondary,20%));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.Tale:hover
+{
+    transition: 500ms;
+    background-color: rgba(0, 0, 0, 0.171);
+}

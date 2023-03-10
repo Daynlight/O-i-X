@@ -2,15 +2,14 @@ import AddFriend from "./AddFriend";
 import FriendList from "./FriendList";
 const UserGame = ({Name,Stars,Friends,ActualTime,AddUser}) => {
     return ( 
-    <div className="MainContainer">
-        <div className="MainScreen">
-            <div className="MainUserInfo MainGradiantBorder TextGradiant">
-                <div className="">
+    <div className="UserGameContainer">
+            <div className="UserGameUserInfo MainGradiantBorder TextGradiant ">
+                <div className="UserGameText">
                     <div>
                         <h1>{ Name.charAt().toUpperCase()+Name.substring(1) }</h1>
                     </div>
                 </div>
-                <div className="">
+                <div className="UserGameText">
                     <h2>
                         {Stars}
                         <svg fill="#ffe600" height="30" className="" width="30" version="1.1" xmlns="http://www.w3.org/2000/svg" 
@@ -28,7 +27,6 @@ const UserGame = ({Name,Stars,Friends,ActualTime,AddUser}) => {
                 </div>
             </div>
         </div>
-    </div>
     );
 }
  
