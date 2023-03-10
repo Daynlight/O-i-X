@@ -1,6 +1,6 @@
 import AddFriend from "./AddFriend";
 import FriendList from "./FriendList";
-const Main = ({Name,Stars,Friends,ActualTime}) => {
+const UserGame = ({Name,Stars,Friends,ActualTime,AddUser}) => {
     return ( 
     <div className="MainContainer">
         <div className="MainScreen">
@@ -26,37 +26,10 @@ const Main = ({Name,Stars,Friends,ActualTime}) => {
                         </svg>
                     </h2>
                 </div>
-
-            </div>
-            <div className="MainUserFriend MainGradiantBorder">
-                <div className="TextGradiant">
-                    <h2>Friends</h2>
-                </div>
-                
-                <div className="">
-                    <div className="FriendList">
-                        <ul className="FriendListContainer">
-                            {Friends.map(e =>
-                                (
-                                    (ActualTime-e.active<=(5*60)) && <li className="Active" key={e.ID}><FriendList Event={e}></FriendList></li>
-                                ))}
-                                {Friends.map(e =>
-                                (
-                                    (ActualTime-e.active>(5*60)) && (ActualTime-e.active<=(10*60)) && <li className="Sleep" key={e.ID}><FriendList Event={e}></FriendList></li>
-                                ))}
-                                {Friends.map(e =>
-                                (  
-                                    (ActualTime-e.active>(10*60)) && <li className="UnActive" key={e.ID}><FriendList Event={e}></FriendList></li>
-                                ))
-                            }
-                        </ul>
-                    </div>
-                </div>
-                <AddFriend></AddFriend>
             </div>
         </div>
     </div>
     );
 }
  
-export default Main;
+export default UserGame;

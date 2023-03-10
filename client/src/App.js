@@ -8,6 +8,7 @@ import Cookies from 'universal-cookie';
 import Navbar from './obj/Navbar';
 import Error from './obj/Error';
 import Main from './obj/Main';
+import UserGame from './obj/UserGame';
 import BotGame from './obj/BotGame';
 import LocalGame from './obj/LocalGame';
 import Login from './obj/Login';
@@ -75,7 +76,7 @@ function App() {
                 <BotGame></BotGame>
               </div>
               <div className="MainLoad">
-                <Main Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
+                <UserGame Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></UserGame>
               </div>
               
             </Route>
@@ -89,7 +90,7 @@ function App() {
                   <LocalGame></LocalGame>
               </div>
               <div className="MainLoad">
-                <Main Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
+                <UserGame Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></UserGame>
               </div>
               
             </Route>
