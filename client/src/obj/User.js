@@ -1,4 +1,5 @@
 import AddFriend from "./AddFriend";
+import { Link } from "react-router-dom";
 import FriendList from "./FriendList";
 const User = ({Name,Stars,Friends,ActualTime}) => {
     return ( 
@@ -25,6 +26,9 @@ const User = ({Name,Stars,Friends,ActualTime}) => {
                         </g>
                         </svg>
                     </h2>
+                </div>
+                <div>
+                    <Link className="TextGradiant LoginEventBtn" to="/Setings">Setings</Link>
                 </div>
 
             </div>

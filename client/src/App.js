@@ -12,6 +12,7 @@ import UserGame from './obj/UserGame';
 import BotGame from './obj/BotGame';
 import LocalGame from './obj/LocalGame';
 import Login from './obj/Login';
+import Setings from './obj/Setings';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
   const {DataURL,FriendURL,ActiveURL} = require('./BackendLinks');
   const {FetchReq,FetchData} = require('./Functions/Fetch');
   
-  const [Name,SetName] = useState('anonymous');
+  const [Name,SetName] = useState('');
   const [Stars, SetStars] = useState(0);
   const [Friends,SetFriends] = useState([]);
   const [ActualTime, SetActualTime] = useState(0);
@@ -43,6 +44,7 @@ function App() {
       SetStars(Resoult[0].points);
       SetName(Resoult[0].nick);
       SetActualTime(Resoult[0].now);
+
     })
 
     FetchData(FriendURL,{UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')},(Resoult)=>SetFriends(Resoult))
@@ -94,6 +96,12 @@ function App() {
                 </div>
               </div>
               
+            </Route>
+            <Route exact path="/Setings">
+              <Navbar Name={Name} ></Navbar>
+              <div className="">
+                <Setings></Setings>
+              </div>
             </Route>
             <Route exact path="*">
               <Error></Error>
