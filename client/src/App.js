@@ -75,12 +75,10 @@ function App() {
                 <Navbar Name={Name} ></Navbar>
               </div>
               <div className="BotGameLoad">
-                <div className="">
-                  <BotGame></BotGame>
-                </div>
-                <div className="">
+              <div className="BotGame">
                   <UserGame Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></UserGame>
                 </div>
+                <BotGame></BotGame>
               </div>
               
             </Route>

@@ -22,7 +22,7 @@ const Navbar = ({Name}) => {
             <Link to="/" className="NavBarItem Link">
                 <div className="Link">{ Name.charAt().toUpperCase()+Name.substring(1) }</div>
             </Link>
-            <Link className="NavBarItem Link">
+            <Link to="/Find" className="NavBarItem Link">
                 <div className="Link">Find Game</div>
             </Link>
             <Link to="/Local" className="NavBarItem Link">

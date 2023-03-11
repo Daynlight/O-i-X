@@ -264,5 +264,34 @@ html,body
 }
 .BotGameLoad
 {
+    
     animation-name: BotGameLoad;
+}
+.GameBotChose
+{
+    width: 50%;
+    height: 50%;
+    display: inline-flex;
+    div{
+        border: 1px solid black;
+    }
+}
+.BotGame
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height:170px;
+}
+.GameContainer
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+}
+.ChoseItemGameBot
+{
+    width: 50%;
 }
