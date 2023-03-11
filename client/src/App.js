@@ -7,7 +7,7 @@ import Cookies from 'universal-cookie';
 // --------------- Components ------------//
 import Navbar from './obj/Navbar';
 import Error from './obj/Error';
-import Main from './obj/Main';
+import User from './obj/User';
 import UserGame from './obj/UserGame';
 import BotGame from './obj/BotGame';
 import LocalGame from './obj/LocalGame';
@@ -65,7 +65,7 @@ function App() {
                 <Navbar Name={Name} ></Navbar>
               </div>
               <div className="MainLoad">
-                <Main Name={Name} AddUser={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></Main>
+                <User Name={Name} AddUser={true} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></User>
               </div>
 
             </Route>

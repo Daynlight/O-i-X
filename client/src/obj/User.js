@@ -1,6 +1,6 @@
 import AddFriend from "./AddFriend";
 import FriendList from "./FriendList";
-const Main = ({Name,Stars,Friends,ActualTime}) => {
+const User = ({Name,Stars,Friends,ActualTime}) => {
     return ( 
     <div className="MainContainer">
         <div className="MainScreen">
@@ -59,4 +59,4 @@ const Main = ({Name,Stars,Friends,ActualTime}) => {
     );
 }
  
-export default Main;
+export default User;
