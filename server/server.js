@@ -13,13 +13,20 @@ app.post("/Login",(req,res) =>
 
    if(UserNick!==undefined && UserPass!==undefined)
    { 
-      var sql = 'SELECT ID FROM Users where Nick="'+UserNick+'" and Password="'+UserPass+'";';
+      var sql = 'Select Exists(SELECT ID FROM Users where Nick="'+UserNick+'" and Password="'+UserPass+'") as "check";';
       GetDataFromMysqlServer(sql,(data)=>
       {
-         res.json(data);
-         if(data[0].ID!==undefined) UserLog("User Login",data[0].ID);
-      }
-      );
+         if(data[0].check)
+         {
+            var sql = 'SELECT ID FROM Users where Nick="'+UserNick+'" and Password="'+UserPass+'";';
+            GetDataFromMysqlServer(sql,(data)=>
+            {
+               res.json(data);
+               if(data[0].ID!==undefined) UserLog("User Login",data[0].ID);
+            }
+            );
+         }
+      })
    }
 })
 
