@@ -38,9 +38,13 @@ const Login = () => {
         e.preventDefault();
         FetchData(LoginURL,{UserNick: Nick, UserPass: md5(Password)},(Resoult)=>
         {
+            if(Resoult[0].ID===0) SetInfoText("Password or Username is wrong");
+            else
+            {
             cookies.set('UserID', md5(Resoult[0].ID),CookiesTimeExpire);
             cookies.set('UserNick', md5(Nick),CookiesTimeExpire);
             cookies.set('UserPass', md5(Password),CookiesTimeExpire);
+            }
         })
         setTimeout(CheckIFLogin,1000);
     }
@@ -89,7 +93,7 @@ const Login = () => {
                                         <input type="submit" className="LoginEventBtn TextGradiant" value="Login" />
                                     </div>
                                 </form>
-                                
+                                <div className="TextGradiant InfoText">{InfoText}</div>
                             </div>
                         }
                         {!Action && 

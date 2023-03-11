@@ -25,7 +25,7 @@ app.post("/Login",(req,res) =>
                if(data[0].ID!==undefined) UserLog("User Login",data[0].ID);
             }
             );
-         }
+         } else res.json([{ID: 0}])
       })
    }
 })
