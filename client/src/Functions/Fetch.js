@@ -1,23 +1,36 @@
 function FetchReq(url,data)
 {
+  try{
     fetch(url,
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
         });
+      }
+      catch(err)
+      {
+        console.log("Error:",err)
+      }
 }
 
 function FetchData(url,data,callback)
 {
-    fetch(url,
+    try{
+        var Response = fetch(url,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(data)
         })
-      .then((Response) =>Response.json())
-      .then(callback);
+      }
+      catch(err)
+      {
+        console.log("Error: ",err)
+      }
+  
+    if(Response.ok) Response.json().then((Data)=>{callback(Data);});
+      
 }
 
 

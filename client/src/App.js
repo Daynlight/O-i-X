@@ -24,7 +24,6 @@ function App() {
   const [Stars, SetStars] = useState(0);
   const [Friends,SetFriends] = useState([]);
   const [ActualTime, SetActualTime] = useState(0);
-
   
 
 
