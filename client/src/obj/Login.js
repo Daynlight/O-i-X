@@ -16,6 +16,7 @@ const Login = () => {
     const [RePassword,SetRePassword] = useState('');
     const [InfoText,SetInfoText] = useState('');
     const [ShowPassword,SetShowPassword] = useState(false);
+    const [Logining,SetLogining] = useState(false);
 
 
 
@@ -28,6 +29,7 @@ const Login = () => {
     {
         if(cookies.get("UserID") !== undefined && cookies.get("UserNick") !== undefined && cookies.get("UserPass") !== undefined) 
         {
+            SetLogining(false);
             FetchReq(ActiveURL,{UserNick: cookies.get('UserNick'), UserPass: cookies.get('UserPass')}); 
             document.location.reload(true);
         }
@@ -35,10 +37,12 @@ const Login = () => {
 
     function RunActionLogin(e)
     {  
+        SetLogining(true);
+        SetInfoText('');
         e.preventDefault();
         FetchData(LoginURL,{UserNick: Nick, UserPass: md5(Password)},(Resoult)=>
         {
-            if(Resoult[0].ID===0) SetInfoText("Password or Username is wrong");
+            if(Resoult[0].ID===0) {SetInfoText("Password or Username is wrong"); SetLogining(false);}
             else
             {
             cookies.set('UserID', md5(Resoult[0].ID),CookiesTimeExpire);
@@ -93,7 +97,8 @@ const Login = () => {
                                         <input type="submit" className="LoginEventBtn TextGradiant" value="Login" />
                                     </div>
                                 </form>
-                                <div className="TextGradiant InfoText">{InfoText}</div>
+                                {Logining && <div className="TextGradiant infotext">Logining...</div>}
+                                {!Logining && <div className="TextGradiant infotext">{InfoText}</div>}
                             </div>
                         }
                         {!Action && 
