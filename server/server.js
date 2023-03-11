@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const {GetDataFromMysqlServer,PostDataToMysqlServer} = require('./Components/DataBaseFunctions');
+const {GetDataFromMysqlServer,PostDataToMysqlServer ,UserLog,UserLogPass,UserLogPassNoMD5} = require('./Components/DataBaseFunctions');
 
 app.set("view engine","ejs");
 app.use(cors());
@@ -14,7 +14,12 @@ app.post("/Login",(req,res) =>
    if(UserNick!==undefined && UserPass!==undefined)
    { 
       var sql = 'SELECT ID FROM Users where Nick="'+UserNick+'" and Password="'+UserPass+'";';
-      GetDataFromMysqlServer(sql,(data)=>res.json(data));
+      GetDataFromMysqlServer(sql,(data)=>
+      {
+         res.json(data);
+         if(data[0].ID!==undefined) UserLog("User Login",data[0].ID);
+      }
+      );
    }
 })
 
@@ -27,6 +32,9 @@ app.post("/Logout",(req,res) =>
       var sql = 'UPDATE Users Set Users.active = Users.active - INTERVAL 9 Minute WHERE md5(Users.Nick)="'+UserNick+'" and Users.Password="'+UserPass+'";';
       PostDataToMysqlServer(sql);
       res.json([{"status":"LogOut"}]);
+
+      UserLogPass(UserNick,UserPass,"User Logout");
+
    }
 })
 
@@ -45,6 +53,7 @@ app.post("/Register",(req,res) =>
             var sql='INSERT INTO Users(`Nick`,`Password`,`Email`) Value("'+UserNick+'","'+UserPass+'","'+Email+'");';
             PostDataToMysqlServer(sql);
             res.json([{"err": "User Added"}]);
+            UserLogPassNoMD5(UserNick,UserPass,"User Created");
          }
          else res.json([{"err": "UserExist"}]);
       });
@@ -103,6 +112,7 @@ app.post("/FirendAdd",(req,res) =>
                               var sql = 'INSERT INTO Friends(ID1,ID2) VALUES('+UserID+','+FriendID+');';
                               PostDataToMysqlServer(sql);
                               res.json([{"status": "Friend Aded"}]);
+                              UserLogPass(UserNick,UserPass,"User Add Friend ID = "+FriendID);
                            }
                            else
                            {
@@ -115,6 +125,7 @@ app.post("/FirendAdd",(req,res) =>
                                     var sql = 'UPDATE Friends Set Friends.active=true WHERE ID1='+UserID+' and ID2='+FriendID+';';
                                     PostDataToMysqlServer(sql);
                                     res.json([{"status": "Friend Aded"}]);
+                                    UserLogPass(UserNick,UserPass,"User Add Friend ID = "+FriendID);
                                  }
                               })
                            }
@@ -141,6 +152,7 @@ app.post("/FriendRemove",(req,res) =>
             var sql = 'UPDATE Friends SET Friends.active=false WHERE ID = '+FriendID+';';
             PostDataToMysqlServer(sql);
             res.json([{"status": "Removed"}]);
+            UserLogPass(UserNick,UserPass,"User Remove Friend ID = "+FriendID);
          }
          else res.json([{"status": "No Permision"}]);
       })
