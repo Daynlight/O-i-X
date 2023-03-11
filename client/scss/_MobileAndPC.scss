@@ -208,7 +208,7 @@ html,body
     color: $link;
     cursor: pointer;
 }
-.MainLoad
+.MainLoad,.LocalGameLoad,.BotGameLoad
 {
     animation-name: MainLoad;
     animation-iteration-count: 1;
@@ -256,4 +256,13 @@ html,body
 {
     transition: 500ms;
     background-color: rgba(0, 0, 0, 0.171);
+}
+.LocalGameLoad
+{
+    animation-name: LocalGameLoad;
+
+}
+.BotGameLoad
+{
+    animation-name: BotGameLoad;
 }

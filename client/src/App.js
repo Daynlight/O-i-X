@@ -1,5 +1,5 @@
 import './css/index.css'
-import { useState } from 'react';
+import { ueRef, useState } from 'react';
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import Cookies from 'universal-cookie';
 
@@ -24,6 +24,8 @@ function App() {
   const [Stars, SetStars] = useState(0);
   const [Friends,SetFriends] = useState([]);
   const [ActualTime, SetActualTime] = useState(0);
+
+  
 
 
   async function CheckIfActive()
@@ -72,26 +74,27 @@ function App() {
               <div className="NavBarLoad">
                 <Navbar Name={Name} ></Navbar>
               </div>
-              <div className="">
-                <BotGame></BotGame>
-              </div>
-              <div className="MainLoad">
-                <UserGame Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></UserGame>
+              <div className="BotGameLoad">
+                <div className="">
+                  <BotGame></BotGame>
+                </div>
+                <div className="">
+                  <UserGame Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></UserGame>
+                </div>
               </div>
               
             </Route>
             <Route exact path="/Local">
-
-              
               <div className="NavBarLoad">
                 <Navbar Name={Name} ></Navbar>
               </div>
-              <div className="UserGame">
-                <UserGame Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></UserGame>
-              </div>
-              <div className="LocalGame">
-                  <LocalGame></LocalGame>
-
+              <div className="LocalGameLoad">
+                <div className="UserGame">
+                  <UserGame Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></UserGame>
+                </div>
+                <div className="LocalGame">
+                    <LocalGame></LocalGame>
+                </div>
               </div>
               
             </Route>

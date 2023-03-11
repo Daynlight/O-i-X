@@ -37,3 +37,29 @@
         opacity: 100%;
     }
 }
+@keyframes LocalGameLoad {
+    0%
+    {
+        
+        opacity: 0%;
+    }
+
+    100%
+    {
+        
+        opacity: 100%;
+    }
+}
+@keyframes BotGameLoad {
+    0%
+    {
+        
+        opacity: 0%;
+    }
+
+    100%
+    {
+        
+        opacity: 100%;
+    }
+}
