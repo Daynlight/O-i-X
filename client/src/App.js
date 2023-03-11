@@ -76,7 +76,7 @@ function App() {
               </div>
               <div className="BotGameLoad">
               <div className="BotGame">
-                  <UserGame Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></UserGame>
+                  <UserGame Name={Name}></UserGame>
                 </div>
                 <BotGame></BotGame>
               </div>
@@ -88,7 +88,7 @@ function App() {
               </div>
               <div className="LocalGameLoad">
                 <div className="UserGame">
-                  <UserGame Name={Name} ActualTime={ActualTime} Stars={Stars} Friends={Friends}></UserGame>
+                  <UserGame Name={Name}></UserGame>
                 </div>
                 <div className="LocalGame">
                     <LocalGame></LocalGame>

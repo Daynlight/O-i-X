@@ -1,6 +1,4 @@
-import AddFriend from "./AddFriend";
-import FriendList from "./FriendList";
-const UserGame = ({Name,Stars,Friends,ActualTime,AddUser}) => {
+const UserGame = ({Name,Stars}) => {
     return ( 
     <div className="UserGameContainer">
             <div className="UserGameUserInfo MainGradiantBorder TextGradiant ">
