@@ -19,15 +19,15 @@ const AddFriend = () => {
 
     return ( 
     <div>
-        <div className="d-flex justify-content-center">
+        <div className="">
             <form onSubmit={ (e)=> AddFriendFunction(e) }>
-                <input type="text" className="form-control my-2" value={FriendNick} onChange={(e)=>SetFriendNick(e.target.value.toLowerCase())} placeholder="Friend Nick" />
-                <div className="d-flex justify-content-center">
-                    <input type="submit" className="btn btn-warning text-dark" value="ADD Friend" />
+                <input type="text" className="LoginInputForm" value={FriendNick} onChange={(e)=>SetFriendNick(e.target.value.toLowerCase())} placeholder="Friend Nick" />
+                <div className="">
+                    <input type="submit" className="LoginEventBtn TextGradiant" value="ADD Friend" />
                 </div>
             </form>
         </div>
-        <div className="d-flex justify-content-center">{FriendAded}</div>
+        <div className="TextGradiant infotext">{FriendAded}</div>
     </div> 
     );
 }

@@ -1,7 +1,8 @@
 @import 'var';
-@import 'Animations';
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import 'animations';
+@import 'MobileAndPC';
+@import 'PC';
+@import 'Mobile';
+@import 'Tablet';
 
 
-
-@import 'main';

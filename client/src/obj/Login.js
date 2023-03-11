@@ -1,4 +1,4 @@
-import { useEffect,useRef, useState } from "react";
+import { useState } from "react";
 import Cookies from "universal-cookie";
 var md5 = require('md5');
 
@@ -17,44 +17,7 @@ const Login = () => {
     const [InfoText,SetInfoText] = useState('');
     const [ShowPassword,SetShowPassword] = useState(false);
 
-    const [FirstLogin,SetFirstLogin] = useState(true);
-    const PasswordRef = useRef();
-    const [PasswordAnimation,SetPasswordAnimation] = useState('');
-    const ShowPasswordRef = useRef();
-    const [ShowPasswordAnimation,SetShowPasswordAnimation] = useState('');
-    const NickRef = useRef();
-    const [NickAnimation,SetNickAnimation] = useState('');
-    const SubmitRef = useRef();
-    const [SubmitAnimaton,SetSubmitAnimaton] = useState('');
-    const TerminalRef = useRef();
-    const [TerminalAnimation,SetTerminalAnimation] = useState('');
 
-    const vis = (ref,visa,option) =>
-    {
-        const observer = new IntersectionObserver((ent)  => 
-        {
-            const entry = ent[0];
-            if(entry.isIntersecting===true)
-            {
-                visa(option);
-            }
-            else
-            {
-                visa('');
-            }
-        })
-        observer.observe(ref.current);
-    }
-
-    useEffect(()=>
-    {
-        if(FirstLogin) vis(NickRef,SetNickAnimation,'NickAnimationMove'); else SetNickAnimation('NickAnimationMove');
-        if(FirstLogin) vis(PasswordRef,SetPasswordAnimation,'PasswordAnimationMove'); else SetPasswordAnimation('PasswordAnimationMove');
-        if(FirstLogin) vis(SubmitRef,SetSubmitAnimaton,'LoginSubmitAnimation'); else SetSubmitAnimaton('LoginSubmitAnimation');
-        if(FirstLogin) vis(ShowPasswordRef,SetShowPasswordAnimation,'ChangeAnimationMove'); else SetShowPasswordAnimation('ChangeAnimationMove');
-        if(FirstLogin) vis(TerminalRef,SetTerminalAnimation,'TerminalAnimation'); else SetTerminalAnimation('TerminalAnimation');
-        SetFirstLogin(false);
-    },[FirstLogin,NickAnimation,PasswordAnimation,SubmitAnimaton,ShowPasswordAnimation,TerminalAnimation])
 
     function setShowFunction()
     {
@@ -94,51 +57,84 @@ const Login = () => {
     }
 
     return ( 
-            <div>
-                <div className="d-flex row col-12 pt-5 justify-content-center">
-                    <div className="col-2"></div>
-                    <div className="col-9 col-md-8 col-lg-6 d-flex justify-content-center border-3">
+            <div className="Login">
+                    <div className="LoginFormContainer MainGradiantBorder">
                         {Action && 
-                            <div ref={TerminalRef} className={`colors Terminal Login col-12 ${TerminalAnimation}`} >
-                                <div className="d-flex justify-content-center mt-3">
-                                    <div onClick={ () => {SetAction(!Action);SetInfoText('')} } className="btn btn-primary me-2"><h1>Login</h1></div>
-                                    <div onClick={ () => {SetAction(!Action);SetInfoText('')} } className="btn ms-2 NotSetLoginSelection"><h1>Register</h1></div>
+                            <div>
+                                <div className="LoginChoseAction">
+                                    <div className="LoginActionSelect LoginActionSelectLogin"></div>
+                                    <div type="button" onClick={ () => {SetAction(!Action);SetInfoText('')} } className="LoginActionBtn"><h1>Login</h1></div>
+                                    <div type="button" onClick={ () => {SetAction(!Action);SetInfoText('')} } className="RegisterActionBtn"><h1>Register</h1></div>
                                 </div>
-                                <div className="d-flex justify-content-start">
-                                    <form className="" onSubmit={(e) => RunActionLogin(e)}>
-                                        <div className="mb-3">
-                                            <input type="text" ref={NickRef} className={`form-control LoginForm LoginAnimation ${NickAnimation}`}  required value={Nick} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
-                                            {!ShowPassword &&<input type="password" ref={PasswordRef} className={`form-control LoginForm LoginAnimation ${PasswordAnimation}`} required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
-                                            {ShowPassword &&<input type="text" ref={PasswordRef} className={`form-control LoginForm LoginAnimation ${PasswordAnimation}`} required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
-                                            {!ShowPassword &&<button type="button" ref={ShowPasswordRef} onClick={() => setShowFunction()} className={`btn btn-dark col-12 LoginAnimation ${ShowPasswordAnimation}`} >Show Password</button>}
-                                            {ShowPassword &&<button type="button" ref={ShowPasswordRef} onClick={() => setShowFunction()} className={`btn btn-secondary col-12 LoginAnimation ${ShowPasswordAnimation}`}>Hide Password</button>}
-                                          <input type="submit" ref={SubmitRef} className={`form-control LoginForm LoginAnimation LoginSubmit ${SubmitAnimaton} `}value="Login" />
-                                        </div>
-                                    </form>
-                                </div>
+                                
+                                <form className="" onSubmit={(e) => RunActionLogin(e)}>
+                                    <div className="">
+                                        
+                                        <svg color="#4cd53a" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                        </svg>
+                                        <br></br>
+                                        <input type="text" className="LoginInputForm" required value={Nick.charAt().toUpperCase()+Nick.substring(1)} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
+                                        <br></br>
+                                        <svg color="#4cd53a" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                                            <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                                            <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                        </svg>
+                                        <br></br>
+                                        {!ShowPassword &&<input type="password"  className="LoginInputForm"  required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
+                                        {ShowPassword &&<input type="text" className="LoginInputForm" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />}
+                                        {!ShowPassword &&<button type="button" onClick={() => setShowFunction()} className="LoginEventBtn TextGradiant" >Show Password</button>}
+                                        {ShowPassword &&<button type="button" onClick={() => setShowFunction()} className="LoginEventBtn TextGradiant">Hide Password</button>}
+                                        <input type="submit" className="LoginEventBtn TextGradiant" value="Login" />
+                                    </div>
+                                </form>
+                                
                             </div>
                         }
                         {!Action && 
-                            <div className="colors Terminal Register col-12">
-                            <div className="d-flex justify-content-center mt-3">
-                                <div onClick={ () => {SetAction(!Action);SetInfoText('')} } className="btn me-2 NotSetLoginSelection"><h1>Login</h1></div>
-                                <div onClick={ () => {SetAction(!Action);SetInfoText('')} } className="btn ms-2 btn-primary "><h1>Register</h1></div>
+                            <div>
+                                <div className="LoginChoseAction">
+                                    <div className="LoginActionSelect LoginActionSelectRegister"></div>
+                                    <div onClick={ () => {SetAction(!Action);SetInfoText('')} } className="LoginActionBtn"><h1>Login</h1></div>
+                                    <div onClick={ () => {SetAction(!Action);SetInfoText('')} } className="RegisterActionBtn"><h1>Register</h1></div>
+                                </div>
+                                <form className="" onSubmit={(e) => RunActionRegister(e)}>
+                                    <div className="">
+                                        <svg color="#4cd53a" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                        </svg>
+                                        <br></br>
+                                        <input type="text" className="LoginInputForm" required value={Nick.charAt().toUpperCase()+Nick.substring(1)} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
+                                        <br></br>
+                                        <svg color="#4cd53a" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                                            <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                                            <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                        </svg>
+                                        <br></br>
+                                        <input type="password" className="LoginInputForm" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
+                                        <br></br>
+                                        <svg color="#4cd53a" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                                            <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                                            <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                        </svg>
+                                        <br></br>
+                                        <input type="password" className="LoginInputForm" required value={RePassword} onChange={(e)=> SetRePassword(e.target.value)} placeholder="RePassword" />
+                                        <br></br>
+                                        <svg color="#4cd53a" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                                        </svg>
+                                        <br></br>
+                                        <input type="email" className="LoginInputForm" required value={Email} onChange={(e)=> SetEmail(e.target.value.toLowerCase())} placeholder="Email" />
+                                        <input type="submit" className="LoginEventBtn TextGradiant" value="Register" />
+                                        <div className="TextGradiant infotext">{InfoText}</div>
+                                    </div> 
+                                </form>
                             </div>
-                            <form className="" onSubmit={(e) => RunActionRegister(e)}>
-                                <div className="mb-3">
-                                    <input type="text" className="form-control mt-1 LoginForm" required value={Nick} onChange={(e)=> SetNick(e.target.value.toLowerCase())} placeholder="Nick" />
-                                    <input type="password" className="form-control mt-1 LoginForm" required value={Password} onChange={(e)=> SetPassword(e.target.value)} placeholder="Password" />
-                                    <input type="password" className="form-control mt-1 LoginForm" required value={RePassword} onChange={(e)=> SetRePassword(e.target.value)} placeholder="RePassword" />
-                                    <input type="email" className="form-control mt-1 LoginForm" required value={Email} onChange={(e)=> SetEmail(e.target.value.toLowerCase())} placeholder="Email" />
-                                    <input type="submit" className="form-control mt-1 LoginForm LoginSubmit" value="Register" />
-                                </div> 
-                            </form>
-                        </div>
                         }
                     </div>
-                    <div className="col-1"></div>
-                </div>
-                <div className="d-flex justify-content-center fs-2 text-danger">{InfoText}</div>
+                
             </div>
      );
 }

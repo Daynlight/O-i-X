@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 04, 2023 at 01:12 AM
+-- Generation Time: Mar 11, 2023 at 05:00 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -34,13 +34,18 @@ CREATE TABLE `Friends` (
   `active` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `Friends`
+-- Table structure for table `UserLogs`
 --
 
-INSERT INTO `Friends` (`ID`, `ID1`, `ID2`, `active`) VALUES
-(14, 20, 19, 1),
-(15, 19, 20, 1);
+CREATE TABLE `UserLogs` (
+  `ID` int(11) NOT NULL,
+  `Description` longtext NOT NULL,
+  `UID` int(11) NOT NULL,
+  `Date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -58,14 +63,6 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Users`
---
-
-INSERT INTO `Users` (`ID`, `Nick`, `Password`, `Email`, `Points`, `active`) VALUES
-(19, 'daynlight', 'b171fc43696e4a053270d6fc4ece8b11', 'danielstodulski000@gmail.com', 0, '2023-03-04 00:05:44'),
-(20, 'mimi', 'dde6ecd6406700aa000b213c843a3091', 'mimi@mimi', 0, '2023-03-03 22:44:54');
-
---
 -- Indexes for dumped tables
 --
 
@@ -76,6 +73,13 @@ ALTER TABLE `Friends`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Me_FriendList` (`ID1`),
   ADD KEY `Friend_FriendList` (`ID2`);
+
+--
+-- Indexes for table `UserLogs`
+--
+ALTER TABLE `UserLogs`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `UserLog_User` (`UID`);
 
 --
 -- Indexes for table `Users`
@@ -91,13 +95,19 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Friends`
 --
 ALTER TABLE `Friends`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `UserLogs`
+--
+ALTER TABLE `UserLogs`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Constraints for dumped tables
@@ -109,6 +119,12 @@ ALTER TABLE `Users`
 ALTER TABLE `Friends`
   ADD CONSTRAINT `Friend_FriendList` FOREIGN KEY (`ID2`) REFERENCES `Users` (`ID`),
   ADD CONSTRAINT `Me_FriendList` FOREIGN KEY (`ID1`) REFERENCES `Users` (`ID`);
+
+--
+-- Constraints for table `UserLogs`
+--
+ALTER TABLE `UserLogs`
+  ADD CONSTRAINT `UserLog_User` FOREIGN KEY (`UID`) REFERENCES `Users` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

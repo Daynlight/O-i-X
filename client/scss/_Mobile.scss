@@ -1,0 +1,123 @@
+@media only screen and (max-width: 600px) {
+    .LoginFormContainer
+    {
+        width: 90%;
+        justify-content: center;
+
+        animation-name: LoginStartPart1;
+        animation-iteration-count: 1;
+        animation-duration: 500ms;
+        animation-delay: 500ms;
+        animation-fill-mode: backwards;
+    }
+
+    .Login
+    {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+    }
+    .MainContainer
+    {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .MainScreen
+    { 
+        width: 90%;
+        border: 0px solid;
+        border-image-slice: 1;
+        border-width: 5px;
+        border-image-source: linear-gradient(to left, $primary, $secondary);
+        
+    }
+    .MainUserInfo
+    {
+        border: 0px;
+        height: 120px;
+        width: 100%;
+    }
+
+    .MainUserFriend
+    {
+        border: 0px;
+        width: 100%; 
+        font-size: 150%;
+    }
+    .NavBar
+    {
+        font-size: 120%;
+        height: 50px;
+    }
+
+    .Plansza
+    {
+        height: 90%;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+
+    }
+    .PlanszaRow
+    {
+        height: 80%;
+    }
+    .LocalGame
+    {
+        height: 90%;
+        width: 100%;
+        position: absolute;
+        align-content: center;
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;  
+    }
+    .PlanszaSqr
+    {
+        height: 90%;
+        aspect-ratio: 1/1; 
+        display: grid;
+        grid-template-columns: calc(100%/3) calc(100%/3) calc(100%/3);
+        grid-auto-rows: calc(100%/3);
+    }
+    .UserGame
+    {
+        width: 100%;
+
+    }
+    .UserGameContainer
+    {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+    }
+    .UserGameText
+    {
+        font-size: 120%;
+        
+    }
+    .UserGameUserInfo
+    {
+        width: 90%;
+        margin-bottom: -30px;
+    }
+    .BotGame
+    {
+        margin-bottom: 40px;
+    }
+    .PlanszaSqr,.PlanszaRow,.Plansza
+    {
+        width: 95%;
+        margin-left: 5px;
+        
+    }
+
+
+    
+}

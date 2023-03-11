@@ -1,0 +1,101 @@
+@media only screen and (min-width: 1000px) {
+    .LoginFormContainer
+    {
+        width: 30%;
+        justify-content: center;
+        
+        animation-name: LoginStartPart1;
+        animation-iteration-count: 1;
+        animation-duration: 500ms;
+        animation-delay: 500ms;
+        animation-fill-mode: backwards;
+    }
+
+    .Login
+    {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+    }
+    .MainScreen
+    {
+        font-size: 200% !important;
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
+    }
+    .MainUserInfo
+    {
+        width: 45%;
+        height: 300px;
+        margin-right: 5%; 
+    }
+
+    .MainUserFriend
+    {
+        width: 40%; 
+    }
+    .NavBar
+    {
+        font-size: 200%;
+        height: 60px;
+    }
+
+    .Plansza
+    {
+        height: 90%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+    }
+    .PlanszaRow
+    {
+        height: 90%;
+    }
+    .LocalGame
+    {
+        height: 90%;
+        width: 100%;
+        position: absolute;
+        align-content: center;
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;  
+    }
+    .PlanszaSqr
+    {
+        height: 90%;
+        aspect-ratio: 1/1; 
+        display: grid;
+        grid-template-columns: calc(100%/3) calc(100%/3) calc(100%/3);
+        grid-auto-rows: calc(100%/3);
+    }
+    .UserGame
+    {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .UserGameContainer
+    {
+        width: 50%;
+    }
+    .UserGameText
+    {
+        font-size: 120%;
+    }
+    .BotGame
+    {
+        margin-bottom: 10px;
+    }
+
+
+
+    
+    
+}

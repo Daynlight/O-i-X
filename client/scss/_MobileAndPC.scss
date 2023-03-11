@@ -1,0 +1,295 @@
+::-webkit-scrollbar
+{
+    width: 0%;
+    height: 0%;
+}
+html,body
+{
+    // overflow: hidden;
+    height:100%;
+    width: 100%;
+    background-image: url(https://i.redd.it/s12lxev056m51.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.LoginFormContainer
+{
+    background-color: rgba(0, 0, 0, 0.425);
+    padding: 5px;
+    text-align: center;
+}
+.LoginChoseAction
+{
+    display: inline-flex;
+    width: 100%;
+    height: 80px;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    position: relative;
+    background-color: $loginaction;
+}
+.LoginActionBtn
+{
+    width: 50%;
+    position: absolute;
+    cursor: pointer;
+}
+.LoginActionBtn:hover, .RegisterActionBtn:hover
+{
+    transition: 500ms;
+    background-color: rgba(58, 1, 1, 0.233);
+}
+.RegisterActionBtn
+{
+    width: 50%;
+    position: absolute;
+    transform: translateX(100%);
+    cursor: pointer;
+}
+
+.LoginActionSelect
+{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    background-color: aqua;
+    
+}
+.LoginActionSelectLogin
+{
+    animation-name: LoginSetAction;
+    animation-iteration-count: 1;
+    animation-duration: 500ms;
+    animation-direction: reverse;
+    animation-fill-mode: backwards;
+}
+.LoginActionSelectRegister
+{
+    animation-name: LoginSetAction;
+    animation-iteration-count: 1;
+    animation-duration: 500ms;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+.LoginEventBtn
+{
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+.LoginEventBtn:hover
+{
+    background-image: linear-gradient(to left, lighten($primary,20%),lighten($secondary,20%));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.LoginInputForm, .LoginInputForm input, .LoginEventBtn
+{
+    width: 90%;
+    height: 40px;
+    font-size: 30px;
+    margin-bottom: 5px;
+
+    border-image-slice: 1;
+    border-width: 2px;
+    border-image-source: linear-gradient(to left, $primary, $secondary);
+    
+}
+.FriendList ul, .FriendList li
+{
+    list-style-type: none;
+    padding: 0;
+}
+.TextGradiant
+{
+    background-image: linear-gradient(to left, $primary,$secondary);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.FriendListContainer
+{
+    height: fit-content;
+}
+.FriendList
+{
+    cursor: pointer;
+}
+.FriendItem:hover
+{
+    transition: 500ms;
+    color: rgba(0, 247, 255, 0.815);
+}
+.FriendItemOption:hover
+{
+    background-image: linear-gradient(to left, rgba(0, 247, 255, 0.815),rgba(0, 247, 255, 0.815));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.MainUserFriend
+{
+    list-style-type: none;
+    
+}
+.MainGradiantBorder
+{
+    border: 0px solid;
+    border-image-slice: 1;
+    border-width: 5px;
+    border-image-source: linear-gradient(to left, $primary, $secondary);
+}
+.MainScreen
+{
+    font-size: 150%;
+    margin-left: -10px;
+    height: 100%;
+    text-align: center;
+}
+.infotext
+{
+    font-size: 110%;
+}
+.Active
+{
+    color: $active;
+}
+.Sleep
+{
+    color: $sleep;
+}
+.UnActive
+{
+    color: $unactive;
+}
+.WebWarning
+{
+    text-align: center;
+    width: 400px;
+}
+.WebWarningConatiner
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.NavBar
+{
+    width: 100%;
+    margin-left: -10px;
+    text-align: center;
+    display: inline-flex;
+    align-content: center;
+    margin-bottom: 10px;
+    background-image: linear-gradient(to left,$primary,$secondary);
+}
+.NavBarItem
+{
+    width: 20%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 1px solid black;
+}
+.NavBarItem:hover
+{
+    background-color: rgba(0, 0, 0, 0.158);
+}
+.Link
+{
+    text-decoration: none;
+    color: $link;
+    cursor: pointer;
+}
+.MainLoad,.LocalGameLoad,.BotGameLoad
+{
+    animation-name: MainLoad;
+    animation-iteration-count: 1;
+    animation-duration: 500ms;
+    animation-delay: 500ms;
+    animation-fill-mode: backwards;
+}
+.NavBarLoad
+{
+    animation-name: MainLoad;
+    animation-iteration-count: 1;
+    animation-duration: 500ms;
+    animation-fill-mode: backwards;
+}
+.UserGameUserInfo
+{
+    text-align: center;
+}
+.Tale
+{
+    color: #6c757d;
+    border: 1px solid black;
+}
+.WinTable
+{
+    display: flex;
+    justify-content: center;
+    font-size: 200%;
+}
+.WinState
+{
+    margin-right: 20px;
+}
+.PlayAgainBtn, .Tale
+{
+    cursor: pointer;
+}
+.PlayAgainBtn:hover
+{
+    background-image: linear-gradient(to left, lighten($primary,20%),lighten($secondary,20%));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.Tale:hover
+{
+    transition: 500ms;
+    background-color: rgba(0, 0, 0, 0.171);
+}
+.LocalGameLoad
+{
+    animation-name: LocalGameLoad;
+
+}
+.BotGameLoad
+{
+    
+    animation-name: BotGameLoad;
+}
+.GameBotChose
+{
+    width: 50%;
+    height: 50%;
+    display: inline-flex;
+    div{
+        border: 1px solid black;
+    }
+}
+.BotGame
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height:170px;
+}
+.GameContainer
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+}
+.ChoseItemGameBot
+{
+    width: 50%;
+}
