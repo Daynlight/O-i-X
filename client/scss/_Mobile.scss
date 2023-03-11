@@ -39,7 +39,7 @@
     .MainUserInfo
     {
         border: 0px;
-        height: 120px;
+        height: 150px;
         width: 100%;
     }
 
@@ -55,22 +55,25 @@
         height: 50px;
     }
 
-    .Plansza
+    .Plansza,.PlanszaSqr
     {
-        height: 90%;
-        width: 90%;
-        display: flex;
-        justify-content: center;
+        margin-top: 10px;
+        width: 100%;
+        aspect-ratio: 1/1;
 
     }
     .PlanszaRow
     {
-        height: 80%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
     }
     .LocalGame
     {
-        height: 90%;
+        
         width: 100%;
+        aspect-ratio: 1/1;
         position: absolute;
         align-content: center;
         justify-content: center;
@@ -79,7 +82,6 @@
     }
     .PlanszaSqr
     {
-        height: 90%;
         aspect-ratio: 1/1; 
         display: grid;
         grid-template-columns: calc(100%/3) calc(100%/3) calc(100%/3);
@@ -88,36 +90,43 @@
     .UserGame
     {
         width: 100%;
+        height:100%;
 
     }
     .UserGameContainer
     {
         width: 100%;
+        height:100%;
         display: flex;
         justify-content: center;
 
     }
     .UserGameText
     {
-        font-size: 120%;
-        
+        font-size: 120%;  
     }
     .UserGameUserInfo
     {
         width: 90%;
-        margin-bottom: -30px;
+        height: 90%;
+        
     }
     .BotGame
     {
         margin-bottom: 40px;
     }
-    .PlanszaSqr,.PlanszaRow,.Plansza
+    .NavBarLoad
     {
-        width: 95%;
-        margin-left: 5px;
-        
+        width: 100%;
     }
-
+    .NavbarSpect
+    {
+        border-left: 2px solid black;
+    }
+    .NavBarItem
+    {
+        font-size: 70%;
+    }
 
     
 }

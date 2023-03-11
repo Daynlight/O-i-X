@@ -110,7 +110,7 @@ const BotGame = () => {
             </div>}
             {Ture!==0 && 
             <div className="Plansza">
-                <div className="TextGradiant PlanszaRow">
+                <div className="PlanszaRow TextGradiant">
                     {Win!=='' &&
                         <div className="WinTable MainGradiantBorder ">
                             {Win === 'x'  && <div className="WinState">X Win</div>}
@@ -119,6 +119,9 @@ const BotGame = () => {
                             <div onClick={() => PlayAgain()} className="PlayAgainBtn">Play Again</div>
                         </div>
                     }
+                </div>
+                <div className="TextGradiant PlanszaRow">
+                    
                     <div className="PlanszaSqr MainGradiantBorder">
                         {Place.map(e=>(
                             (e.Pose==='x' && <div key={e.id} className="Tale">

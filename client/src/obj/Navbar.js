@@ -20,18 +20,18 @@ const Navbar = ({Name}) => {
     return ( 
         <div className="NavBar">
             <Link to="/" className="NavBarItem Link">
-                <div className="Link">{ Name.charAt().toUpperCase()+Name.substring(1) }</div>
+                <div className="Link">Home</div>
             </Link>
-            <Link to="/Find" className="NavBarItem Link">
+            <Link to="/Find" className="NavBarItem NavbarSpect Link">
                 <div className="Link">Find Game</div>
             </Link>
-            <Link to="/Local" className="NavBarItem Link">
+            <Link to="/Local" className="NavBarItem NavbarSpect Link">
                 <div className="Link">Local Game</div>
             </Link>
-            <Link to="/Bot" className="NavBarItem Link">
+            <Link to="/Bot" className="NavBarItem NavbarSpect Link">
                 <div className="Link">Bot Game</div>
             </Link>
-            <div onClick={ () => LogOutFunction() } className="NavBarItem Link">
+            <div onClick={ () => LogOutFunction() } className="NavBarItem NavbarSpect Link">
                 <div type="button" className="Link">LogOut</div>
             </div>
         </div>

@@ -66,6 +66,9 @@ const LocalGame = () => {
                     <div onClick={() => Again()} className="PlayAgainBtn">Play Again</div>
                 </div>
             }
+            </div>
+            <div className="PlanszaRow ">
+            
             
             <div className="PlanszaSqr MainGradiantBorder">
                 {Place.map(e=>(

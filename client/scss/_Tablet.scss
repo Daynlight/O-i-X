@@ -30,7 +30,6 @@
     .MainUserInfo
     {
         width: 45%;
-        height: 200px;
         margin-right: 5%; 
     }
 
@@ -47,25 +46,16 @@
 
     .Plansza
     {
-        height: 90%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
+        margin-top: 10px;
+        width: 60%;
+    }
 
-    }
-    .PlanszaRow
-    {
-        height: 90%;
-    }
     .LocalGame
     {
-        height: 90%;
         width: 100%;
-        position: absolute;
         align-content: center;
         justify-content: center;
         display: flex;
-        flex-wrap: wrap;  
     }
     .PlanszaSqr
     {
